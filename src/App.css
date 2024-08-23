@@ -21,11 +21,9 @@ body {
 }
 .d_flex {
   display: flex;
-  justify-content: space-between;
 }
 .c_flex {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .f_flex {

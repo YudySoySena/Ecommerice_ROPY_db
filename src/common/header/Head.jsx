@@ -7,17 +7,14 @@ const Head = () => {
         <div className='container d_flex'>
           <div className='left row'>
             <i className='fa fa-phone'></i>
-            <label> +88012 3456 7894</label>
+            <label>Llámanos al: 3196099669-3218387758</label>
             <i className='fa fa-envelope'></i>
-            <label> support@ui-lib.com</label>
+            <label> mueblesropy@gmail.com</label>
+            <i className="fa-sharp-duotone fa-solid fa-map-pin"></i>
+            <label>Encuéntranos en: Cra 7A #8a-29 Sur, Barrio Nariño Sur.</label>
           </div>
           <div className='right row RText'>
-            <label>Theme FAQ"s</label>
-            <label>Need Help?</label>
-            <span>🏳️‍⚧️</span>
-            <label>EN</label>
-            <span>🏳️‍⚧️</span>
-            <label>USD</label>
+            <label>Preguntas FAQ</label>
           </div>
         </div>
       </section>
