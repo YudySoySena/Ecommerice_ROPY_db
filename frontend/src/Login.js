@@ -1,5 +1,6 @@
+// Login.jsx
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './login.css';
 import { UserContext } from "./UserContext";
@@ -10,8 +11,9 @@ const Login = () => {
     Password: '' // Cambiado a mayúscula
   });
 
+  // Asegúrate de que `setContextUser` esté disponible en el contexto
   const { setContextUser } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate(); // Usa `useNavigate` en lugar de `history`
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +28,8 @@ const Login = () => {
     try {
       const response = await axios.get("http://localhost:4000/Users", {
         params: {
-          Email: formData.Email,  // Cambiado a mayúscula
-          Password: formData.Password  // Cambiado a mayúscula
+          Email: formData.Email,
+          Password: formData.Password
         }
       });
 
@@ -37,8 +39,8 @@ const Login = () => {
 
       if (user) {
         console.log("Éxito:", user);
-        setContextUser(user); 
-        history.push(`/user/${user.id}`);
+        setContextUser(user); // Actualiza el contexto con el usuario
+        navigate(`/user/${user.id}`); // Navega a la ruta del usuario
       } else {
         console.log("Usuario o contraseña incorrectos");
       }
@@ -97,6 +99,9 @@ const Login = () => {
           </p>
           <p className="mb-0">
             <Link to="/register" className="text-center">¿Aún no estás registrado?</Link>
+          </p>
+          <p className="mb-0">
+            <Link to="/loginAdmin" className="text-center">¿Eres Administrador?</Link>
           </p>
         </div>
       </div>

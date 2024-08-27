@@ -90,147 +90,209 @@
       "Nombre": "andrea quemba",
       "Email": "aquemba4@gmail.com",
       "Password": "123456"
+    },
+    {
+      "id": "9faf",
+      "Nombre": "Milo Q",
+      "Email": "miloq@gmail.com",
+      "Password": "soymiloo1234"
     }
   ],
-  
-    "Destacados": [
-      {
-        "id": 1,
-        "title": "Camarote con sofá 2 en 1",
-        "desc": "Este innovador camarote combina funcionalidad y estilo, convirtiéndose en un sofá durante el día y en una cómoda cama durante la noche. Ideal para maximizar espacios reducidos.",
-        "cover": "./images/SlideCard/slide-1.png"
-      },
-      {
-        "id": 2,
-        "title": "Camarote en L con repisa",
-        "desc": "Un camarote en forma de L con una práctica repisa integrada, perfecto para habitaciones compartidas, ofreciendo almacenamiento adicional y un diseño moderno.",
-        "cover": "./images/SlideCard/slide-2.png"
-      },
-      {
-        "id": 3,
-        "title": "Camarote con Escritorio",
-        "desc": "Este camarote incluye un escritorio incorporado, ideal para estudiantes o profesionales que necesitan un espacio de trabajo en su dormitorio.",
-        "cover": "./images/SlideCard/slide-3.png"
-      },
-      {
-        "id": 4,
-        "title": "Camarote Sencillo Azul + Rojo",
-        "desc": "Un vibrante camarote en azul y rojo, diseñado para añadir un toque de color y diversión a cualquier habitación infantil.",
-        "cover": "./images/SlideCard/slide-4.png"
-      }
-    ],
-  "": [
+
+  "Admin":[
     {
-      "":""
+      "user": "Yudy Garcia",
+      "password": "5678"
     }
+  ],
+  "Destacados": [
+    {
+      "id": "1",
+      "title": "Camarote con sofá 2 en 1",
+      "desc": "Este innovador camarote combina funcionalidad y estilo, convirtiéndose en un sofá durante el día y en una cómoda cama durante la noche. Ideal para maximizar espacios reducidos.",
+      "cover": "./images/SlideCard/slide-1.png"
+    },
+    {
+      "id": "2",
+      "title": "Camarote en L con repisa",
+      "desc": "Un camarote en forma de L con una práctica repisa integrada, perfecto para habitaciones compartidas, ofreciendo almacenamiento adicional y un diseño moderno.",
+      "cover": "./images/SlideCard/slide-2.png"
+    },
+    {
+      "id": "3",
+      "title": "Camarote con Escritorio",
+      "desc": "Este camarote incluye un escritorio incorporado, ideal para estudiantes o profesionales que necesitan un espacio de trabajo en su dormitorio.",
+      "cover": "./images/SlideCard/slide-3.png"
+    },
+    {
+      "id": "4",
+      "title": "Camarote Sencillo Azul + Rojo",
+      "desc": "Un vibrante camarote en azul y rojo, diseñado para añadir un toque de color y diversión a cualquier habitación infantil.",
+      "cover": "./images/SlideCard/slide-4.png"
+    }
+  ],
+  "Novedades": [
+    {
+      "cover": "./images/arrivals/arrivals1.png",
+      "name": "Toallas de calidad Premium",
+      "price": 25
+    },
+    {
+      "cover": "./images/arrivals/arrivals2.png",
+      "name": "Cobija termica negra",
+      "price": 20
+    },
+    {
+      "cover": "./images/arrivals/arrivals3.png",
+      "name": "Sabanas de Lujo",
+      "price": 30
+    },
+    {
+      "cover": "./images/arrivals/arrivals4.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    }
+  ],
+
+  "Descuentos": [
+    {
+      "cover": "./images/discount/discount-1.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    },
+    {
+      "cover": "./images/discount/discount-2.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    },
+    {
+      "cover": "./images/discount/discount-3.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    },
+    {
+      "cover": "./images/discount/discount-4.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    },
+    {
+      "cover": "./images/discount/discount-6.png",
+      "name": "Toallas de Mano",
+      "price": 20
+    } 
   ],
   "ProductItems": [
     {
-      "id": 1,
+      "id": "1",
       "discount": 50,
       "cover": "./images/allProducts/camarote1.png",
       "name": "Camarote Campestre Lateral",
-      "price": 500.000
+      "price": 500,
+      "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos."
     },
     {
-      "id": 2,
+      "id": "2",
       "discount": 40,
       "cover": "./images/allProducts/camarote2.png",
       "name": "Camarote 3 niveles metalmaderatch",
-      "price": 1.400000
+      "price": 1400,
+      "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional."
     },
     {
-      "id": 3,
+      "id": "3",
       "discount": 40,
       "cover": "./images/allProducts/camarote3.png",
-      "name": "Smart Mobile Black",
-      "price": 200
+      "name": "Camarote 3 niveles Francés",
+      "price": 850,
+      "description": "Camarote de 3 niveles con diseño francés, elegante y duradero."
     },
     {
-      "id": 4,
+      "id": "4",
       "discount": 40,
       "cover": "./images/allProducts/camarote4.png",
-      "name": "Smart Watch Black",
-      "price": 50
+      "name": "Camarote 3 Niveles Triada",
+      "price": 905,
+      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno."
     },
     {
-      "id": 5,
+      "id": "5",
       "discount": 50,
       "cover": "./images/allProducts/camarote5.png",
-      "name": "Shoes",
-      "price": 100
+      "name": "Camarote 3 niveles lineas Redondeado",
+      "price": 750,
+      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
     },
     {
-      "id": 6,
+      "id": "6",
       "discount": 50,
       "cover": "./images/allProducts/camarote6.png",
       "name": "Camarote 3 niveles francés metalmadera",
-      "price": 1.600000
-    }
-  ],
-  "ShopItems":[
+      "price": 1600,
+      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
+    },
     {
-      "id": 7,
+      "id": "7",
       "cover": "./images/allProducts/camarote7.png",
       "name": "Camarote Estudio 4",
-      "price": 950.000,
-      "discount": "25"
+      "price": 950,
+      "discount": "25",
+      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
     },
     {
-      "id": 8,
+      "id": "8",
       "cover": "./images/allProducts/camarote8.png",
       "name": "Camarote Estudio 2",
-      "price": "120",
-      "discount": "10"
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
     },
     {
-      "id": 9,
+      "id": "9",
       "cover": "./images/allProducts/camarote9.png",
-      "name": "Sony Light",
-      "price": "20",
-      "discount": "50 "
+      "name": "Camarote 3 niveles Lineal",
+      "price": 700,
+      "discount": "50",
+      "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
     },
     {
-      "id": 10,
+      "id": "10",
       "cover": "./images/allProducts/camarote10.png",
       "name": "Camarote Estudio 3",
-      "price": 900.000,
-      "discount": "10 "
+      "price": 900,
+      "discount": "10",
+      "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
     },
     {
-      "id": 11,
+      "id": "11",
       "cover": "./images/allProducts/camarote11.png",
       "name": "Camarote Estudio",
-      "price": 1.300000,
-      "discount": "20 "
+      "price": 1300,
+      "discount": "20",
+      "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
     },
     {
-      "id": 12,
+      "id": "12",
       "cover": "./images/allProducts/camarote12.png",
       "name": "Camarote Estudio 1",
-      "price": "400",
-      "discount": "20 "
+      "price": 800,
+      "discount": "20",
+      "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
     },
     {
-      "id": 13,
+      "id": "13",
       "cover": "./images/allProducts/camarote13.png",
       "name": "Camarote Campestre Metalmadera",
-      "price": 500.000,
-      "discount": "5 "
+      "price": 500,
+      "discount": "5",
+      "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
     },
     {
-      "id": 14,
+      "id": "14",
       "cover": "./images/allProducts/camarote14.png",
       "name": "Camarote Campestre desmontable",
-      "price": 500.000,
-      "discount": "10"
-    },
-    {
-      "id": 15,
-      "cover": "./images/allProducts/camarote.png",
-     "name": "Silver Cap",
-      "price": "5",
-      "discount": "2"
+      "price": 500,
+      "discount": "10",
+      "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
     }
   ]
 }

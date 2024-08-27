@@ -3,6 +3,10 @@
   height: 40px;
   margin-top: 5px;
 }
+
+.NewArrivals {
+  padding: 2rem 0;
+}
 .NewArrivals h4 {
   font-weight: 400;
 }

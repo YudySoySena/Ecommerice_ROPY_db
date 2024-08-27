@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom"; // Importa useHistory
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
 import axios from 'axios';
 
 const Register = () => {
@@ -9,7 +9,7 @@ const Register = () => {
     Password: ''
   });
 
-  const history = useHistory(); // Inicializa useHistory
+  const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,7 +25,7 @@ const Register = () => {
       const response = await axios.post("http://localhost:4000/Users", formData);
       console.log("Éxito:", response.data);
       // Redirige al login después de un registro exitoso
-      history.push('/login');
+      navigate('/login'); // Cambia a `navigate`
     } catch (error) {
       console.error("Error al enviar los datos:", error);
     }
@@ -38,7 +38,7 @@ const Register = () => {
       </div>
       <div className="card">
         <div className="card-body register-card-body">
-        <b>Registro</b>
+          <b>Registro</b>
           <form onSubmit={enviar}>
             <div className="input-group mb-3">
               <input
