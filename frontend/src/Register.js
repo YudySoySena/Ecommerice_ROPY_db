@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
 import axios from 'axios';
+import './register.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,9 +34,6 @@ const Register = () => {
 
   return (
     <div className="register-box">
-      <div className="register-logo">
-        <Link to="#"></Link>
-      </div>
       <div className="card">
         <div className="card-body register-card-body">
           <b>Registro</b>

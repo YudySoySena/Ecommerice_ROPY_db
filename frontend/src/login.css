@@ -1,14 +1,105 @@
+/* Estilos globales */
 body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
+    background-color: #f0f2f5; /* Color de fondo de la página */
 }
 
+/* Contenedor principal del formulario */
 .card-body {
     margin: 70px auto;
-    width: 540px;
+    width: 100%;
+    max-width: 400px; /* Ajustado para que el formulario se vea mejor en pantallas pequeñas */
     border: 1px solid #0f3460;
     border-radius: 10px;
-    position: relative;
+    background: #ffffff; /* Fondo blanco para el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+    padding: 20px; /* Espaciado interno */
+}
+
+/* Contenedor de la página de inicio de sesión */
+.hold-transition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* Ocupa toda la altura de la pantalla */
+}
+
+/* Estilos del formulario */
+.login-box {
+    padding: 20px;
+}
+
+.login-box b {
+    font-size: 24px;
+    color: #0f3460;
+    display: block;
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    text-align: center;
+}
+
+/* Estilos de los campos de entrada */
+.input-group {
+    margin-bottom: 15px; /* Espaciado entre campos */
+}
+
+.input-group .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.input-group .input-group-text {
     background: #0f3460;
+    color: #fff;
+    border: 1px solid #0f3460;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos del botón de inicio de sesión */
+
+.row {
+    width: 100%;
+}
+.btn-primary {
+    border: none;
+    margin-top: 30px;
+    background: #0f3460;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+    display: block; /* Cambiado de flex a block para que el margen funcione correctamente */
+    width: auto; /* Ajustado el ancho automático para centrar el botón */
+    margin-left: auto; /* Margen izquierdo automático para centrar */
+    margin-right: auto; /* Margen derecho automático para centrar */
+    margin-bottom: 30px;
+}
+
+.btn-primary:hover {
+    background: #235383; /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilos para los enlaces */
+a {
+    color: #0f3460;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayar al pasar el cursor */
+}
+
+/* Estilos adicionales para el pie de página */
+.mb-1, .mb-0 {
+    margin-bottom: 15px;
+}
+
+.text-center {
+    text-align: center;
 }

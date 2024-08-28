@@ -1,0 +1,97 @@
+/* Estilo general del contenedor */
+.acerca-roopy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo para los títulos principales */
+  .acerca-roopy h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff; /* Línea decorativa debajo del título */
+    padding-bottom: 10px;
+  }
+  
+  /* Estilo para los párrafos */
+  .acerca-roopy p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  /* Espaciado para el formulario */
+  .acerca-roopy form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilo para campos del formulario */
+  .acerca-roopy input,
+  .acerca-roopy textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+  }
+  
+  /* Estilo para el botón de envío */
+  .acerca-roopy button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .acerca-roopy button:hover {
+    background-color: #0056b3;
+  } 
+  /* Estilo general del contenedor */
+.fqs-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilo para el título principal */
+.fqs-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center; /* Centra el título */
+}
+
+/* Estilo para las preguntas y respuestas */
+.fqs-container p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las preguntas */
+.fqs-container .question {
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Estilo para las respuestas */
+.fqs-container .answer {
+  margin-bottom: 20px;
+}
+
+/* Separador entre preguntas */
+.fqs-container .separator {
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}

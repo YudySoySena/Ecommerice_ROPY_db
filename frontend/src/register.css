@@ -1,0 +1,51 @@
+.card-body {
+    margin: 70px auto;
+    width: 100%;
+    max-width: 400px; /* Ajustado para que el formulario se vea mejor en pantallas pequeñas */
+    border: 1px solid #0f3460;
+    border-radius: 10px;
+    background: #ffffff; /* Fondo blanco para el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+    padding: 20px; /* Espaciado interno */
+}
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.register-card-body b {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #0f3460;
+    display: block;
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    text-align: center;
+}
+.input-group {
+    margin-bottom: 15px;
+    display: grid;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+}
+
+.input-group .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 16px;
+    padding: 10px;
+    width: 300px;
+}
+.input-group .input-group-text {
+    background: #0f3460;
+    color: #fff;
+    border: 1px solid #0f3460;
+    border-radius: 5px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

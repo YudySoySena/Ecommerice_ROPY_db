@@ -1,56 +1,100 @@
-import React from "react"
-import "./style.css"
-import logo from "../../components/assets/images/logo.png"
+import React, { useState } from "react";
+import "./style.css";
+import logo from "../../components/assets/images/logo.png";
 
 const Footer = () => {
+  // Estado para manejar los datos del formulario
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    telefono: '',
+    asunto: '',
+    mensaje: ''
+  });
+
+  // Manejar cambios en los campos del formulario
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Manejar el envío del formulario
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aquí puedes agregar la lógica para enviar los datos del formulario
+    console.log('Formulario enviado:', formData);
+    alert('Mensaje enviado');
+    // Reiniciar el formulario
+    setFormData({
+      nombre: '',
+      email: '',
+      telefono: '',
+      asunto: '',
+      mensaje: ''
+    });
+  };
+
   return (
     <>
       <footer>
         <div className='container grid2'>
           <div className='box'>
-          <div className='logo width '>
-            <img src={logo} alt='' />
+            <div className='logo width'>
+              <img src={logo} alt='' />
+            </div>
+            <p>Comodidad y confianza con ROPY</p>
           </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in gravida. Sit diam duis mauris nulla cursus. Erat et lectus vel ut sollicitudin elit at amet.</p>
-          </div>
-
-          <div className='box'>
-            <h2>About Us</h2>
-            <ul>
-              <li>Careers</li>
-              <li>Our Stores</li>
-              <li>Our Cares</li>
-              <li>Terms & Conditions</li>
-              <li>Privacy Policy</li>
-            </ul>
-          </div>
-          <div className='box'>
-            <h2>Customer Care</h2>
-            <ul>
-              <li>Help Center </li>
-              <li>How to Buy </li>
-              <li>Track Your Order </li>
-              <li>Corporate & Bulk Purchasing </li>
-              <li>Returns & Refunds </li>
-            </ul>
-          </div>
-          <div className='box'>
-            <h2>Contact Us</h2>
-            <ul>
-              <li>70 Washington Square South, New York, NY 10012, United States </li>
-              <li>Email: uilib.help@gmail.com</li>
-              <li>Phone: +1 1123 456 780</li>
-            </ul>
-          </div>
-          <div className="contacto-form">
-            <form action="">
-              <input type="text" name="nombre" id="nombre" placeholder="Nombre"/>
+          <div>©2024 por muebles ROPY.</div>
+          <div className='box contacto-form'>
+            <h2>Contact Form</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono"
+                value={formData.telefono}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="asunto"
+                placeholder="Asunto"
+                value={formData.asunto}
+                onChange={handleChange}
+                required
+              />
+              <textarea
+                name="mensaje"
+                placeholder="Mensaje"
+                value={formData.mensaje}
+                onChange={handleChange}
+                required
+              ></textarea>
+              <button type="submit">Enviar</button>
             </form>
           </div>
         </div>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
+

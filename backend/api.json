@@ -98,11 +98,11 @@
       "Password": "soymiloo1234"
     }
   ],
-
-  "Admin":[
+  "Admin": [
     {
       "user": "Yudy Garcia",
-      "password": "5678"
+      "password": "5678",
+      "id": "3834"
     }
   ],
   "Destacados": [
@@ -135,51 +135,59 @@
     {
       "cover": "./images/arrivals/arrivals1.png",
       "name": "Toallas de calidad Premium",
-      "price": 25
+      "price": 25,
+      "id": "99b3"
     },
     {
       "cover": "./images/arrivals/arrivals2.png",
       "name": "Cobija termica negra",
-      "price": 20
+      "price": 20,
+      "id": "3f8e"
     },
     {
       "cover": "./images/arrivals/arrivals3.png",
       "name": "Sabanas de Lujo",
-      "price": 30
+      "price": 30,
+      "id": "cf89"
     },
     {
       "cover": "./images/arrivals/arrivals4.png",
       "name": "Toallas de Mano",
-      "price": 20
+      "price": 20,
+      "id": "e895"
     }
   ],
-
   "Descuentos": [
     {
       "cover": "./images/discount/discount-1.png",
       "name": "Toallas de Mano",
-      "price": 20
+      "price": 20,
+      "id": "87da"
     },
     {
       "cover": "./images/discount/discount-2.png",
       "name": "Toallas de Mano",
-      "price": 20
+      "price": 20,
+      "id": "5482"
     },
     {
       "cover": "./images/discount/discount-3.png",
       "name": "Toallas de Mano",
-      "price": 20
+      "price": 20,
+      "id": "e62d"
     },
     {
       "cover": "./images/discount/discount-4.png",
       "name": "Toallas de Mano",
-      "price": 20
+      "price": 20,
+      "id": "2396"
     },
     {
       "cover": "./images/discount/discount-6.png",
       "name": "Toallas de Mano",
-      "price": 20
-    } 
+      "price": 20,
+      "id": "ff2d"
+    }
   ],
   "ProductItems": [
     {
@@ -187,6 +195,7 @@
       "discount": 50,
       "cover": "./images/allProducts/camarote1.png",
       "name": "Camarote Campestre Lateral",
+      "material": "Metal",
       "price": 500,
       "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos."
     },
@@ -194,15 +203,16 @@
       "id": "2",
       "discount": 40,
       "cover": "./images/allProducts/camarote2.png",
-      "name": "Camarote 3 niveles metalmaderatch",
-      "price": 1400,
+      "name": "Camarote 3 niveles metalmadera",
+      "material": "Metal y Madera",
+      "price": 1.400,
       "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional."
-    },
-    {
+    },{
       "id": "3",
       "discount": 40,
       "cover": "./images/allProducts/camarote3.png",
       "name": "Camarote 3 niveles Francés",
+      "material": "Madera",
       "price": 850,
       "description": "Camarote de 3 niveles con diseño francés, elegante y duradero."
     },
@@ -211,6 +221,7 @@
       "discount": 40,
       "cover": "./images/allProducts/camarote4.png",
       "name": "Camarote 3 Niveles Triada",
+      "material": "Madera",
       "price": 905,
       "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno."
     },
@@ -219,6 +230,7 @@
       "discount": 50,
       "cover": "./images/allProducts/camarote5.png",
       "name": "Camarote 3 niveles lineas Redondeado",
+      "material": "Metal y Madera",
       "price": 750,
       "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
     },
@@ -227,7 +239,8 @@
       "discount": 50,
       "cover": "./images/allProducts/camarote6.png",
       "name": "Camarote 3 niveles francés metalmadera",
-      "price": 1600,
+      "material": "Metal y Madera",
+      "price": 1.600,
       "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
     },
     {
@@ -235,6 +248,7 @@
       "cover": "./images/allProducts/camarote7.png",
       "name": "Camarote Estudio 4",
       "price": 950,
+      "material": "Metal y Madera",
       "discount": "25",
       "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
     },
@@ -243,6 +257,7 @@
       "cover": "./images/allProducts/camarote8.png",
       "name": "Camarote Estudio 2",
       "price": 850,
+      "material": "Metal y Madera",
       "discount": "10",
       "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
     },
@@ -251,6 +266,7 @@
       "cover": "./images/allProducts/camarote9.png",
       "name": "Camarote 3 niveles Lineal",
       "price": 700,
+      "material": "Madera",
       "discount": "50",
       "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
     },
@@ -259,6 +275,7 @@
       "cover": "./images/allProducts/camarote10.png",
       "name": "Camarote Estudio 3",
       "price": 900,
+      "material": "Metal y Madera",
       "discount": "10",
       "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
     },
@@ -266,7 +283,8 @@
       "id": "11",
       "cover": "./images/allProducts/camarote11.png",
       "name": "Camarote Estudio",
-      "price": 1300,
+      "material": "Metal y Madera",
+      "price": 1.300,
       "discount": "20",
       "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
     },
@@ -275,6 +293,7 @@
       "cover": "./images/allProducts/camarote12.png",
       "name": "Camarote Estudio 1",
       "price": 800,
+      "material": "Metal y Madera",
       "discount": "20",
       "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
     },
@@ -283,6 +302,7 @@
       "cover": "./images/allProducts/camarote13.png",
       "name": "Camarote Campestre Metalmadera",
       "price": 500,
+      "material": "Metal y Madera",
       "discount": "5",
       "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
     },
@@ -292,6 +312,7 @@
       "name": "Camarote Campestre desmontable",
       "price": 500,
       "discount": "10",
+      "material": "Metal",
       "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
     }
   ]

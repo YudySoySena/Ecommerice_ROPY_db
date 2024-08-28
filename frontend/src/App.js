@@ -17,6 +17,7 @@ import Ubicacion from "./pages/Ubicacion";
 import FQs from "./pages/FQs";
 import LoginAdmin from './LoginAdmin';
 import Admin from './pages/users/Admin';
+import ProductoDetalle from './components/MainPage/ProductoDetalle';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -66,6 +67,7 @@ function App() {
           <Route path='/acercaRopy' element={<AcercaRopy />} />
           <Route path='/ubicacion' element={<Ubicacion />} />
           <Route path='/fqs' element={<FQs />} />
+          <Route path='/producto/:id' element={<ProductoDetalle />} />
         </Routes>
         <Footer />
       </Router>

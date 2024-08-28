@@ -13,8 +13,7 @@ const Login = () => {
 
   // Asegúrate de que `setContextUser` esté disponible en el contexto
   const { setContextUser } = useContext(UserContext);
-  const navigate = useNavigate(); // Usa `useNavigate` en lugar de `history`
-
+  const navigate = useNavigate(); 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -32,14 +31,18 @@ const Login = () => {
           Password: formData.Password
         }
       });
-
+  
       const user = response.data.find(
         user => user.Email === formData.Email && user.Password === formData.Password
       );
-
+  
       if (user) {
         console.log("Éxito:", user);
         setContextUser(user); // Actualiza el contexto con el usuario
+        
+        // Guardar usuario en localStorage
+        localStorage.setItem('user', JSON.stringify(user));
+  
         navigate(`/user/${user.id}`); // Navega a la ruta del usuario
       } else {
         console.log("Usuario o contraseña incorrectos");
@@ -47,7 +50,7 @@ const Login = () => {
     } catch (error) {
       console.log("Error:", error.message);
     }
-  };
+  };  
 
   return (
     <div className="card-body">
@@ -90,7 +93,7 @@ const Login = () => {
             </div>
             <div className="row">
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
               </div>
             </div>
           </form>

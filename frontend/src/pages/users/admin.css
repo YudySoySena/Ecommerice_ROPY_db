@@ -1,0 +1,99 @@
+/* Estilo para el contenedor principal */
+.admin-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  /* Estilo para el título principal */
+  .admin-container h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el mensaje de bienvenida */
+  .admin-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para la barra de búsqueda */
+  .admin-container input[type="text"] {
+    width: 100%;
+    max-width: 400px; /* Ajusta el ancho máximo de la barra de búsqueda */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para la tabla de productos */
+  .admin-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .admin-container th,
+  .admin-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-container th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .admin-container tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo para los botones de acciones */
+  .admin-container button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+  }
+  
+  .admin-container button:nth-of-type(1) {
+    background-color: #007bff; /* Botón de editar */
+  }
+  
+  .admin-container button:nth-of-type(1):hover {
+    background-color: #0056b3;
+  }
+  
+  .admin-container button:nth-of-type(2) {
+    background-color: #dc3545; /* Botón de eliminar */
+  }
+  
+  .admin-container button:nth-of-type(2):hover {
+    background-color: #c82333;
+  }
+  
+  /* Estilo para el botón de agregar producto */
+  .admin-container .add-product-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-container .add-product-button:hover {
+    background-color: #218838;
+  }  

@@ -1,3 +1,103 @@
+/* Catg.css */
+
+.category {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.chead {
+  margin-bottom: 20px;
+}
+
+.chead h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.category-list {
+  margin-bottom: 20px;
+}
+
+.category-list button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.category-list button:hover,
+.category-list button.active {
+  background-color: #0056b3;
+}
+
+.price-filter {
+  margin-bottom: 20px;
+}
+
+.price-filter label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.price-filter input {
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.price-filter button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.price-filter button:hover {
+  background-color: #218838;
+}
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-list .box {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(33.333% - 20px); /* 3 items per row */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.item-list .box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.item-list .box span {
+  display: block;
+  margin: 5px 0;
+}
+
+.item-list .box span:last-child {
+  font-weight: bold;
+  color: #333;
+}
+
+
 .shop .category {
   padding: 30px;
   height: 90vh;

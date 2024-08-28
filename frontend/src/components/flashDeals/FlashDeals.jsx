@@ -10,8 +10,8 @@ const FlashDeals = ({ addToCart }) => {
     const fetchProductItems = async () => {
       try {
         const response = await axios.get("http://localhost:4000/Descuentos");
-        // Asegúrate de que el formato sea correcto
-        setProductItems(response.data.Descuentos || []); // Maneja el caso en que `Descuentos` no esté presente
+        // Accede directamente al array de productos
+        setProductItems(response.data || []); // Usa respuesta directa si es un array
       } catch (error) {
         console.error("Error fetching product items:", error);
       }
@@ -21,17 +21,15 @@ const FlashDeals = ({ addToCart }) => {
   }, []);
 
   return (
-    <>
-      <section className='flash'>
-        <div className='container'>
-          <div className='heading f_flex'>
-            <i className='fa fa-bolt'></i>
-            <h1>Descuentos</h1>
-          </div>
-          <FlashCard productItems={productItems} addToCart={addToCart} />
+    <section className='flash'>
+      <div className='container'>
+        <div className='heading f_flex'>
+          <i className='fa fa-bolt'></i>
+          <h1>Descuentos</h1>
         </div>
-      </section>
-    </>
+        <FlashCard productItems={productItems} addToCart={addToCart} />
+      </div>
+    </section>
   );
 };
 
