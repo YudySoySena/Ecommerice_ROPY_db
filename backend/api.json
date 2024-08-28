@@ -140,12 +140,12 @@
     },
     {
       "id": "2",
-      "discount": 40,
+      "discount": "0",
       "cover": "./images/allProducts/camarote2.png",
       "name": "Camarote 3 niveles metalmadera",
       "material": "Metal",
       "material2": "Madera",
-      "price": 1.4,
+      "price": 999,
       "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional."
     },
     {
@@ -183,7 +183,7 @@
       "name": "Camarote 3 niveles francés metalmadera",
       "material": "Metal",
       "material2": "Madera",
-      "price": 1.6,
+      "price": 999,
       "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
     },
     {
@@ -212,7 +212,7 @@
       "name": "Camarote 3 niveles Lineal",
       "price": 700,
       "material": "Madera",
-      "discount": "50",
+      "discount": "0",
       "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
     },
     {
@@ -231,8 +231,8 @@
       "name": "Camarote Estudio",
       "material": "Metal",
       "material2": "Madera",
-      "price": 1.3,
-      "discount": "20",
+      "price": 999,
+      "discount": "0",
       "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
     },
     {
@@ -260,7 +260,7 @@
       "cover": "./images/allProducts/camarote14.png",
       "name": "Camarote Campestre desmontable",
       "price": 500,
-      "discount": "10",
+      "discount": "0",
       "material": "Metal",
       "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
     }

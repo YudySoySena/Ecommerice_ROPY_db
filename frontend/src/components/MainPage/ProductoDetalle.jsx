@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './productoDetalle.css'; // Crea un archivo CSS para los estilos del producto
 
-const ProductoDetalle = () => {
+const ProductoDetalle = ({ addToCar}) => {
   const { id } = useParams(); // Obtiene el ID del producto desde la URL
   const [producto, setProducto] = useState(null);
   const [cantidad, setCantidad] = useState(1);
@@ -75,6 +75,7 @@ const ProductoDetalle = () => {
             name="medidas"
             placeholder="Ej: 1.2 x 1 m"
           />
+          
         </div>
       </div>
     </div>

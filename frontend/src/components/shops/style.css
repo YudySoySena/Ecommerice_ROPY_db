@@ -1,10 +1,6 @@
-/* Catg.css */
-
-.category {
-  padding: 20px;
-  background-color: #f9f9f9;
+.shop.background {
+  flex: 1 1 80%;
 }
-
 .chead {
   margin-bottom: 20px;
 }

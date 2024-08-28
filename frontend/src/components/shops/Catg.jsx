@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './catg.css'
 // Asegúrate de tener el archivo de estilos importado
 
 const Catg = () => {

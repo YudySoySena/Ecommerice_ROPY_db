@@ -28,10 +28,6 @@ const NewArrivals = () => {
               <img src='https://img.icons8.com/glyph-neue/64/26e07f/new.png' alt='New Icon'/>
               <h2>Toallas</h2>
             </div>
-            <div className='heading-right row'>
-              <span>View all</span>
-              <i className='fa-solid fa-caret-right'></i>
-            </div>
           </div>
 
           <Cart newArrivals={newArrivals} />
