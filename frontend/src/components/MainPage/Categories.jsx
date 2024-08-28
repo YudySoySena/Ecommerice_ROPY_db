@@ -7,10 +7,6 @@ const Categories = () => {
       cateName: "Destacados",
     },
     {
-      cateImg: "./images/category/cat2.png",
-      cateName: "Novedades",
-    },
-    {
       cateImg: "./images/category/cat3.png",
       cateName: "Descuentos",
     },
@@ -21,11 +17,7 @@ const Categories = () => {
     {
       cateImg: "./images/category/cat5.png",
       cateName: "Todos los productos",
-    },
-    {
-      cateImg: "./images/category/cat6.png",
-      cateName: "Remodelaciones",
-    },
+    }
   ]
 
   return (

@@ -4,6 +4,14 @@ import './admin.css'; // Importa el archivo CSS
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [editProduct, setEditProduct] = useState(null);
+  const [newProduct, setNewProduct] = useState({
+    name: '',
+    price: 0,
+    discount: 0,
+    description: '',
+    cover: './images/allProducts/default.png'
+  });
 
   useEffect(() => {
     fetch('http://localhost:4000/ProductItems')
@@ -21,15 +29,6 @@ const Admin = () => {
   );
 
   const handleAddProduct = () => {
-    const newProduct = {
-      id: String(products.length + 1), // Esto debe ser generado en el servidor en una app real
-      name: 'Nuevo Producto',
-      price: 0,
-      discount: 0,
-      description: 'Descripción del nuevo producto',
-      cover: './images/allProducts/default.png' // Imagen por defecto
-    };
-
     fetch('http://localhost:4000/ProductItems', {
       method: 'POST',
       headers: {
@@ -38,29 +37,44 @@ const Admin = () => {
       body: JSON.stringify(newProduct),
     })
       .then(response => response.json())
-      .then(data => setProducts([...products, data]))
+      .then(data => {
+        setProducts([...products, data]);
+        setNewProduct({
+          name: '',
+          price: 0,
+          discount: 0,
+          description: '',
+          cover: './images/allProducts/default.png'
+        }); // Clear form
+      })
       .catch(error => console.error('Error adding product:', error));
   };
 
   const handleEditProduct = (id) => {
-    const updatedProduct = {
-      ...products.find(product => product.id === id),
-      name: 'Producto Editado'
-    };
+    const productToEdit = products.find(product => product.id === id);
+    setEditProduct({ ...productToEdit });
+  };
 
-    fetch(`http://localhost:4000/ProductItems/${id}`, {
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditProduct(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveEdit = () => {
+    fetch(`http://localhost:4000/ProductItems/${editProduct.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedProduct),
+      body: JSON.stringify(editProduct),
     })
       .then(response => response.json())
       .then(data => {
         const updatedProducts = products.map(product =>
-          product.id === id ? data : product
+          product.id === data.id ? data : product
         );
         setProducts(updatedProducts);
+        setEditProduct(null); // Ocultar el formulario después de guardar
       })
       .catch(error => console.error('Error editing product:', error));
   };
@@ -74,6 +88,11 @@ const Admin = () => {
         setProducts(updatedProducts);
       })
       .catch(error => console.error('Error deleting product:', error));
+  };
+
+  const handleNewProductChange = (event) => {
+    const { name, value } = event.target;
+    setNewProduct(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -116,7 +135,90 @@ const Admin = () => {
         </tbody>
       </table>
 
-      <button className="add-product-button" onClick={handleAddProduct}>Agregar Producto</button>
+      {editProduct && (
+        <div className="edit-form">
+          <h3>Editar Producto</h3>
+          <label>
+            Nombre:
+            <input
+              type="text"
+              name="name"
+              value={editProduct.name}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Precio:
+            <input
+              type="number"
+              name="price"
+              value={editProduct.price}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Descuento:
+            <input
+              type="number"
+              name="discount"
+              value={editProduct.discount}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Descripción:
+            <input
+              type="text"
+              name="description"
+              value={editProduct.description}
+              onChange={handleInputChange}
+            />
+          </label>
+          <button onClick={handleSaveEdit}>Guardar Cambios</button>
+          <button onClick={() => setEditProduct(null)}>Cancelar</button>
+        </div>
+      )}
+
+      <div className="new-product-form">
+        <h3>Agregar Nuevo Producto</h3>
+        <label>
+          Nombre:
+          <input
+            type="text"
+            name="name"
+            value={newProduct.name}
+            onChange={handleNewProductChange}
+          />
+        </label>
+        <label>
+          Precio:
+          <input
+            type="number"
+            name="price"
+            value={newProduct.price}
+            onChange={handleNewProductChange}
+          />
+        </label>
+        <label>
+          Descuento:
+          <input
+            type="number"
+            name="discount"
+            value={newProduct.discount}
+            onChange={handleNewProductChange}
+          />
+        </label>
+        <label>
+          Descripción:
+          <input
+            type="text"
+            name="description"
+            value={newProduct.description}
+            onChange={handleNewProductChange}
+          />
+        </label>
+        <button onClick={handleAddProduct}>Guardar Nuevo Producto</button>
+      </div>
     </div>
   );
 };

@@ -47,9 +47,8 @@ const ProductoDetalle = () => {
         <div className="producto-opciones">
           <label htmlFor="material">Tipo de material:</label>
           <select id="material" name="material">
-            <option value="metal">Metal</option>
-            <option value="madera">Madera</option>
-            <option value="metalmadera">Metal y Madera</option>
+            <option value="material">{producto.material}</option>
+            <option value="material2">{producto.material2}</option>
           </select>
 
           <label htmlFor="color">Color:</label>
@@ -74,7 +73,7 @@ const ProductoDetalle = () => {
             type="text"
             id="medidas"
             name="medidas"
-            placeholder="Ej: 90x200 cm"
+            placeholder="Ej: 1.2 x 1 m"
           />
         </div>
       </div>

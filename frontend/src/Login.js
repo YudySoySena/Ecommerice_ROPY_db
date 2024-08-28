@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -7,13 +6,13 @@ import { UserContext } from "./UserContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    Email: '',  // Cambiado a mayúscula
-    Password: '' // Cambiado a mayúscula
+    Email: '',
+    Password: ''
   });
 
-  // Asegúrate de que `setContextUser` esté disponible en el contexto
   const { setContextUser } = useContext(UserContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,33 +21,51 @@ const Login = () => {
     });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const enviar = async (e) => {
     e.preventDefault();
+
+    const { Email, Password } = formData;
+
+    // Validaciones del lado del cliente
+    if (!Email) {
+      alert("Por favor, ingresa tu correo electrónico.");
+      return;
+    }
+    if (!validateEmail(Email)) {
+      alert("El formato del correo electrónico no es válido. Asegúrate de incluir el símbolo '@'.");
+      return;
+    }
+    if (!Password) {
+      alert("Por favor, ingresa tu contraseña.");
+      return;
+    }
+
     try {
       const response = await axios.get("http://localhost:4000/Users", {
         params: {
-          Email: formData.Email,
-          Password: formData.Password
+          Email,
+          Password
         }
       });
-  
-      const user = response.data.find(
-        user => user.Email === formData.Email && user.Password === formData.Password
-      );
-  
+
+      const user = response.data.find(user => user.Email === Email && user.Password === Password);
+
       if (user) {
         console.log("Éxito:", user);
-        setContextUser(user); // Actualiza el contexto con el usuario
-        
-        // Guardar usuario en localStorage
-        localStorage.setItem('user', JSON.stringify(user));
-  
-        navigate(`/user/${user.id}`); // Navega a la ruta del usuario
+        setContextUser(user);
+        // ... resto del código para iniciar sesión ...
+        navigate(`/user/${user.id}`);
       } else {
-        console.log("Usuario o contraseña incorrectos");
+        alert("Usuario o contraseña incorrectos.");
       }
     } catch (error) {
-      console.log("Error:", error.message);
+      console.error("Error al enviar los datos:", error);
+      alert("Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.");
     }
   };  
 

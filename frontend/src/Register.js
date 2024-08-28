@@ -20,8 +20,43 @@ const Register = () => {
     });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // You can customize this function according to your requirements
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const enviar = async (event) => {
     event.preventDefault();
+
+  const { Nombre, Email, Password } = formData;
+  
+  if (!Nombre) {
+      alert("Por favor, ingresa tu nombre.");
+      return;
+    }
+  if (!Email) {
+      alert("Por favor, ingresa tu correo electrónico.");
+      return;
+    }
+  if (!validateEmail(Email)) {
+      alert("El formato del correo electrónico no es válido.");
+      return;
+    }
+  if (!Password) {
+      alert("Por favor, ingresa tu contraseña.");
+      return;
+    }
+  if (!validatePassword(Password)) {
+      alert("La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:4000/Users", formData);
       console.log("Éxito:", response.data);

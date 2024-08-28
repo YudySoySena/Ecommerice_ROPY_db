@@ -7,83 +7,16 @@
       "Password": "123456"
     },
     {
-      "id": "2",
-      "Nombre": "OtroUsuario",
-      "Email": "otro@correo.com",
-      "Password": "abcdef"
-    },
-    {
       "id": "8238",
       "Nombre": "cris garcia",
       "Email": "crisgarcia2@cris",
       "Password": "1234"
     },
     {
-      "id": "258d",
-      "Nombre": "cris garcia",
-      "Email": "crisgarcia2@cris",
-      "Password": "1234"
-    },
-    {
-      "id": "757d",
-      "Nombre": "juli",
-      "Email": "juli@ana",
-      "Password": "abcde"
-    },
-    {
-      "id": "68f8",
-      "email": "juli@ana",
-      "password": "abcde"
-    },
-    {
-      "id": "a258",
-      "email": "juli@ana",
-      "password": "abcde"
-    },
-    {
-      "id": "6717",
-      "email": "crisgarcia2@cris",
-      "password": "12345"
-    },
-    {
       "id": "9181",
       "Nombre": "yudy garcia",
       "Email": "Katherinyudy@gmail.com",
       "Password": "supapa1234"
-    },
-    {
-      "id": "ff8e",
-      "email": "Katherinyudy@gmail.com",
-      "password": "supapa1234"
-    },
-    {
-      "id": "f2aa",
-      "email": "Katherinyudy@gmail.com",
-      "password": "supapa1234"
-    },
-    {
-      "id": "18d8",
-      "Nombre": "Juliana Garcia",
-      "Email": "juliii@gmail.com",
-      "Password": "poppyplaytime"
-    },
-    {
-      "id": "7fea",
-      "Nombre": "Juliana Garcia",
-      "Email": "juliii@gmail.com",
-      "Password": "poppyplaytime"
-    },
-    {
-      "id": "99b5",
-      "Nombre": "Juliana Garcia",
-      "Email": "juliii@gmail.com",
-      "Password": "poppyplaytine1234"
-    },
-    {
-      "id": "e47e",
-      "Nombre": "Katherin Villota",
-      "Email": "kathevillota@gmail.com",
-      "Password": "richarrios9876"
     },
     {
       "id": "3cf4",
@@ -96,6 +29,12 @@
       "Nombre": "Milo Q",
       "Email": "miloq@gmail.com",
       "Password": "soymiloo1234"
+    },
+    {
+      "id": "9963",
+      "Nombre": "Marquita",
+      "Email": "marquito@soy.sena",
+      "Password": "Yu5678??"
     }
   ],
   "Admin": [
@@ -194,7 +133,7 @@
       "id": "1",
       "discount": 50,
       "cover": "./images/allProducts/camarote1.png",
-      "name": "Camarote Campestre Lateral",
+      "name": "Camarote(editado)",
       "material": "Metal",
       "price": 500,
       "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos."
@@ -204,10 +143,12 @@
       "discount": 40,
       "cover": "./images/allProducts/camarote2.png",
       "name": "Camarote 3 niveles metalmadera",
-      "material": "Metal y Madera",
-      "price": 1.400,
+      "material": "Metal",
+      "material2": "Madera",
+      "price": 1.4,
       "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional."
-    },{
+    },
+    {
       "id": "3",
       "discount": 40,
       "cover": "./images/allProducts/camarote3.png",
@@ -230,7 +171,8 @@
       "discount": 50,
       "cover": "./images/allProducts/camarote5.png",
       "name": "Camarote 3 niveles lineas Redondeado",
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "price": 750,
       "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
     },
@@ -239,8 +181,9 @@
       "discount": 50,
       "cover": "./images/allProducts/camarote6.png",
       "name": "Camarote 3 niveles francés metalmadera",
-      "material": "Metal y Madera",
-      "price": 1.600,
+      "material": "Metal",
+      "material2": "Madera",
+      "price": 1.6,
       "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
     },
     {
@@ -248,7 +191,8 @@
       "cover": "./images/allProducts/camarote7.png",
       "name": "Camarote Estudio 4",
       "price": 950,
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "discount": "25",
       "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
     },
@@ -257,7 +201,8 @@
       "cover": "./images/allProducts/camarote8.png",
       "name": "Camarote Estudio 2",
       "price": 850,
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "discount": "10",
       "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
     },
@@ -275,7 +220,8 @@
       "cover": "./images/allProducts/camarote10.png",
       "name": "Camarote Estudio 3",
       "price": 900,
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "discount": "10",
       "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
     },
@@ -283,8 +229,9 @@
       "id": "11",
       "cover": "./images/allProducts/camarote11.png",
       "name": "Camarote Estudio",
-      "material": "Metal y Madera",
-      "price": 1.300,
+      "material": "Metal",
+      "material2": "Madera",
+      "price": 1.3,
       "discount": "20",
       "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
     },
@@ -293,7 +240,8 @@
       "cover": "./images/allProducts/camarote12.png",
       "name": "Camarote Estudio 1",
       "price": 800,
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "discount": "20",
       "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
     },
@@ -302,7 +250,8 @@
       "cover": "./images/allProducts/camarote13.png",
       "name": "Camarote Campestre Metalmadera",
       "price": 500,
-      "material": "Metal y Madera",
+      "material": "Metal",
+      "material2": "Madera",
       "discount": "5",
       "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
     },
