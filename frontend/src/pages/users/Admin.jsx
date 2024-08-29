@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal'; // Importa react-modal
 import './admin.css'; // Importa el archivo CSS
+
+Modal.setAppElement('#root'); // Establece el elemento raíz para accesibilidad
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
@@ -12,6 +15,8 @@ const Admin = () => {
     description: '',
     cover: './images/allProducts/default.png'
   });
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:4000/ProductItems')
@@ -46,6 +51,7 @@ const Admin = () => {
           description: '',
           cover: './images/allProducts/default.png'
         }); // Clear form
+        setIsAddModalOpen(false); // Cierra el modal después de agregar el producto
       })
       .catch(error => console.error('Error adding product:', error));
   };
@@ -53,6 +59,7 @@ const Admin = () => {
   const handleEditProduct = (id) => {
     const productToEdit = products.find(product => product.id === id);
     setEditProduct({ ...productToEdit });
+    setIsEditModalOpen(true); // Abre el modal de edición
   };
 
   const handleInputChange = (event) => {
@@ -75,6 +82,7 @@ const Admin = () => {
         );
         setProducts(updatedProducts);
         setEditProduct(null); // Ocultar el formulario después de guardar
+        setIsEditModalOpen(false); // Cierra el modal de edición
       })
       .catch(error => console.error('Error editing product:', error));
   };
@@ -135,51 +143,63 @@ const Admin = () => {
         </tbody>
       </table>
 
-      {editProduct && (
-        <div className="edit-form">
-          <h3>Editar Producto</h3>
-          <label>
-            Nombre:
-            <input
-              type="text"
-              name="name"
-              value={editProduct.name}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Precio:
-            <input
-              type="number"
-              name="price"
-              value={editProduct.price}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Descuento:
-            <input
-              type="number"
-              name="discount"
-              value={editProduct.discount}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Descripción:
-            <input
-              type="text"
-              name="description"
-              value={editProduct.description}
-              onChange={handleInputChange}
-            />
-          </label>
-          <button onClick={handleSaveEdit}>Guardar Cambios</button>
-          <button onClick={() => setEditProduct(null)}>Cancelar</button>
-        </div>
-      )}
+      {/* Modal para editar producto */}
+      <Modal
+        isOpen={isEditModalOpen}
+        onRequestClose={() => setIsEditModalOpen(false)}
+        contentLabel="Edit Product"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <h3>Editar Producto</h3>
+        <label>
+          Nombre:
+          <input
+            type="text"
+            name="name"
+            value={editProduct?.name || ''}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Precio:
+          <input
+            type="number"
+            name="price"
+            value={editProduct?.price || ''}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Descuento:
+          <input
+            type="number"
+            name="discount"
+            value={editProduct?.discount || ''}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Descripción:
+          <input
+            type="text"
+            name="description"
+            value={editProduct?.description || ''}
+            onChange={handleInputChange}
+          />
+        </label>
+        <button onClick={handleSaveEdit}>Guardar Cambios</button>
+        <button onClick={() => setIsEditModalOpen(false)}>Cancelar</button>
+      </Modal>
 
-      <div className="new-product-form">
+      {/* Modal para agregar nuevo producto */}
+      <Modal
+        isOpen={isAddModalOpen}
+        onRequestClose={() => setIsAddModalOpen(false)}
+        contentLabel="Add Product"
+        className="modal"
+        overlayClassName="overlay"
+      >
         <h3>Agregar Nuevo Producto</h3>
         <label>
           Nombre:
@@ -218,7 +238,11 @@ const Admin = () => {
           />
         </label>
         <button onClick={handleAddProduct}>Guardar Nuevo Producto</button>
-      </div>
+        <button onClick={() => setIsAddModalOpen(false)}>Cancelar</button>
+      </Modal>
+
+      {/* Botón para abrir el modal de agregar producto */}
+      <button onClick={() => setIsAddModalOpen(true)} className="add-product-button">Agregar Producto</button>
     </div>
   );
 };

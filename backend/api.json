@@ -35,12 +35,18 @@
       "Nombre": "Marquita",
       "Email": "marquito@soy.sena",
       "Password": "Yu5678??"
+    },
+    {
+      "id": "defa",
+      "Nombre": "andrea quemba",
+      "Email": "aquemba4@gmail.com",
+      "Password": "Yu5678??"
     }
   ],
   "Admin": [
     {
       "user": "Yudy Garcia",
-      "password": "5678",
+      "password": "Yg5678¿?",
       "id": "3834"
     }
   ],
@@ -131,11 +137,11 @@
   "ProductItems": [
     {
       "id": "1",
-      "discount": 50,
+      "discount": "10",
       "cover": "./images/allProducts/camarote1.png",
-      "name": "Camarote(editado)",
+      "name": "Camarote Campestre",
       "material": "Metal",
-      "price": 500,
+      "price": "551",
       "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos."
     },
     {
@@ -263,6 +269,14 @@
       "discount": "0",
       "material": "Metal",
       "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
+    },
+    {
+      "id": "6292",
+      "name": "Camarote 3 pisos en forma de L ",
+      "price": "950",
+      "discount": 0,
+      "description": "Camarote ideal para espacios reducidos",
+      "cover": "./images/allProducts/default.png"
     }
   ]
 }

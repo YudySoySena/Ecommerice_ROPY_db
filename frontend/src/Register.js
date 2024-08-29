@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import axios from 'axios';
-import './register.css'
+import './register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ const Register = () => {
     Password: ''
   });
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleChange = (event) => {
@@ -26,34 +27,65 @@ const Register = () => {
   };
 
   const validatePassword = (password) => {
-    // You can customize this function according to your requirements
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   };
 
+  const validateName = (name) => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+    return nameRegex.test(name);
+  };
+
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await axios.get(`http://localhost:4000/Users?Email=${email}`);
+      return response.data.length > 0; // Asume que la respuesta es un array de usuarios
+    } catch (error) {
+      console.error("Error checking email:", error);
+      return false;
+    }
+  };
+
   const enviar = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
-  const { Nombre, Email, Password } = formData;
-  
-  if (!Nombre) {
+    const { Nombre, Email, Password } = formData;
+
+    // Validaciones
+    if (!Nombre) {
       alert("Por favor, ingresa tu nombre.");
+      setLoading(false);
       return;
     }
-  if (!Email) {
+    if (!validateName(Nombre)) {
+      alert("El nombre solo debe contener letras y espacios.");
+      setLoading(false);
+      return;
+    }
+    if (!Email) {
       alert("Por favor, ingresa tu correo electrónico.");
+      setLoading(false);
       return;
     }
-  if (!validateEmail(Email)) {
+    if (!validateEmail(Email)) {
       alert("El formato del correo electrónico no es válido.");
+      setLoading(false);
       return;
     }
-  if (!Password) {
+    if (await checkEmailExists(Email)) {
+      alert("El correo electrónico ya está registrado.");
+      setLoading(false);
+      return;
+    }
+    if (!Password) {
       alert("Por favor, ingresa tu contraseña.");
+      setLoading(false);
       return;
     }
-  if (!validatePassword(Password)) {
+    if (!validatePassword(Password)) {
       alert("La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.");
+      setLoading(false);
       return;
     }
 
@@ -61,9 +93,12 @@ const Register = () => {
       const response = await axios.post("http://localhost:4000/Users", formData);
       console.log("Éxito:", response.data);
       // Redirige al login después de un registro exitoso
-      navigate('/login'); // Cambia a `navigate`
+      navigate('/login');
     } catch (error) {
       console.error("Error al enviar los datos:", error);
+      alert("Error al registrar el usuario. Por favor, inténtelo de nuevo.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,7 +158,9 @@ const Register = () => {
             </div>
             <div className="row">
               <div className="col-4 offset-8">
-                <button type="submit" className="btn btn-primary btn-block">Register</button>
+                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                  {loading ? 'Cargando...' : 'Register'}
+                </button>
               </div>
             </div>
           </form>
