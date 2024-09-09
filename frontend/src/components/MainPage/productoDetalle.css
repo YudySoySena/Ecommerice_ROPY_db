@@ -1,16 +1,16 @@
 .producto-detalle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-  }
-  
-  .producto-imagen {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
+  display: flex;
+  padding: 20px;
+}
+
+.producto-imagen {
+  max-width: 400px;
+  margin-right: 20px;
+}
+
+.producto-info {
+  max-width: 600px;
+}
   .producto-info {
     text-align: center;
     margin-top: 20px;
@@ -41,13 +41,14 @@
   
   .producto-opciones label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
   }
   
   .producto-opciones select,
   .producto-opciones input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   

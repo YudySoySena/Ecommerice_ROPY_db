@@ -33,6 +33,11 @@ function SideMenu() {
             key: "/admin/customers",
             icon: <UserOutlined />,
           },
+          {
+            label: "Notificaciones",
+            key: "/admin/notifications",
+            icon: <UserOutlined />,
+          },
         ]}
       />
     </div>

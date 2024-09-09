@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import './login.css';
+import axios from "axios";
+import "./login.css";
 import { UserContext } from "./UserContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    Email: '',
-    Password: '',
-    redirectTo: 'profile'  // Nuevo campo para elegir la página de redirección
+    Email: "",
+    Password: "",
+    redirectTo: "profile", // Nuevo campo para elegir la página de redirección
   });
 
   const { setContextUser } = useContext(UserContext);
@@ -18,7 +18,7 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -38,7 +38,9 @@ const Login = () => {
       return;
     }
     if (!validateEmail(Email)) {
-      alert("El formato del correo electrónico no es válido. Asegúrate de incluir el símbolo '@'.");
+      alert(
+        "El formato del correo electrónico no es válido. Asegúrate de incluir el símbolo '@'."
+      );
       return;
     }
     if (!Password) {
@@ -50,28 +52,36 @@ const Login = () => {
       const response = await axios.get("http://localhost:4000/Users", {
         params: {
           Email,
-          Password
-        }
+          Password,
+        },
       });
 
-      const user = response.data.find(user => user.Email === Email && user.Password === Password);
+      const user = response.data.find(
+        (user) => user.Email === Email && user.Password === Password
+      );
 
       if (user) {
         console.log("Éxito:", user);
         setContextUser(user);
 
-       if (redirectTo === 'profile' && user.id) {
-  navigate(`/user/${user.id}`);
-} else {
-  navigate('/');
-}
-
+        if (user.Rol === 'Administrador') {
+          navigate('/admin/*'); // Redirigir al panel de administración
+        } else {
+          // Si no es administrador, sigue la redirección habitual
+          if (redirectTo === "profile" && user.id) {
+            navigate(`/user/${user.id}`);  // Redirigir al perfil del usuario
+          } else {
+            navigate("/");  // Redirigir a la página principal
+          }
+        }
       } else {
         alert("Usuario o contraseña incorrectos.");
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-      alert("Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.");
+      alert(
+        "Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo."
+      );
     }
   };
 
@@ -131,7 +141,9 @@ const Login = () => {
 
             <div className="row">
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
+                <button type="submit" className="btn btn-primary btn-block">
+                  Iniciar Sesión
+                </button>
               </div>
             </div>
           </form>
@@ -139,10 +151,14 @@ const Login = () => {
             <Link to="/forgot_password">¿Olvidaste tu contraseña?</Link>
           </p>
           <p className="mb-0">
-            <Link to="/register" className="text-center">¿Aún no estás registrado?</Link>
+            <Link to="/register" className="text-center">
+              ¿Aún no estás registrado?
+            </Link>
           </p>
           <p className="mb-0">
-            <Link to="/loginAdmin" className="text-center">¿Eres Administrador?</Link>
+            <Link to="/loginAdmin" className="text-center">
+              ¿Eres Administrador?
+            </Link>
           </p>
         </div>
       </div>

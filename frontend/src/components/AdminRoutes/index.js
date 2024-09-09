@@ -3,6 +3,7 @@ import Dashboard from "../../pages/Dashboard";
 import Customers from "../../pages/Customers";
 import Inventory from "../../pages/Inventory";
 import Orders from "../../pages/Orders";
+import Notifications from "../../pages/Notifications";
 
 function AdminRoutes() {
   return (
@@ -11,6 +12,7 @@ function AdminRoutes() {
       <Route path="/customers" element={<Customers />} />
       <Route path="/inventory" element={<Inventory />} />
       <Route path="/orders" element={<Orders />} />
+      <Route path="/notifications" element={<Notifications />} />
     </Routes>
   );
 }

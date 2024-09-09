@@ -1,9 +1,14 @@
-import React from "react"
+import React, { useState, useEffect, useContext } from "react"
 import logo from "../../components/assets/images/logo.png"
 import { Link } from "react-router-dom"
 import { useEffect } from 'react';
+import { UserContext } from "./UserContext";
 
 const Search = ({ CartItem }) => {
+  const { contextUser } = useContext(UserContext);  // Obtener el usuario actual
+  const [notifications, setNotifications] = useState([]);  // Estado para las notificaciones
+  const [showNotifications, setShowNotifications] = useState(false);  // Estado para mostrar/ocultar las notificaciones
+
   useEffect(() => {
     const handleScroll = () => {
       const search = document.querySelector(".search");
@@ -25,6 +30,26 @@ const Search = ({ CartItem }) => {
       element.classList.add('new-class');
     }
   }, []);
+
+  useEffect(() => {
+    if (contextUser) {
+      const fetchNotifications = async () => {
+        try {
+          const response = await axios.get(`http://localhost:4000/Notifications?userId=${contextUser.id}`);
+          setNotifications(response.data);
+        } catch (error) {
+          console.error('Error al obtener las notificaciones:', error);
+        }
+      };
+
+      fetchNotifications();
+    }
+  }, [contextUser]);
+
+  // Alternar la visibilidad del desplegable de notificaciones
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
   
   return (
     <>
@@ -39,11 +64,27 @@ const Search = ({ CartItem }) => {
             <input type='text' placeholder='¿Qué buscas hoy?' />
             <span>All Category</span>
           </div>
-          <div className="bell">
-            <Link>
-            <i className="fa-solid fa-bell"></i>
-            </Link>
+          <div className="notification-icon" onClick={toggleNotifications}>
+          <i className="fas fa-bell"></i>
+          {/* Opcional: Mostrar el número de notificaciones no leídas */}
+          {notifications.length > 0 && <span className="notification-count">{notifications.length}</span>}
+        </div>
+
+        {/* Desplegable de notificaciones */}
+        {showNotifications && (
+          <div className="notifications-dropdown">
+            <h4>Notificaciones</h4>
+            {notifications.length > 0 ? (
+              <ul>
+                {notifications.map((notification) => (
+                  <li key={notification.id}>{notification.message}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No tienes notificaciones.</p>
+            )}
           </div>
+        )}
           <div className='icon f_flex width'>
             <Link to="/login">
             <i className='fa fa-user icon-circle' ></i>
@@ -61,4 +102,4 @@ const Search = ({ CartItem }) => {
   )
 }
 
-export default Search
+export default Search;
