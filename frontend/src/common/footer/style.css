@@ -1,35 +1,43 @@
+/* style.css */
 footer {
   background-color: #0f3460;
   padding: 100px 0;
   color: #fff;
 }
+
 footer h1 {
   margin-bottom: 30px;
   color: #e94560;
   font-weight: 800;
   font-style: italic;
 }
+
 footer .img {
   background-color: #0c2a4d;
   padding: 15px 20px;
   border-radius: 5px;
 }
+
 footer .img i {
   font-size: 20px;
   margin: 5px;
 }
+
 footer .img span {
   margin-top: 5px;
 }
+
 footer p {
   font-size: 14px;
   font-weight: 300;
   opacity: 0.5;
   margin-bottom: 20px;
 }
+
 footer h2 {
   margin-bottom: 20px;
 }
+
 footer li {
   margin-bottom: 10px;
   opacity: 0.5;
@@ -39,6 +47,8 @@ footer li {
   flex: 1;
   margin: 0 20px;
 }
+
+
 
 /* Estilo para la sección del formulario de contacto */
 .contacto-form {
@@ -89,4 +99,41 @@ footer li {
 .logo img {
   max-width: 150px;
   height: auto;
+}
+
+/* Estilos adicionales */
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+footer .grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+footer .box {
+  margin: 10px;
+}
+
+footer .contacto-form input,
+footer .contacto-form textarea {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+footer .contacto-form input::placeholder,
+footer .contacto-form textarea::placeholder {
+  color: #999;
+}
+
+footer .contacto-form button {
+  background-color: #e94560;
+}
+
+footer .contacto-form button:hover {
+  background-color: #d83450;
 }

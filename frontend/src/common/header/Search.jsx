@@ -1,14 +1,31 @@
 import React from "react"
 import logo from "../../components/assets/images/logo.png"
 import { Link } from "react-router-dom"
+import { useEffect } from 'react';
 
 const Search = ({ CartItem }) => {
-  // fixed Header
-  window.addEventListener("scroll", function () {
-    const search = document.querySelector(".search")
-    search.classList.toggle("active", window.scrollY > 100)
-  })
+  useEffect(() => {
+    const handleScroll = () => {
+      const search = document.querySelector(".search");
+      if (search) {
+        search.classList.toggle("active", window.scrollY > 100);
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const element = document.querySelector('.your-element-class');
+    if (element) {
+      element.classList.add('new-class');
+    }
+  }, []);
+  
   return (
     <>
       <section className='search'>
@@ -19,10 +36,14 @@ const Search = ({ CartItem }) => {
 
           <div className='search-box f_flex'>
             <i className='fa fa-search'></i>
-            <input type='text' placeholder='Search and hit enter...' />
+            <input type='text' placeholder='¿Qué buscas hoy?' />
             <span>All Category</span>
           </div>
-
+          <div className="bell">
+            <Link>
+            <i className="fa-solid fa-bell"></i>
+            </Link>
+          </div>
           <div className='icon f_flex width'>
             <Link to="/login">
             <i className='fa fa-user icon-circle' ></i>

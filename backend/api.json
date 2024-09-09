@@ -4,43 +4,153 @@
       "id": "1",
       "Nombre": "Yudy",
       "Email": "yudy@soy.sen",
-      "Password": "123456"
+      "Password": "123456",
+      "Status": "Activo",
+      "Rol": "Administrador"
     },
     {
       "id": "8238",
-      "Nombre": "cris garcia",
+      "Nombre": "Cris Garcia",
       "Email": "crisgarcia2@cris",
-      "Password": "1234"
+      "Password": "1234",
+      "Status": "Activo",
+      "Rol": "Usuario"
     },
     {
       "id": "9181",
-      "Nombre": "yudy garcia",
+      "Nombre": "Yudy Garcia",
       "Email": "Katherinyudy@gmail.com",
-      "Password": "supapa1234"
+      "Password": "supapa1234",
+      "Status": "Inactivo",
+      "Rol": "Usuario"
     },
     {
       "id": "3cf4",
-      "Nombre": "andrea quemba",
+      "Nombre": "Andrea Quemba",
       "Email": "aquemba4@gmail.com",
-      "Password": "123456"
+      "Password": "123456",
+      "Status": "Activo",
+      "Rol": "Usuario"
     },
     {
       "id": "9faf",
       "Nombre": "Milo Q",
       "Email": "miloq@gmail.com",
-      "Password": "soymiloo1234"
+      "Password": "soymiloo1234",
+      "Status": "Suspendido",
+      "Rol": "Usuario"
     },
     {
       "id": "9963",
       "Nombre": "Marquita",
       "Email": "marquito@soy.sena",
-      "Password": "Yu5678??"
+      "Password": "Yu5678??",
+      "Status": "Activo",
+      "Rol": "Administrador"
     },
     {
       "id": "defa",
-      "Nombre": "andrea quemba",
+      "Nombre": "Andrea Quemba",
       "Email": "aquemba4@gmail.com",
-      "Password": "Yu5678??"
+      "Password": "Yu5678??",
+      "Status": "Inactivo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "6734",
+      "Nombre": "Carlos Ruiz",
+      "Email": "carlos.ruiz@gmail.com",
+      "Password": "ruizcarlos123",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "3487",
+      "Nombre": "Marta Lopez",
+      "Email": "martalopez@gmail.com",
+      "Password": "marta5678",
+      "Status": "Suspendido",
+      "Rol": "Administrador"
+    },
+    {
+      "id": "4920",
+      "Nombre": "Santiago Perez",
+      "Email": "sperez@gmail.com",
+      "Password": "santiPerez99",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "2c39",
+      "Nombre": "Yudy",
+      "Email": "",
+      "Password": "",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "1b34",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "b09f",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "f892",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "9742",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "9540",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "c3d7",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "1717",
+      "Nombre": "Maria Carmela",
+      "Email": "maricar@gmail.com",
+      "Password": "maricarmela",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "39a7",
+      "Nombre": "Julian Arango",
+      "Email": "julianarango@gmail.com",
+      "Password": "juli¿?1234",
+      "Status": "Activo",
+      "Rol": "Usuario"
     }
   ],
   "Admin": [
@@ -142,7 +252,8 @@
       "name": "Camarote Campestre",
       "material": "Metal",
       "price": "551",
-      "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos."
+      "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos.",
+      "rating": 4.5
     },
     {
       "id": "2",
@@ -152,7 +263,8 @@
       "material": "Metal",
       "material2": "Madera",
       "price": 999,
-      "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional."
+      "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional.",
+      "rating": 4.2
     },
     {
       "id": "3",
@@ -161,7 +273,8 @@
       "name": "Camarote 3 niveles Francés",
       "material": "Madera",
       "price": 850,
-      "description": "Camarote de 3 niveles con diseño francés, elegante y duradero."
+      "description": "Camarote de 3 niveles con diseño francés, elegante y duradero.",
+      "rating": 4.8
     },
     {
       "id": "4",
@@ -170,7 +283,8 @@
       "name": "Camarote 3 Niveles Triada",
       "material": "Madera",
       "price": 905,
-      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno."
+      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno.",
+      "rating": 4
     },
     {
       "id": "5",
@@ -180,7 +294,8 @@
       "material": "Metal",
       "material2": "Madera",
       "price": 750,
-      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
+      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave.",
+      "rating": 4.7
     },
     {
       "id": "6",
@@ -190,7 +305,8 @@
       "material": "Metal",
       "material2": "Madera",
       "price": 999,
-      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
+      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés.",
+      "rating": 3.9
     },
     {
       "id": "7",
@@ -200,7 +316,8 @@
       "material": "Metal",
       "material2": "Madera",
       "discount": "25",
-      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
+      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo.",
+      "rating": 4.1
     },
     {
       "id": "8",
@@ -210,7 +327,8 @@
       "material": "Metal",
       "material2": "Madera",
       "discount": "10",
-      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 3.8
     },
     {
       "id": "9",
@@ -219,7 +337,8 @@
       "price": 700,
       "material": "Madera",
       "discount": "0",
-      "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
+      "description": "Camarote de 3 niveles con un diseño lineal y sencillo.",
+      "rating": 4.3
     },
     {
       "id": "10",
@@ -229,7 +348,8 @@
       "material": "Metal",
       "material2": "Madera",
       "discount": "10",
-      "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
+      "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional.",
+      "rating": 4.5
     },
     {
       "id": "11",
@@ -239,7 +359,8 @@
       "material2": "Madera",
       "price": 999,
       "discount": "0",
-      "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
+      "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort.",
+      "rating": 4.6
     },
     {
       "id": "12",
@@ -249,7 +370,8 @@
       "material": "Metal",
       "material2": "Madera",
       "discount": "20",
-      "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
+      "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio.",
+      "rating": 4.9
     },
     {
       "id": "13",
@@ -259,7 +381,8 @@
       "material": "Metal",
       "material2": "Madera",
       "discount": "5",
-      "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
+      "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante.",
+      "rating": 4
     },
     {
       "id": "14",
@@ -268,7 +391,8 @@
       "price": 500,
       "discount": "0",
       "material": "Metal",
-      "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
+      "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento.",
+      "rating": 3.7
     },
     {
       "id": "6292",
@@ -276,7 +400,8 @@
       "price": "950",
       "discount": 0,
       "description": "Camarote ideal para espacios reducidos",
-      "cover": "./images/allProducts/default.png"
+      "cover": "./images/allProducts/default.png",
+      "rating": 3.5
     }
   ]
 }

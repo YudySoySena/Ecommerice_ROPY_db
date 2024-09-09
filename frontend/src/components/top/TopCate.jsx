@@ -10,7 +10,7 @@ const TopCate = () => {
           <div className='heading d_flex'>
             <div className='heading-left row  f_flex'>
               <i className='fa-solid fa-border-all'></i>
-              <h2>Top Categories</h2>
+              <h2>Categories</h2>
             </div>
           </div>
           <TopCart />

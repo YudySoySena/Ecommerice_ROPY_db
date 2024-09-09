@@ -7,7 +7,8 @@ import { UserContext } from "./UserContext";
 const Login = () => {
   const [formData, setFormData] = useState({
     Email: '',
-    Password: ''
+    Password: '',
+    redirectTo: 'profile'  // Nuevo campo para elegir la página de redirección
   });
 
   const { setContextUser } = useContext(UserContext);
@@ -29,7 +30,7 @@ const Login = () => {
   const enviar = async (e) => {
     e.preventDefault();
 
-    const { Email, Password } = formData;
+    const { Email, Password, redirectTo } = formData;
 
     // Validaciones del lado del cliente
     if (!Email) {
@@ -58,8 +59,13 @@ const Login = () => {
       if (user) {
         console.log("Éxito:", user);
         setContextUser(user);
-        // ... resto del código para iniciar sesión ...
-        navigate(`/user/${user.id}`);
+
+       if (redirectTo === 'profile' && user.id) {
+  navigate(`/user/${user.id}`);
+} else {
+  navigate('/');
+}
+
       } else {
         alert("Usuario o contraseña incorrectos.");
       }
@@ -67,7 +73,7 @@ const Login = () => {
       console.error("Error al enviar los datos:", error);
       alert("Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.");
     }
-  };  
+  };
 
   return (
     <div className="card-body">
@@ -78,7 +84,7 @@ const Login = () => {
             <div className="input-group mb-3">
               <input
                 type="email"
-                name="Email"  // Cambiado a mayúscula
+                name="Email"
                 required
                 autoComplete="email"
                 className="form-control"
@@ -95,7 +101,7 @@ const Login = () => {
             <div className="input-group mb-3">
               <input
                 type="password"
-                name="Password"  // Cambiado a mayúscula
+                name="Password"
                 autoComplete="current-password"
                 className="form-control"
                 placeholder="Contraseña"
@@ -108,6 +114,21 @@ const Login = () => {
                 </div>
               </div>
             </div>
+
+            {/* Nuevo select para elegir la página de redirección */}
+            <div className="input-group mb-3">
+              <label>Redirigir a:</label>
+              <select
+                name="redirectTo"
+                className="form-control"
+                value={formData.redirectTo}
+                onChange={handleChange}
+              >
+                <option value="profile">Perfil</option>
+                <option value="mainPage">Página Principal</option>
+              </select>
+            </div>
+
             <div className="row">
               <div className="col-4">
                 <button type="submit" className="btn btn-primary btn-block">Iniciar Sesión</button>
@@ -130,4 +151,3 @@ const Login = () => {
 };
 
 export default Login;
-
