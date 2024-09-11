@@ -14,9 +14,6 @@ const Head = () => {
             <i className="fa-sharp-duotone fa-solid fa-map-pin"></i>
             <label>Encuéntranos en: Cra 7A #8a-29 Sur, Barrio Nariño Sur.</label>
           </div>
-          <div className='right row RText'>
-            <label>Preguntas FAQ</label>
-          </div>
         </div>
       </section>
     </>

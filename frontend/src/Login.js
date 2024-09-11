@@ -4,11 +4,11 @@ import axios from "axios";
 import "./login.css";
 import { UserContext } from "./UserContext";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     Email: "",
     Password: "",
-    redirectTo: "profile", // Nuevo campo para elegir la página de redirección
+    redirectTo: "profile",
   });
 
   const { setContextUser } = useContext(UserContext);
@@ -22,25 +22,37 @@ const Login = () => {
     });
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   const enviar = async (e) => {
     e.preventDefault();
 
     const { Email, Password, redirectTo } = formData;
 
-    // Validaciones del lado del cliente
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleLogin = (user) => {
+    if (user && user.Rol === "Administrador") {
+      setContextUser(user);
+      setIsAuthenticated(true);
+      navigate("/admin");
+    } else {
+          // Si no es administrador, sigue la redirección habitual
+          if (redirectTo === "profile" && user.id) {
+            navigate(`/user/${user.id}`);  // Redirigir al perfil del usuario
+          } else {
+            navigate("/");  // Redirigir a la página principal
+          }
+    }
+  };
+
     if (!Email) {
       alert("Por favor, ingresa tu correo electrónico.");
       return;
     }
     if (!validateEmail(Email)) {
-      alert(
-        "El formato del correo electrónico no es válido. Asegúrate de incluir el símbolo '@'."
-      );
+      alert("El formato del correo electrónico no es válido.");
       return;
     }
     if (!Password) {
@@ -61,27 +73,13 @@ const Login = () => {
       );
 
       if (user) {
-        console.log("Éxito:", user);
-        setContextUser(user);
-
-        if (user.Rol === 'Administrador') {
-          navigate('/admin/*'); // Redirigir al panel de administración
-        } else {
-          // Si no es administrador, sigue la redirección habitual
-          if (redirectTo === "profile" && user.id) {
-            navigate(`/user/${user.id}`);  // Redirigir al perfil del usuario
-          } else {
-            navigate("/");  // Redirigir a la página principal
-          }
-        }
+        handleLogin(user);
       } else {
         alert("Usuario o contraseña incorrectos.");
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-      alert(
-        "Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo."
-      );
+      alert("Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.");
     }
   };
 
@@ -125,7 +123,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Nuevo select para elegir la página de redirección */}
             <div className="input-group mb-3">
               <label>Redirigir a:</label>
               <select

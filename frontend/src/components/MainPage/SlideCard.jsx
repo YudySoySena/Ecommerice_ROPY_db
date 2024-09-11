@@ -40,7 +40,7 @@ const SlideCard = () => {
                 <div className='left'>
                   <h1>{value.title}</h1>
                   <p>{value.desc}</p>
-                  <button className='btn-primary'>Visit Collections</button>
+                  <button className='btn-primary'>Ver producto</button>
                 </div>
                 <div className='right'>
                   <img src={value.cover} alt='' />

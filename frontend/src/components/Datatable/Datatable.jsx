@@ -6,11 +6,11 @@ import "../newUser/New";
 import "./datatable.css";
 
 const userColumns = [
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "Nombre", headerName: "Nombre", width: 150 },
-  { field: "Email", headerName: "Email", width: 200 },
-  { field: "Status", headerName: "Status", width: 120 },
-  { field: "Rol", headerName: "Rol", width: 150 },
+  { field: "id", headerName: "ID", width: 90, editable: false },
+  { field: "Nombre", headerName: "Nombre", width: 150, editable: true },
+  { field: "Email", headerName: "Email", width: 200, editable: true },
+  { field: "Status", headerName: "Status", width: 120, editable: true },
+  { field: "Rol", headerName: "Rol", width: 150, editable: true },
 ];
 
 const Datatable = () => {
@@ -31,6 +31,19 @@ const Datatable = () => {
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
+  };
+
+  const processRowUpdate = async (newRow, oldRow) => {
+    try {
+      await axios.put(`http://localhost:4000/Users/${newRow.id}`, newRow);
+      setData((prev) =>
+        prev.map((row) => (row.id === newRow.id ? newRow : row))
+      );
+      return newRow;
+    } catch (error) {
+      console.error("Error updating user: ", error);
+      return oldRow; // Revertir en caso de error
+    }
   };
 
   const actionColumn = [
@@ -74,6 +87,7 @@ const Datatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        experimentalFeatures={{ newEditingApi: true}}
       />
     </div>
   );

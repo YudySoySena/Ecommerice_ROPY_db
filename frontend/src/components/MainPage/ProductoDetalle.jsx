@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './productoDetalle.css'; // Crea un archivo CSS para los estilos del producto
+import './productoDetalle.css'; 
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Typography from '@mui/material/Typography';
+// Crea un archivo CSS para los estilos del producto
 
 const ProductoDetalle = ({ addToCar }) => {
   const { id } = useParams(); // Obtiene el ID del producto desde la URL
@@ -11,6 +18,20 @@ const ProductoDetalle = ({ addToCar }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#ff6d75',
+  },
+});
+
+const ShopCart = ({ shopItems, addToCart }) => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
 
   useEffect(() => {
     // Función para obtener el producto desde el API
@@ -61,6 +82,14 @@ const ProductoDetalle = ({ addToCar }) => {
               <option key={index} value={color}>{color}</option>
             ))}
           </select>
+<StyledRating
+  name="customized-color"
+  defaultValue={2}
+  getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+  precision={0.5}
+  icon={<FavoriteIcon fontSize="inherit" />}
+  emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+/>
 
           <label htmlFor="cantidad">Cantidad:</label>
           <input
@@ -78,6 +107,9 @@ const ProductoDetalle = ({ addToCar }) => {
               <option key={index} value={size}>{size}</option>
             ))}
           </select>
+          <button onClick={() => addToCart(item)}>
+            <i className='fa fa-plus'></i>
+          </button>
         </div>
       </div>
     </div>

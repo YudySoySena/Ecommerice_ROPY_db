@@ -5,17 +5,25 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [contextUser, setContextUser] = useState(() => {
-    // Al inicializar el estado, recuperar el usuario del localStorage si existe
-    const storedUser = localStorage.getItem('contextUser');
-    return storedUser ? JSON.parse(storedUser) : null;
+    try {
+      const storedUser = localStorage.getItem('contextUser');
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.error('Error parsing stored user:', error);
+      return null;
+    }
   });
 
   // Efecto para guardar el usuario en el localStorage cuando se actualice
   useEffect(() => {
-    if (contextUser) {
-      localStorage.setItem('contextUser', JSON.stringify(contextUser));
-    } else {
-      localStorage.removeItem('contextUser'); // Limpiar el localStorage si no hay usuario
+    try {
+      if (contextUser) {
+        localStorage.setItem('contextUser', JSON.stringify(contextUser));
+      } else {
+        localStorage.removeItem('contextUser'); // Limpiar el localStorage si no hay usuario
+      }
+    } catch (error) {
+      console.error('Error saving user to localStorage:', error);
     }
   }, [contextUser]);
 

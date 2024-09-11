@@ -3,6 +3,8 @@ import '../../pages/users/admin.css';
 
 function StatisticsCards() {
   const [userCount, setUserCount] = useState(0);
+  const [orderCount, setOrderCount] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
 
   // Llamada a la API de usuarios
   useEffect(() => {
@@ -14,10 +16,21 @@ function StatisticsCards() {
       .catch(error => console.error('Error fetching the data:', error));
   }, []);
 
+  useEffect(() => {
+    fetch('http://localhost:4000/Orders')
+      .then(response => response.json())
+      .then(data => {
+        setOrderCount(data.length); // Cuenta la cantidad de usuarios
+        const total = data.reduce((sum, order) => sum + order.total, 0);
+        setTotalRevenue(total);
+      })
+      .catch(error => console.error('Error fetching the data:', error));
+  }, []);
+
   const statistics = [
     { title: 'Usuarios Registrados', value: userCount },
-    { title: 'Pedidos Realizados', value: 0 },
-    { title: 'Total de Ganancias', value: '0' },
+    { title: 'Pedidos Realizados', value: orderCount },
+    { title: 'Total de Ganancias', value: `$${totalRevenue}` },
   ];
 
   return (

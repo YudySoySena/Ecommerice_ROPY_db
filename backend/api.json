@@ -2,26 +2,18 @@
   "Users": [
     {
       "id": "1",
-      "Nombre": "Yudy",
-      "Email": "yudy@soy.sen",
-      "Password": "123456",
+      "Nombre": "Yudy Garcia",
+      "Email": "Katherinyudy@gmail.com",
+      "Password": "Yk5678¿?",
       "Status": "Activo",
       "Rol": "Administrador"
     },
     {
       "id": "8238",
       "Nombre": "Cris Garcia",
-      "Email": "crisgarcia2@cris",
+      "Email": "crisgarcia2@cris.co",
       "Password": "1234",
       "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "9181",
-      "Nombre": "Yudy Garcia",
-      "Email": "Katherinyudy@gmail.com",
-      "Password": "supapa1234",
-      "Status": "Inactivo",
       "Rol": "Usuario"
     },
     {
@@ -81,63 +73,7 @@
       "Rol": "Usuario"
     },
     {
-      "id": "2c39",
-      "Nombre": "Yudy",
-      "Email": "",
-      "Password": "",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "1b34",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "b09f",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
       "id": "f892",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "9742",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "9540",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "c3d7",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "1717",
       "Nombre": "Maria Carmela",
       "Email": "maricar@gmail.com",
       "Password": "maricarmela",
@@ -149,6 +85,14 @@
       "Nombre": "Julian Arango",
       "Email": "julianarango@gmail.com",
       "Password": "juli¿?1234",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "3efa",
+      "Nombre": "Maria Quemba",
+      "Email": "mariaquembalucero@gmail.com",
+      "Password": "jjjjjjjjj",
       "Status": "Activo",
       "Rol": "Usuario"
     }
@@ -254,8 +198,15 @@
       "price": "551",
       "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos.",
       "rating": 4.5,
-      "colors": ["Blanco", "Gris", "Madera"],
-      "sizes": ["1.2 x 2 m", "1.5 x 2 m"]
+      "colors": [
+        "Blanco",
+        "Gris",
+        "Madera"
+      ],
+      "sizes": [
+        "1.2 x 2 m",
+        "1.5 x 2 m"
+      ]
     },
     {
       "id": "2",
@@ -267,8 +218,14 @@
       "price": 999,
       "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional.",
       "rating": 4.2,
-      "colors": ["Gris", "Madera"],
-      "sizes": ["1.2 x 1.8 m", "1.5 x 2 m"]
+      "colors": [
+        "Gris",
+        "Madera"
+      ],
+      "sizes": [
+        "1.2 x 1.8 m",
+        "1.5 x 2 m"
+      ]
     },
     {
       "id": "3",
@@ -279,8 +236,255 @@
       "price": 850,
       "description": "Camarote de 3 niveles con diseño francés, elegante y duradero.",
       "rating": 4.8,
-      "colors": ["Madera Oscura"],
-      "sizes": ["1.5 x 2 m", "2 x 2.5 m"]
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "4",
+      "discount": 40,
+      "cover": "./images/allProducts/camarote4.png",
+      "name": "Camarote 3 Niveles Triada",
+      "price": 905,
+      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno."
+    },
+    {
+      "id": "5",
+      "discount": 50,
+      "cover": "./images/allProducts/camarote5.png",
+      "name": "Camarote 3 niveles lineas Redondeado",
+      "price": 750,
+      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
+    },
+    {
+      "id": "6",
+      "discount": 50,
+      "cover": "./images/allProducts/camarote6.png",
+      "name": "Camarote 3 niveles francés metalmadera",
+      "price": 1600,
+      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
+    },
+    {
+      "id": "7",
+      "cover": "./images/allProducts/camarote7.png",
+      "name": "Camarote Estudio 4",
+      "price": 950,
+      "discount": "25",
+      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
+    },
+    {
+      "id": "8",
+      "cover": "./images/allProducts/camarote8.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
+    },
+    {
+      "id": "9",
+      "cover": "./images/allProducts/camarote9.png",
+      "name": "Camarote 3 niveles Lineal",
+      "price": 700,
+      "discount": "50",
+      "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
+    },
+    {
+      "id": "10",
+      "cover": "./images/allProducts/camarote10.png",
+      "name": "Camarote Estudio 3",
+      "price": 900,
+      "discount": "10",
+      "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
+    },
+    {
+      "id": "11",
+      "cover": "./images/allProducts/camarote11.png",
+      "name": "Camarote Estudio",
+      "price": 1300,
+      "discount": "20",
+      "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
+    },
+    {
+      "id": "12",
+      "cover": "./images/allProducts/camarote12.png",
+      "name": "Camarote Estudio 1",
+      "price": 800,
+      "discount": "20",
+      "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
+    },
+    {
+      "id": "13",
+      "cover": "./images/allProducts/camarote13.png",
+      "name": "Camarote Campestre Metalmadera",
+      "price": 500,
+      "discount": "5",
+      "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
+    },
+    {
+      "id": "14",
+      "cover": "./images/allProducts/camarote14.png",
+      "name": "Camarote Campestre desmontable",
+      "price": 500,
+      "discount": "10",
+      "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
+    }
+  ],
+"Orders": [
+  {
+    "orderId": "o1007",
+    "userId": "f892",
+    "items": [
+      {
+        "productId": "3",
+        "quantity": 2,
+        "price": 1200,
+        "discount": 50
+      }
+    ],
+    "total": 2350,
+    "status": "Pending",
+    "orderDate": "2024-09-09",
+    "deliveryDate": null,
+    "shippingAddress": "Calle 123, Ciudad XYZ",
+    "cancelReason": null
+  },
+    {
+      "orderId": "o1002",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "5",
+          "quantity": 1,
+          "price": 750,
+          "discount": 50
+        },
+        {
+          "productId": "6",
+          "quantity": 1,
+          "price": 1600,
+          "discount": 50
+        }
+      ],
+      "total": 1700,
+      "status": "Processing",
+      "orderDate": "2024-09-09",
+      "deliveryDate": null,
+      "shippingAddress": "Calle 123, Ciudad XYZ",
+      "cancelReason": null
+    },
+    {
+      "orderId": "o1003",
+      "userId": "9181",
+      "items": [
+        {
+          "productId": "9",
+          "quantity": 1,
+          "price": 700,
+          "discount": 50
+        },
+        {
+          "productId": "13",
+          "quantity": 1,
+          "price": 500,
+          "discount": 5
+        }
+      ],
+      "total": 1150,
+      "status": "Shipped",
+      "orderDate": "2024-09-09",
+      "deliveryDate": null,
+      "shippingAddress": "Calle 123, Ciudad XYZ",
+      "cancelReason": null
+    },
+    {
+      "orderId": "o1004",
+      "userId": "6734",
+      "items": [
+        {
+          "productId": "1",
+          "quantity": 2,
+          "price": 551,
+          "discount": 10
+        }
+      ],
+      "total": 1102,
+      "status": "Completed",
+      "orderDate": "2024-09-04",
+      "shippingAddress": "Calle 45, Ciudad XYZ",
+      "deliveryDate": "2024-09-09"
+    },
+    {
+      "orderId": "o1005",
+      "userId": "9963",
+      "items": [
+        {
+          "productId": "12",
+          "quantity": 3,
+          "price": 800,
+          "discount": 20
+        }
+      ],
+      "total": 2400,
+      "status": "Processing",
+      "orderDate": "2024-09-09",
+      "deliveryDate": null,
+      "shippingAddress": "Calle 123, Ciudad XYZ",
+      "cancelReason": null
+    },
+    {
+      "orderId": "o1006",
+      "userId": "39a7",
+      "items": [
+        {
+          "productId": "7",
+          "quantity": 1,
+          "price": 950,
+          "discount": 25
+        },
+        {
+          "productId": "10",
+          "quantity": 1,
+          "price": 900,
+          "discount": 10
+        }
+      ],
+      "total": 1850,
+      "status": "Completed",
+      "orderDate": "2024-09-02",
+      "shippingAddress":"Calle 123, Ciudad ZYX",
+      "deliveryDate": "2024-09-07"
+    }
+  ],
+  "Notifications": [
+    {
+      "notificationId": "n001",
+      "userId": "8238",
+      "title": "Nueva actualización de producto",
+      "message": "Hemos añadido nuevos camarotes a nuestra tienda, échale un vistazo.",
+      "date": "2024-09-10",
+      "status": "unread"
+    },
+    {
+      "notificationId": "n002",
+      "userId": "1",
+      "title": "Pedido completado",
+      "message": "Tu pedido con número o1002 ha sido completado.",
+      "date": "2024-09-10",
+      "status": "read"
+    },
+    {
+      "id": "811c",
+      "userId": "8238",
+      "message": "Cristian, revisa los nuevos camarotes que hemos añadido!!"
+    },
+    {
+      "id": "675d",
+      "userId": "8238",
+      "message": "Cris, revisa mi nueva notificacion!!!"
     }
   ]
 }

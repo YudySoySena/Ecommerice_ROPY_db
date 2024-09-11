@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react"
+import axios from 'axios';
 import logo from "../../components/assets/images/logo.png"
 import { Link } from "react-router-dom"
-import { useEffect } from 'react';
-import { UserContext } from "./UserContext";
+import { UserContext } from "../../UserContext";
 
 const Search = ({ CartItem }) => {
   const { contextUser } = useContext(UserContext);  // Obtener el usuario actual
