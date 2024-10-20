@@ -62,6 +62,14 @@ body {
     justify-content: center;
 }
 
+.input-error input {
+    border-color: red;
+  }
+  
+  .input-valid input {
+    border-color: blue;
+  }  
+
 /* Estilos del botón de inicio de sesión */
 
 .row {

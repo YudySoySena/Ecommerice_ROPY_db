@@ -3,21 +3,30 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
 import { UserContext } from "./UserContext";
+import Validation from './loginValidation';
 
 const Login = ({ setIsAuthenticated }) => {
-  const [formData, setFormData] = useState({
+  const [values, setValues] = useState({
     Email: "",
     Password: "",
-    redirectTo: "profile",
-  });
+    redirectTo: "profile"
+  })
+  const [errors, setErrors] = useState({})
+  const handleInput = (event) => {
+    setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+  }
+  const handleSubmit =(event) => {
+    event.preventDefault();
+    setErrors(Validation(values));
+  }
 
   const { setContextUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setValues({
+      ...values,
       [name]: value,
     });
   };
@@ -25,7 +34,7 @@ const Login = ({ setIsAuthenticated }) => {
   const enviar = async (e) => {
     e.preventDefault();
 
-    const { Email, Password, redirectTo } = formData;
+    const { Email, Password, redirectTo } = values;
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,7 +97,7 @@ const Login = ({ setIsAuthenticated }) => {
       <div className="hold-transition login-page">
         <div className="login-box">
           <b>Iniciar Sesión</b>
-          <form onSubmit={enviar}>
+          <form onSubmit={handleSubmit}>
             <div className="input-group mb-3">
               <input
                 type="email"
@@ -97,9 +106,10 @@ const Login = ({ setIsAuthenticated }) => {
                 autoComplete="email"
                 className="form-control"
                 placeholder="Correo"
-                value={formData.Email}
-                onChange={handleChange}
+                value={values.Email}
+                onChange={handleInput}
               />
+              {errors.Email && <span className='text'>{errors.Email}</span>}
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -113,9 +123,10 @@ const Login = ({ setIsAuthenticated }) => {
                 autoComplete="current-password"
                 className="form-control"
                 placeholder="Contraseña"
-                value={formData.Password}
-                onChange={handleChange}
+                value={values.Password}
+                onChange={handleInput}
               />
+              {errors.Password && <span className='text'>{errors.Password}</span>}
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -128,7 +139,7 @@ const Login = ({ setIsAuthenticated }) => {
               <select
                 name="redirectTo"
                 className="form-control"
-                value={formData.redirectTo}
+                value={values.redirectTo}
                 onChange={handleChange}
               >
                 <option value="profile">Perfil</option>
@@ -150,11 +161,6 @@ const Login = ({ setIsAuthenticated }) => {
           <p className="mb-0">
             <Link to="/register" className="text-center">
               ¿Aún no estás registrado?
-            </Link>
-          </p>
-          <p className="mb-0">
-            <Link to="/loginAdmin" className="text-center">
-              ¿Eres Administrador?
             </Link>
           </p>
         </div>

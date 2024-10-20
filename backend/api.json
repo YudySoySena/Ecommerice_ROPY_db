@@ -14,23 +14,9 @@
       "Email": "crisgarcia2@cris.co",
       "Password": "1234",
       "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "3cf4",
-      "Nombre": "Andrea Quemba",
-      "Email": "aquemba4@gmail.com",
-      "Password": "123456",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "9faf",
-      "Nombre": "Milo Q",
-      "Email": "miloq@gmail.com",
-      "Password": "soymiloo1234",
-      "Status": "Suspendido",
-      "Rol": "Usuario"
+      "Rol": "Usuario",
+      "Direccion": "Cra avenida septima #19b",
+      "Telefono": "306876534"
     },
     {
       "id": "9963",
@@ -50,58 +36,11 @@
     },
     {
       "id": "6734",
-      "Nombre": "Carlos Ruiz",
-      "Email": "carlos.ruiz@gmail.com",
+      "Nombre": "Carlos Gómez",
+      "Email": "carlos.gomez@gmail.com",
       "Password": "ruizcarlos123",
-      "Status": "Activo",
+      "Status": "Inactivo",
       "Rol": "Usuario"
-    },
-    {
-      "id": "3487",
-      "Nombre": "Marta Lopez",
-      "Email": "martalopez@gmail.com",
-      "Password": "marta5678",
-      "Status": "Suspendido",
-      "Rol": "Administrador"
-    },
-    {
-      "id": "4920",
-      "Nombre": "Santiago Perez",
-      "Email": "sperez@gmail.com",
-      "Password": "santiPerez99",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "f892",
-      "Nombre": "Maria Carmela",
-      "Email": "maricar@gmail.com",
-      "Password": "maricarmela",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "39a7",
-      "Nombre": "Julian Arango",
-      "Email": "julianarango@gmail.com",
-      "Password": "juli¿?1234",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    },
-    {
-      "id": "3efa",
-      "Nombre": "Maria Quemba",
-      "Email": "mariaquembalucero@gmail.com",
-      "Password": "jjjjjjjjj",
-      "Status": "Activo",
-      "Rol": "Usuario"
-    }
-  ],
-  "Admin": [
-    {
-      "user": "Yudy Garcia",
-      "password": "Yg5678¿?",
-      "id": "3834"
     }
   ],
   "Destacados": [
@@ -130,228 +69,27 @@
       "cover": "./images/SlideCard/slide-4.png"
     }
   ],
-  "Novedades": [
+  "Orders": [
     {
-      "cover": "./images/arrivals/arrivals1.png",
-      "name": "Toallas de calidad Premium",
-      "price": 25,
-      "id": "99b3"
-    },
-    {
-      "cover": "./images/arrivals/arrivals2.png",
-      "name": "Cobija termica negra",
-      "price": 20,
-      "id": "3f8e"
-    },
-    {
-      "cover": "./images/arrivals/arrivals3.png",
-      "name": "Sabanas de Lujo",
-      "price": 30,
-      "id": "cf89"
-    },
-    {
-      "cover": "./images/arrivals/arrivals4.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "e895"
-    }
-  ],
-  "Descuentos": [
-    {
-      "cover": "./images/discount/discount-1.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "87da"
-    },
-    {
-      "cover": "./images/discount/discount-2.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "5482"
-    },
-    {
-      "cover": "./images/discount/discount-3.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "e62d"
-    },
-    {
-      "cover": "./images/discount/discount-4.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "2396"
-    },
-    {
-      "cover": "./images/discount/discount-6.png",
-      "name": "Toallas de Mano",
-      "price": 20,
-      "id": "ff2d"
-    }
-  ],
-  "ProductItems": [
-    {
-      "id": "1",
-      "discount": "10",
-      "cover": "./images/allProducts/camarote1.png",
-      "name": "Camarote Campestre",
-      "material": "Metal",
-      "price": "551",
-      "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos.",
-      "rating": 4.5,
-      "colors": [
-        "Blanco",
-        "Gris",
-        "Madera"
+      "orderId": "o1007",
+      "userId": "f892",
+      "items": [
+        {
+          "productId": "3",
+          "quantity": 2,
+          "price": 1200,
+          "discount": 50
+        }
       ],
-      "sizes": [
-        "1.2 x 2 m",
-        "1.5 x 2 m"
-      ]
+      "total": 2350,
+      "status": "Pending",
+      "orderDate": "2024-09-09",
+      "deliveryDate": null,
+      "shippingAddress": "Calle 123, Ciudad XYZ",
+      "cancelReason": null,
+      "paymentMethod": "Nequi",
+      "id": "ba45"
     },
-    {
-      "id": "2",
-      "discount": "0",
-      "cover": "./images/allProducts/camarote2.png",
-      "name": "Camarote 3 niveles metalmadera",
-      "material": "Metal",
-      "material2": "Madera",
-      "price": 999,
-      "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional.",
-      "rating": 4.2,
-      "colors": [
-        "Gris",
-        "Madera"
-      ],
-      "sizes": [
-        "1.2 x 1.8 m",
-        "1.5 x 2 m"
-      ]
-    },
-    {
-      "id": "3",
-      "discount": 40,
-      "cover": "./images/allProducts/camarote3.png",
-      "name": "Camarote 3 niveles Francés",
-      "material": "Madera",
-      "price": 850,
-      "description": "Camarote de 3 niveles con diseño francés, elegante y duradero.",
-      "rating": 4.8,
-      "colors": [
-        "Madera Oscura"
-      ],
-      "sizes": [
-        "1.5 x 2 m",
-        "2 x 2.5 m"
-      ]
-    },
-    {
-      "id": "4",
-      "discount": 40,
-      "cover": "./images/allProducts/camarote4.png",
-      "name": "Camarote 3 Niveles Triada",
-      "price": 905,
-      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno."
-    },
-    {
-      "id": "5",
-      "discount": 50,
-      "cover": "./images/allProducts/camarote5.png",
-      "name": "Camarote 3 niveles lineas Redondeado",
-      "price": 750,
-      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave."
-    },
-    {
-      "id": "6",
-      "discount": 50,
-      "cover": "./images/allProducts/camarote6.png",
-      "name": "Camarote 3 niveles francés metalmadera",
-      "price": 1600,
-      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés."
-    },
-    {
-      "id": "7",
-      "cover": "./images/allProducts/camarote7.png",
-      "name": "Camarote Estudio 4",
-      "price": 950,
-      "discount": "25",
-      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo."
-    },
-    {
-      "id": "8",
-      "cover": "./images/allProducts/camarote8.png",
-      "name": "Camarote Estudio 2",
-      "price": 850,
-      "discount": "10",
-      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños."
-    },
-    {
-      "id": "9",
-      "cover": "./images/allProducts/camarote9.png",
-      "name": "Camarote 3 niveles Lineal",
-      "price": 700,
-      "discount": "50",
-      "description": "Camarote de 3 niveles con un diseño lineal y sencillo."
-    },
-    {
-      "id": "10",
-      "cover": "./images/allProducts/camarote10.png",
-      "name": "Camarote Estudio 3",
-      "price": 900,
-      "discount": "10",
-      "description": "Camarote Estudio 3, perfecto para un ambiente moderno y funcional."
-    },
-    {
-      "id": "11",
-      "cover": "./images/allProducts/camarote11.png",
-      "name": "Camarote Estudio",
-      "price": 1300,
-      "discount": "20",
-      "description": "Camarote Estudio, ideal para espacios de estudio con estilo y confort."
-    },
-    {
-      "id": "12",
-      "cover": "./images/allProducts/camarote12.png",
-      "name": "Camarote Estudio 1",
-      "price": 800,
-      "discount": "20",
-      "description": "Camarote Estudio 1, funcional y cómodo para cualquier dormitorio."
-    },
-    {
-      "id": "13",
-      "cover": "./images/allProducts/camarote13.png",
-      "name": "Camarote Campestre Metalmadera",
-      "price": 500,
-      "discount": "5",
-      "description": "Camarote Campestre con estructura de metal y madera, resistente y elegante."
-    },
-    {
-      "id": "14",
-      "cover": "./images/allProducts/camarote14.png",
-      "name": "Camarote Campestre desmontable",
-      "price": 500,
-      "discount": "10",
-      "description": "Camarote Campestre desmontable para facilitar el transporte y almacenamiento."
-    }
-  ],
-"Orders": [
-  {
-    "orderId": "o1007",
-    "userId": "f892",
-    "items": [
-      {
-        "productId": "3",
-        "quantity": 2,
-        "price": 1200,
-        "discount": 50
-      }
-    ],
-    "total": 2350,
-    "status": "Pending",
-    "orderDate": "2024-09-09",
-    "deliveryDate": null,
-    "shippingAddress": "Calle 123, Ciudad XYZ",
-    "cancelReason": null
-  },
     {
       "orderId": "o1002",
       "userId": "1",
@@ -374,7 +112,9 @@
       "orderDate": "2024-09-09",
       "deliveryDate": null,
       "shippingAddress": "Calle 123, Ciudad XYZ",
-      "cancelReason": null
+      "cancelReason": null,
+      "paymentMethod": "Bancolombia",
+      "id": "94d0"
     },
     {
       "orderId": "o1003",
@@ -398,7 +138,9 @@
       "orderDate": "2024-09-09",
       "deliveryDate": null,
       "shippingAddress": "Calle 123, Ciudad XYZ",
-      "cancelReason": null
+      "cancelReason": null,
+      "paymentMethod": "Pago contra entrega",
+      "id": "8718"
     },
     {
       "orderId": "o1004",
@@ -415,48 +157,34 @@
       "status": "Completed",
       "orderDate": "2024-09-04",
       "shippingAddress": "Calle 45, Ciudad XYZ",
-      "deliveryDate": "2024-09-09"
+      "deliveryDate": "2024-09-09",
+      "paymentMethod": "Efectivo",
+      "id": "0449"
     },
     {
-      "orderId": "o1005",
-      "userId": "9963",
+      "orderId": "79ad",
+      "userId": "unknown",
       "items": [
         {
-          "productId": "12",
-          "quantity": 3,
-          "price": 800,
-          "discount": 20
-        }
-      ],
-      "total": 2400,
-      "status": "Processing",
-      "orderDate": "2024-09-09",
-      "deliveryDate": null,
-      "shippingAddress": "Calle 123, Ciudad XYZ",
-      "cancelReason": null
-    },
-    {
-      "orderId": "o1006",
-      "userId": "39a7",
-      "items": [
-        {
-          "productId": "7",
-          "quantity": 1,
-          "price": 950,
-          "discount": 25
+          "productId": "e62d",
+          "quantity": 2,
+          "price": 20,
+          "discount": 0
         },
         {
-          "productId": "10",
-          "quantity": 1,
-          "price": 900,
-          "discount": 10
+          "productId": "2396",
+          "quantity": 2,
+          "price": 20,
+          "discount": 0
         }
       ],
-      "total": 1850,
-      "status": "Completed",
-      "orderDate": "2024-09-02",
-      "shippingAddress":"Calle 123, Ciudad ZYX",
-      "deliveryDate": "2024-09-07"
+      "total": 80,
+      "status": "Pending",
+      "orderDate": "2024-09-10",
+      "shippingAddress": "CLL 65a #105 F-10",
+      "deliveryDate": null,
+      "paymentMethod": "Nequi",
+      "id": "db18"
     }
   ],
   "Notifications": [
@@ -466,7 +194,8 @@
       "title": "Nueva actualización de producto",
       "message": "Hemos añadido nuevos camarotes a nuestra tienda, échale un vistazo.",
       "date": "2024-09-10",
-      "status": "unread"
+      "status": "unread",
+      "id": "d942"
     },
     {
       "notificationId": "n002",
@@ -474,7 +203,8 @@
       "title": "Pedido completado",
       "message": "Tu pedido con número o1002 ha sido completado.",
       "date": "2024-09-10",
-      "status": "read"
+      "status": "read",
+      "id": "18c6"
     },
     {
       "id": "811c",
@@ -485,6 +215,26 @@
       "id": "675d",
       "userId": "8238",
       "message": "Cris, revisa mi nueva notificacion!!!"
+    },
+    {
+      "id": "e4e6",
+      "userId": "3cf4",
+      "message": "Andreita, tu pedido ya esta confirmado, continuemos con el pago.."
+    },
+    {
+      "id": "6fcd",
+      "userId": "3cf4",
+      "message": "Andreita chequea nuestras nuevas toallas de mano."
+    },
+    {
+      "status": "leída",
+      "id": "b100"
+    },
+    {
+      "id": "6c36",
+      "userId": "8238",
+      "message": "Hola Cris, Queremos probar nuestra nueva funcion de notificaciones",
+      "status": "enviada"
     }
   ]
 }

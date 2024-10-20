@@ -5,11 +5,12 @@ import axios from "axios";
 
 const FlashDeals = ({ addToCart }) => {
   const [productItems, setProductItems] = useState([]);
+  const discountedProducts = productItems.filter(item => item.discount > 0);
 
   useEffect(() => {
     const fetchProductItems = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/Descuentos");
+        const response = await axios.get("http://localhost:4000/ProductItems");
         setProductItems(response.data || []);
       } catch (error) {
         console.error("Error fetching product items:", error);
@@ -24,9 +25,9 @@ const FlashDeals = ({ addToCart }) => {
       <div className='container'>
         <div className='heading f_flex'>
           <i className='fa fa-bolt'></i>
-          <h1>Flash Deals</h1>
+          <h1>Descuentos</h1>
         </div>
-        <FlashCard productItems={productItems} addToCart={addToCart} />
+        <FlashCard productItems={discountedProducts} addToCart={addToCart} />
       </div>
     </section>
   );

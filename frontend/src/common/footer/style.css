@@ -1,8 +1,8 @@
-/* style.css */
 footer {
   background-color: #0f3460;
   padding: 100px 0;
   color: #fff;
+  text-align: center;
 }
 
 footer h1 {
@@ -23,14 +23,13 @@ footer .img i {
   margin: 5px;
 }
 
-footer .img span {
-  margin-top: 5px;
-}
-
-footer p {
+footer p, footer li {
   font-size: 14px;
   font-weight: 300;
   opacity: 0.5;
+}
+
+footer p {
   margin-bottom: 20px;
 }
 
@@ -40,20 +39,24 @@ footer h2 {
 
 footer li {
   margin-bottom: 10px;
-  opacity: 0.5;
 }
 
-.box {
-  flex: 1;
-  margin: 0 20px;
+.container, .grid2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
 
-
-/* Estilo para la sección del formulario de contacto */
-.contacto-form {
+.box, .contacto-form {
   flex: 1;
-  margin: 0 20px;
+  margin: 10px 20px;
 }
 
 .contacto-form h2 {
@@ -67,8 +70,7 @@ footer li {
   flex-direction: column;
 }
 
-.contacto-form input,
-.contacto-form textarea {
+.contacto-form input, .contacto-form textarea {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -101,39 +103,22 @@ footer li {
   height: auto;
 }
 
-/* Estilos adicionales */
-footer .container {
+.payment-methods {
+  margin-top: 20px;
+}
+
+.payment-list {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
 }
 
-footer .grid2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+.payment-list li {
+  margin: 0 15px;
 }
 
-footer .box {
-  margin: 10px;
-}
-
-footer .contacto-form input,
-footer .contacto-form textarea {
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-footer .contacto-form input::placeholder,
-footer .contacto-form textarea::placeholder {
-  color: #999;
-}
-
-footer .contacto-form button {
-  background-color: #e94560;
-}
-
-footer .contacto-form button:hover {
-  background-color: #d83450;
+.payment-list img {
+  width: 40px;
+  height: auto;
 }

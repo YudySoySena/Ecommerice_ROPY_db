@@ -11,10 +11,6 @@ const Categories = () => {
       cateName: "Descuentos",
     },
     {
-      cateImg: "./images/category/cat4.png",
-      cateName: "Toallas",
-    },
-    {
       cateImg: "./images/category/cat5.png",
       cateName: "Todos los productos",
     }

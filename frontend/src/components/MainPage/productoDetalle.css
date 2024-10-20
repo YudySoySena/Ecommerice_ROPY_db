@@ -1,54 +1,71 @@
 .producto-detalle {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .producto-imagen {
+  width: 45%;
   max-width: 400px;
-  margin-right: 20px;
+  height: auto;
+  border-radius: 10px;
 }
 
 .producto-info {
-  max-width: 600px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-  .producto-info {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .producto-nombre {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .producto-descripcion {
-    margin: 10px 0;
-  }
-  
-  .producto-precio {
-    font-size: 20px;
-    color: #0f3460;
-  }
-  
-  .producto-descuento {
-    font-size: 16px;
-    color: #ff0000;
-  }
-  
-  .producto-opciones {
-    margin-top: 20px;
-  }
-  
-  .producto-opciones label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .producto-opciones select,
-  .producto-opciones input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-  }
-  
+
+.producto-nombre {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.producto-precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e60023;
+}
+
+.producto-descuento {
+  font-size: 1.2rem;
+  color: #00cc00;
+}
+
+.producto-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.producto-opciones label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.producto-opciones select, 
+.producto-opciones input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 50%;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

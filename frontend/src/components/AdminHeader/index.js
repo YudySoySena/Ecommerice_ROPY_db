@@ -2,25 +2,40 @@ import { BellFilled, MailOutlined } from "@ant-design/icons";
 import { Badge, Image, Space, Typography } from "antd";
 import Logo from '../assets/images/logo.png'
 
-function AdminHeader() {
+const AdminHeader = () => {
+    const headerStyle = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'sapce-between',
+      padding: '16px',
+      backgroundColor: '#f0f2f5'
+    };
+    const logoStyle = {
+      flex: 1,
+    };
+    const titleStyle = {
+      flex: 2,
+      textAlign: 'center',
+      margin: 0,
+  };
+  const iconsStyle = {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    gap: '16px',
+  };
+
+
   return (
-    <div className="AdminHeader">
+    <div style={headerStyle}>
+      <div style={logoStyle}>
       <Image width={80} src={Logo}></Image>
-      <Typography.Title>Bienvenido Administrador</Typography.Title>
-      <Space>
-        <Badge count={10} dot>
-        <MailOutlined
-            style={{ fontSize: 24 }}
-          />
-        </Badge>
-        <Badge count={20}>
-        <BellFilled
-            style={{ fontSize: 24 }}
-          />
-        </Badge>
+      </div>
+      <Typography.Title level={2} style={titleStyle}>Bienvenido Administrador</Typography.Title>
+      <Space> 
       </Space>
     </div>
   )
-}
+};
 
 export default AdminHeader

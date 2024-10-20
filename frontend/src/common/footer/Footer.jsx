@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./style.css";
 import logo from "../../components/assets/images/logo.png";
+import nequiIcon from "../../components/assets/images/pay/pay7.png";
+import daviplataIcon from "../../components/assets/images/pay/pay6.png";
+import bancolombiaIcon from "../../components/assets/images/pay/pay3.png";
+import efectivoIcon from "../../components/assets/images/pay/pay2.png";
+import tarjetasIcon from "../../components/assets/images/pay/pay4.png";
+import contraentregaIcon from "../../components/assets/images/pay/pay1.png";
 
 const Footer = () => {
   // Estado para manejar los datos del formulario
@@ -44,52 +50,18 @@ const Footer = () => {
             </div>
             <p>Comodidad y confianza con ROPY</p>
           </div>
+          <div className="payment-methods">
+          <p>Métodos de Pago:</p>
+          <ul className="payment-list">
+            <li><img src={nequiIcon} alt="Nequi" /></li>
+            <li><img src={daviplataIcon} alt="Daviplata" /></li>
+            <li><img src={bancolombiaIcon} alt="Bancolombia" /></li>
+            <li><img src={efectivoIcon} alt="Efectivo" /></li>
+            <li><img src={tarjetasIcon} alt="Tarjetas" /></li>
+            <li><img src={contraentregaIcon} alt="Contraentrega" /></li>
+          </ul>
+        </div>
           <div>©2024 por muebles ROPY.</div>
-          <div className='box contacto-form'>
-            <h2>Contact Form</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Teléfono"
-                value={formData.telefono}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="asunto"
-                placeholder="Asunto"
-                value={formData.asunto}
-                onChange={handleChange}
-                required
-              />
-              <textarea
-                name="mensaje"
-                placeholder="Mensaje"
-                value={formData.mensaje}
-                onChange={handleChange}
-                required
-              ></textarea>
-              <button type="submit">Enviar</button>
-            </form>
-          </div>
         </div>
       </footer>
     </>
@@ -97,4 +69,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

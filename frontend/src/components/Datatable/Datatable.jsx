@@ -1,8 +1,15 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "../newUser/New";
+import "../new/New";
 import "./datatable.css";
 
 const userColumns = [
@@ -15,6 +22,8 @@ const userColumns = [
 
 const Datatable = () => {
   const [data, setData] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null); // Cambié selectedOrder por selectedUser
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +44,11 @@ const Datatable = () => {
 
   const processRowUpdate = async (newRow, oldRow) => {
     try {
-      await axios.put(`http://localhost:4000/Users/${newRow.id}`, newRow);
+      console.log("Attempting to update user:", newRow);
+      const response = await axios.put(
+        `http://localhost:4000/Users/${newRow.id}`,
+        newRow
+      );
       setData((prev) =>
         prev.map((row) => (row.id === newRow.id ? newRow : row))
       );
@@ -46,6 +59,16 @@ const Datatable = () => {
     }
   };
 
+  const handleOpenDialog = (user) => {
+    setSelectedUser(user); // Cambié selectedOrder por selectedUser
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedUser(null);
+  };
+
   const actionColumn = [
     {
       field: "action",
@@ -54,12 +77,13 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link
-              to={`/users/${params.row.id}`}
-              style={{ textDecoration: "none" }}
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => handleOpenDialog(params.row)}
             >
-              <div className="viewButton">View</div>
-            </Link>
+              Details
+            </Button>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -87,8 +111,38 @@ const Datatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
-        experimentalFeatures={{ newEditingApi: true}}
+        experimentalFeatures={{ newEditingApi: true }}
+        processRowUpdate={processRowUpdate}
       />
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>User Details</DialogTitle>
+        <DialogContent>
+          {selectedUser && (
+            <div>
+              <p>
+                <strong>ID: </strong> {selectedUser.id}
+              </p>
+              <p>
+                <strong>Nombre: </strong> {selectedUser.Nombre}
+              </p>
+              <p>
+                <strong>Email: </strong> {selectedUser.Email}
+              </p>
+              <p>
+                <strong>Status: </strong> {selectedUser.Status}
+              </p>
+              <p>
+                <strong>Rol: </strong> {selectedUser.Rol}
+              </p>
+            </div>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Navbar = () => {
             <ul className={MobileMenu ? "nav-links-MobileMenu" : "link f_flex capitalize"} onClick={() => setMobileMenu(false)}>
               {/*<ul className='link f_flex uppercase {MobileMenu ? "nav-links-MobileMenu" : "nav-links"} onClick={() => setMobileMenu(false)}'>*/}
               <li>
-                <Link to='/'>home</Link>
+                <Link to='/'>Productos</Link>
               </li>
               <li>
                 <Link to='/ubicacion'>Ubicacion</Link>
@@ -29,9 +29,6 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to='/fqs'>Preguntas Frecuentes</Link>
-              </li>
-              <li>
-                <Link to='/contact'>contact</Link>
               </li>
             </ul>
           </div>

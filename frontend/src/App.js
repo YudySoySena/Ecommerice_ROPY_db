@@ -13,12 +13,10 @@ import Register from "./Register";
 import AcercaRopy from "./pages/AcercaRopy";
 import Ubicacion from "./pages/Ubicacion";
 import FQs from "./pages/FQs";
-import LoginAdmin from './LoginAdmin';
 import Admin from './pages/users/Admin';
 import ProductoDetalle from './components/MainPage/ProductoDetalle';
-import NewUser from './components/newUser/New';
+import NewUser from './components/new/New';
 import UserProfile from './pages/users/UserProfile';
-import EditProfile from './pages/users/EditProfile';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -76,7 +74,7 @@ function App() {
           <Route path='/acercaRopy' element={<AcercaRopy />} />
           <Route path='/ubicacion' element={<Ubicacion />} />
           <Route path='/fqs' element={<FQs />} />
-          <Route path='/producto/:id' element={<ProductoDetalle />} />
+          <Route path='/producto/:id' element={<ProductoDetalle productItems={productItems} addToCart={addToCart} shopItems={shopItems}/>} />
         </Routes>
         {showHeaderAndFooter(window.location.pathname) && <Footer />}
       </Router>

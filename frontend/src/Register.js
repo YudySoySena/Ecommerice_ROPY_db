@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
+import { useNavigate, Link } from "react-router-dom"; // Importa useNavigate
 import axios from 'axios';
 import './register.css';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const [values, setValues] = useState({
     Nombre: '',
     Email: '',
     Password: ''
@@ -15,8 +15,8 @@ const Register = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setValues({
+      ...values,
       [name]: value
     });
   };
@@ -50,7 +50,7 @@ const Register = () => {
     event.preventDefault();
     setLoading(true);
 
-    const { Nombre, Email, Password } = formData;
+    const { Nombre, Email, Password } = values;
 
     // Validaciones
     if (!Nombre) {
@@ -90,7 +90,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/Users", formData);
+      const response = await axios.post("http://localhost:4000/Users", values);
       console.log("Éxito:", response.data);
       // Redirige al login después de un registro exitoso
       navigate('/login');
@@ -114,7 +114,7 @@ const Register = () => {
                 className="form-control"
                 placeholder="Nombre"
                 name="Nombre"
-                value={formData.Nombre}
+                value={values.Nombre}
                 onChange={handleChange}
                 required
               />
@@ -130,7 +130,7 @@ const Register = () => {
                 className="form-control"
                 placeholder="Email"
                 name="Email"
-                value={formData.Email}
+                value={values.Email}
                 onChange={handleChange}
                 required
               />
@@ -146,7 +146,7 @@ const Register = () => {
                 className="form-control"
                 placeholder="Password"
                 name="Password"
-                value={formData.Password}
+                value={values.Password}
                 onChange={handleChange}
                 required
               />
@@ -162,6 +162,11 @@ const Register = () => {
                   {loading ? 'Cargando...' : 'Register'}
                 </button>
               </div>
+              <p className="mb-0">
+            <Link to="/login" className="text-center">
+              ¿Ya tienes una cuenta?
+            </Link>
+          </p>
             </div>
           </form>
         </div>

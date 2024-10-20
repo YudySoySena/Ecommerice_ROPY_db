@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import './userProfile.css'
+import './userProfile.css';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
+  const [editedData, setEditedData] = useState({});
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const { id } = useParams();  // Obtener el id del usuario de la URL
@@ -16,6 +17,7 @@ const UserProfile = () => {
       try {
         const response = await axios.get(`http://localhost:4000/Users/${id}`);
         setUserData(response.data);
+        setEditedData(response.data); // Iniciar el estado de edición con los datos actuales
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -44,8 +46,21 @@ const UserProfile = () => {
     fetchNotifications();
   }, [id]);
 
-  const handleEditProfile = () => {
-    navigate('/edit-profile');
+  // Manejar los cambios en los inputs
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData({ ...editedData, [name]: value });
+  };
+
+  // Guardar los cambios en la API cuando el usuario haga clic en "Guardar Cambios"
+  const handleSaveChanges = async () => {
+    try {
+      await axios.put(`http://localhost:4000/Users/${id}`, editedData);
+      setUserData(editedData); // Actualizar la UI con los datos editados
+      console.log('Datos actualizados correctamente');
+    } catch (error) {
+      console.error('Error al guardar los cambios:', error);
+    }
   };
 
   const handleOrderFollowUp = (orderId) => {
@@ -65,11 +80,31 @@ const UserProfile = () => {
 
       <section className="profile-info">
         <h3>Datos del Usuario</h3>
-        <p><strong>Correo:</strong> {userData.Email}</p>
-        {/* Asegúrate de que estas propiedades existen en tu API */}
-        <p><strong>Dirección:</strong> {userData.Direccion}</p>
-        <p><strong>Teléfono:</strong> {userData.Telefono}</p>
-        <button onClick={handleEditProfile}>Editar Perfil</button>
+        <label><strong>Correo:</strong></label>
+        <input
+          type="email"
+          name="Email"
+          value={editedData.Email || ''}
+          onChange={handleInputChange}
+        />
+
+        <label><strong>Dirección:</strong></label>
+        <input
+          type="text"
+          name="Direccion"
+          value={editedData.Direccion || ''}
+          onChange={handleInputChange}
+        />
+
+        <label><strong>Teléfono:</strong></label>
+        <input
+          type="tel"
+          name="Telefono"
+          value={editedData.Telefono || ''}
+          onChange={handleInputChange}
+        />
+
+        <button onClick={handleSaveChanges}>Guardar Cambios</button> {/* Botón para guardar cambios */}
       </section>
 
       <section className="purchase-history">

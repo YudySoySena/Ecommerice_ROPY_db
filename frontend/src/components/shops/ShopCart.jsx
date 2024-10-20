@@ -35,7 +35,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                 <i className='fa fa-star'></i>
               </div>
               <div className='price'>
-                <h4>${item.price}.000</h4>
+                <h4>${item.price.toLocaleString('es-ES')}</h4>
                 <button onClick={() => addToCart(item)}>
                   <i className='fa fa-plus'></i>
                 </button>
