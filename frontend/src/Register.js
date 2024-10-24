@@ -1,104 +1,41 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Importa useNavigate
+import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import './register.css';
+import Validation from "./registerValidation"; // Suponiendo que tienes un archivo para validaciones
 
 const Register = () => {
   const [values, setValues] = useState({
     Nombre: '',
     Email: '',
-    Password: ''
+    Password: '',
+    confirmPassword: ''
   });
-
+  const [errors, setErrors] = useState({});  // Estado para los errores
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setValues({
-      ...values,
-      [name]: value
-    });
+  const handleInput = (event) => {
+    setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
-  };
-
-  const validateName = (name) => {
-    const nameRegex = /^[A-Za-z\s]+$/;
-    return nameRegex.test(name);
-  };
-
-  const checkEmailExists = async (email) => {
-    try {
-      const response = await axios.get(`http://localhost:4000/Users?Email=${email}`);
-      return response.data.length > 0; // Asume que la respuesta es un array de usuarios
-    } catch (error) {
-      console.error("Error checking email:", error);
-      return false;
-    }
-  };
-
-  const enviar = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
-
-    const { Nombre, Email, Password } = values;
-
-    // Validaciones
-    if (!Nombre) {
-      alert("Por favor, ingresa tu nombre.");
-      setLoading(false);
-      return;
-    }
-    if (!validateName(Nombre)) {
-      alert("El nombre solo debe contener letras y espacios.");
-      setLoading(false);
-      return;
-    }
-    if (!Email) {
-      alert("Por favor, ingresa tu correo electrónico.");
-      setLoading(false);
-      return;
-    }
-    if (!validateEmail(Email)) {
-      alert("El formato del correo electrónico no es válido.");
-      setLoading(false);
-      return;
-    }
-    if (await checkEmailExists(Email)) {
-      alert("El correo electrónico ya está registrado.");
-      setLoading(false);
-      return;
-    }
-    if (!Password) {
-      alert("Por favor, ingresa tu contraseña.");
-      setLoading(false);
-      return;
-    }
-    if (!validatePassword(Password)) {
-      alert("La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await axios.post("http://localhost:4000/Users", values);
-      console.log("Éxito:", response.data);
-      // Redirige al login después de un registro exitoso
-      navigate('/login');
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
-      alert("Error al registrar el usuario. Por favor, inténtelo de nuevo.");
-    } finally {
-      setLoading(false);
+    const validationErrors = Validation(values);
+    setErrors(validationErrors);
+    
+    // Asegúrate de que no haya errores
+    if (!validationErrors.Nombre && !validationErrors.Email && !validationErrors.Password && !validationErrors.confirmPassword) {
+      setLoading(true); // Inicia la carga
+      axios.post('http://localhost:8081/register', values)
+        .then(res => {
+          setLoading(false); // Detén la carga
+          navigate('/login');
+        })
+        .catch(err => {
+          setLoading(false); // Detén la carga
+          console.error(err);
+        });
     }
   };
 
@@ -107,7 +44,7 @@ const Register = () => {
       <div className="card">
         <div className="card-body register-card-body">
           <b>Registro</b>
-          <form onSubmit={enviar}>
+          <form onSubmit={handleSubmit}>
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -115,15 +52,16 @@ const Register = () => {
                 placeholder="Nombre"
                 name="Nombre"
                 value={values.Nombre}
-                onChange={handleChange}
-                required
+                onChange={handleInput}
               />
+              {errors.Nombre && <span className="text-danger">{errors.Nombre}</span>}
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-user" />
                 </div>
               </div>
             </div>
+
             <div className="input-group mb-3">
               <input
                 type="email"
@@ -131,15 +69,16 @@ const Register = () => {
                 placeholder="Email"
                 name="Email"
                 value={values.Email}
-                onChange={handleChange}
-                required
+                onChange={handleInput}
               />
+              {errors.Email && <span className="text-danger">{errors.Email}</span>}
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
                 </div>
               </div>
             </div>
+
             <div className="input-group mb-3">
               <input
                 type="password"
@@ -147,9 +86,25 @@ const Register = () => {
                 placeholder="Password"
                 name="Password"
                 value={values.Password}
-                onChange={handleChange}
-                required
+                onChange={handleInput}
               />
+              {errors.Password && <span className="text-danger">{errors.Password}</span>}
+              <div className="input-group-append">
+                <div className="input-group-text">
+                  <span className="fas fa-lock" />
+                </div>
+              </div>
+            </div>
+            <div className="input-group mb-3">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Confirmar Contraseña"
+                name="confirmPassword"
+                value={values.confirmPassword}
+                onChange={handleInput}
+              />
+              {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -159,16 +114,16 @@ const Register = () => {
             <div className="row">
               <div className="col-4 offset-8">
                 <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                  {loading ? 'Cargando...' : 'Register'}
+                  {loading ? 'Cargando...' : 'Registrar'}
                 </button>
               </div>
-              <p className="mb-0">
+            </div>
+          </form>
+          <p className="mb-0">
             <Link to="/login" className="text-center">
               ¿Ya tienes una cuenta?
             </Link>
           </p>
-            </div>
-          </form>
         </div>
       </div>
     </div>

@@ -2,23 +2,22 @@ function Validation(values) {
     let error = {};
     
     const Email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const Password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+    const Password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]).{8,}$/;
     
     // Validación de email
     if (values.Email === "") {
-      error.Email = "Email should not be empty";
-    } else if (!Email_pattern.test(values.Email)) {
-      error.Email = "Email format is invalid";
-    }
+      error.Email = "El correo no puede estar vacío";
+  } else if (!Email_pattern.test(values.Email)) {
+      error.Email = "El formato del correo es inválido";
+  }
   
     // Validación de contraseña
     if (values.Password === "") {
-      error.Password = "Password should not be empty";
+      error.Password = "La contraseña no puede estar vacia";
     } else if (!Password_pattern.test(values.Password)) {
-      error.Password = "Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, and one number";
+      error.Password = "La contraseña no coincide";
     }
-  
-    return error;
+    return error; 
   }
   
   export default Validation;  
