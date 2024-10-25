@@ -8,8 +8,7 @@ import Validation from './loginValidation'
 const Login = ({ setIsAuthenticated }) => {
   const [values, setValues] = useState({
     Email: '',
-    Password: '',
-    redirectTo: "profile",
+    Password: ''
   });
   
   const [errors, setErrors] = useState({});
@@ -55,35 +54,19 @@ const Login = ({ setIsAuthenticated }) => {
   };
   
   const handleLogin = (user) => {
-    // Verificamos si el objeto de usuario existe y si tiene un rol definido
-    if (user) {
-        // Manejo del rol de administrador
-        if (user.Rol === "Administrador") {
-            setContextUser(user); // Almacenamos el usuario en el contexto
-            setIsAuthenticated(true); // Marcamos al usuario como autenticado
-            navigate("/admin"); // Redirigimos al panel de administrador
-        } else if (user.Rol === "Usuario") {
-            // Manejo del rol de usuario normal
-            setContextUser(user); // Almacenamos el usuario en el contexto
-            setIsAuthenticated(true); // Marcamos al usuario como autenticado
-
-            // Redirigir según la opción seleccionada en el formulario
-            if (values.redirectTo === "profile" && user.id) {
-                navigate(`/user/${user.id}`); // Redirigir al perfil del usuario
-            } else {
-                navigate("/"); // Redirigir a la página principal
-            }
-        } else {
-            // Manejo de roles no reconocidos
-            console.error("Rol no reconocido:", user.Rol);
-            alert("Rol de usuario no reconocido. Por favor, contacta al administrador.");
-        }
+    if (user && user.Rol === "Administrador") {
+      setContextUser(user); 
+      setIsAuthenticated(true); 
+      navigate("/admin"); 
+    } else if (user && user.Rol === "Usuario") {
+      setContextUser(user); 
+      setIsAuthenticated(true); // Autenticamos al usuario
+      navigate(`/user/${user.id}`);
     } else {
-        // Si no hay un usuario, se muestra un mensaje de error
-        console.error("No se pudo obtener la información del usuario.");
-        alert("Error al iniciar sesión. Usuario no encontrado.");
+      console.error("Rol no reconocido:", user.Rol);
+      alert("Rol no reconocido. Contacta al administrador.");
     }
-};  
+  };    
 
   return (
     <div className="card-body">
@@ -115,20 +98,6 @@ const Login = ({ setIsAuthenticated }) => {
               />
               {errors.Password && <span style={{ color: 'red' }} className="text-danger">{errors.Password}</span>}
             </div>
-
-            <div className="input-group mb-3">
-              <label>Redirigir a:</label>
-              <select
-                name="redirectTo"
-                className="form-control"
-                value={values.redirectTo}
-                onChange={handleInput}
-              >
-                <option value="profile">Perfil</option>
-                <option value="mainPage">Página Principal</option>
-              </select>
-            </div>
-
             <div className="row">
               <div className="col-4">
                 <button type="submit" className="btn btn-primary btn-block">

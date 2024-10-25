@@ -59,6 +59,24 @@ app.post('/login', (req, res) => {
     });
 });
 
+app.get('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    const sql = 'SELECT * FROM Usuarios WHERE id = ?';
+    db.query(sql, [userId], (err, results) => {
+      if (err) {
+        return res.status(500).send('Error al obtener los datos del usuario');
+      }
+      if (results.length > 0) {
+        res.json(results[0]); // Enviamos los datos del usuario
+      } else {
+        res.status(404).send('Usuario no encontrado');
+      }
+    });
+  });
+  
+  
+
+
 // Escuchar en el puerto 8081
 app.listen(8081, () => {
     console.log("Servidor escuchando en el puerto 8081");

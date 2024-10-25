@@ -15,36 +15,14 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/Users/${id}`);
-        setUserData(response.data);
-        setEditedData(response.data); // Iniciar el estado de edición con los datos actuales
+        const response = await axios.get(`http://localhost:8081/user/${id}`); // Solicitud al servidor
+        setUserData(response.data); // Almacena los datos en el estado
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
-
-    const fetchPurchaseHistory = async () => {
-      try {
-        const response = await axios.get(`http://localhost:4000/Pedidos?userId=${id}`);
-        setPurchaseHistory(response.data);
-      } catch (error) {
-        console.error('Error fetching purchase history:', error);
-      }
-    };
-
-    const fetchNotifications = async () => {
-      try {
-        const response = await axios.get(`http://localhost:4000/Notifications?userId=${id}`);
-        setNotifications(response.data);
-      } catch (error) {
-        console.error('Error fetching notifications:', error);
-      }
-    };
-
     fetchUserData();
-    fetchPurchaseHistory();
-    fetchNotifications();
-  }, [id]);
+  }, [id]); // `id` es tomado de la URL  
 
   // Manejar los cambios en los inputs
   const handleInputChange = (e) => {
@@ -55,7 +33,7 @@ const UserProfile = () => {
   // Guardar los cambios en la API cuando el usuario haga clic en "Guardar Cambios"
   const handleSaveChanges = async () => {
     try {
-      await axios.put(`http://localhost:4000/Users/${id}`, editedData);
+      await axios.put(`http://localhost:8081/user/${id}`, editedData);
       setUserData(editedData); // Actualizar la UI con los datos editados
       console.log('Datos actualizados correctamente');
     } catch (error) {
