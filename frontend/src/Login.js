@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
 import { UserContext } from "./UserContext";
-import Validation from './loginValidation'
+import Validation from './loginValidation';
 
 const Login = ({ setIsAuthenticated }) => {
   const [values, setValues] = useState({
@@ -16,40 +16,43 @@ const Login = ({ setIsAuthenticated }) => {
   const { setContextUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Manejo de inputs y actualizaciones de los valores
   const handleInput = (event) => {
     const { name, value } = event.target;
-    console.log(`Input changed: ${name} = ${value}`);  // Verifica los cambios en la consola
     setValues(prev => ({
       ...prev,
       [name]: value,
     }));
+
+    // Validación en tiempo real
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      ...Validation({ ...values, [name]: value })
+    }));
   };  
   
-
   const handleSubmit = (event) => {
     event.preventDefault();
     
     const validationErrors = Validation(values);
     setErrors(validationErrors);
     
-    if (!errors.Email && !errors.Password) {
-      setLoading(true); // Inicia la carga
+    if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
       axios.post('http://localhost:8081/login', values)
-    .then(res => {
-        setLoading(false);
-        if (res.status === 200) { // Asegúrate de que la respuesta sea exitosa
-            const user = res.data; // Aquí esperas que se devuelva el objeto de usuario
+        .then(res => {
+          setLoading(false);
+          if (res.status === 200) {
+            const user = res.data;
             handleLogin(user);
-        } else {
+          } else {
             alert("No existe el usuario, ¿Quieres crear una cuenta?");
-        }
-    })
-    .catch(err => {
-        setLoading(false);
-        console.error(err);
-        alert("Error en el servidor. Intente nuevamente.");
-    });
+          }
+        })
+        .catch(err => {
+          setLoading(false);
+          console.error(err);
+          alert("Error en el servidor. Intente nuevamente.");
+        });
     }
   };
   
@@ -60,13 +63,13 @@ const Login = ({ setIsAuthenticated }) => {
       navigate("/admin"); 
     } else if (user && user.Rol === "Usuario") {
       setContextUser(user); 
-      setIsAuthenticated(true); // Autenticamos al usuario
+      setIsAuthenticated(true); 
       navigate(`/user/${user.id}`);
     } else {
       console.error("Rol no reconocido:", user.Rol);
       alert("Rol no reconocido. Contacta al administrador.");
     }
-  };    
+  };
 
   return (
     <div className="card-body">
@@ -84,7 +87,9 @@ const Login = ({ setIsAuthenticated }) => {
                 value={values.Email}
                 onChange={handleInput}
               />
-              {errors.Email && <span style={{ color: 'red' }} className="text-danger">{errors.Email}</span>}
+              {errors.Email && (
+                <span className="error-text">{errors.Email}</span>
+              )}
             </div>
             <div className="input-group mb-3">
               <input
@@ -96,18 +101,20 @@ const Login = ({ setIsAuthenticated }) => {
                 value={values.Password}
                 onChange={handleInput}
               />
-              {errors.Password && <span style={{ color: 'red' }} className="text-danger">{errors.Password}</span>}
+              {errors.Password && (
+                <span className="error-text">{errors.Password}</span>
+              )}
             </div>
             <div className="row">
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Iniciar Sesión
+                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                  {loading ? "Cargando..." : "Iniciar Sesión"}
                 </button>
               </div>
             </div>
           </form>
           <p className="mb-1">
-            <Link to="/forgot_password">¿Olvidaste tu contraseña?</Link>
+            <Link to="/forgotPassword">¿Olvidaste tu contraseña?</Link>
           </p>
           <p className="mb-0">
             <Link to="/register" className="text-center">

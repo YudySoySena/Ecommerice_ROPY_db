@@ -6,12 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/AdminHeader';
 import SideMenu from '../../components/SideMenu';
 import PageContent from '../../components/PageContent';
-import AdminFooter from '../../components/AdminFooter';
-import ProtectedRoute from '../../ProtectedRoute'; // Asegúrate de que la ruta sea correcta
+import AdminFooter from '../../components/AdminFooter'; // Asegúrate de que la ruta sea correcta
 
 function Admin() {
   return (
-    <ProtectedRoute roleRequired="Administrador">
       <div className="Admin">
         <AdminHeader />
         <Space className="SideMenuAndPageContent">
@@ -20,7 +18,6 @@ function Admin() {
         </Space>
         <AdminFooter />
       </div>
-    </ProtectedRoute>
   );
 }
 

@@ -32,6 +32,7 @@ const SlideCard = () => {
   }
   return (
     <>
+    <div className="homeSlide">
       <Slider {...settings}>
         {slides.map((value, index) => {
           return (
@@ -50,6 +51,7 @@ const SlideCard = () => {
           )
         })}
       </Slider>
+      </div>
     </>
   )
 }

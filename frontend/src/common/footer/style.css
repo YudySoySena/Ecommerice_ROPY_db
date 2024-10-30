@@ -42,15 +42,12 @@ footer li {
 }
 
 .container, .grid2 {
-  display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
 }
 
 .grid2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 

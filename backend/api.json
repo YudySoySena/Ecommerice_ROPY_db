@@ -41,6 +41,30 @@
       "Password": "ruizcarlos123",
       "Status": "Inactivo",
       "Rol": "Usuario"
+    },
+    {
+      "id": "7ab0",
+      "Nombre": "Carolina Forero",
+      "Email": "carolina@gmail.com",
+      "Password": "1234567",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "1474",
+      "Nombre": "Carolina Forero",
+      "Email": "carolina@gmail.com",
+      "Password": "1234567",
+      "Status": "Activo",
+      "Rol": "Usuario"
+    },
+    {
+      "id": "2814",
+      "Nombre": "Carolina Forero",
+      "Email": "carolina@gmail.com",
+      "Password": "1234567",
+      "Status": "Activo",
+      "Rol": "Usuario"
     }
   ],
   "Destacados": [
@@ -67,6 +91,339 @@
       "title": "Camarote Sencillo Azul + Rojo",
       "desc": "Un vibrante camarote en azul y rojo, diseñado para añadir un toque de color y diversión a cualquier habitación infantil.",
       "cover": "./images/SlideCard/slide-4.png"
+    }
+  ],
+  "ProductItems": [
+    {
+      "id": "1",
+      "discount": "10",
+      "cover": "./images/allProducts/product1.png",
+      "name": "Camarote Campestre",
+      "material": "Metal",
+      "price": "551.000",
+      "description": "Un elegante camarote campestre lateral, ideal para espacios reducidos.",
+      "rating": 4.5,
+      "colors": [
+        "Blanco",
+        "Gris",
+        "Madera"
+      ],
+      "sizes": [
+        "1.2 x 2 m",
+        "1.5 x 2 m"
+      ]
+    },
+    {
+      "id": "2",
+      "discount": "0",
+      "cover": "./images/allProducts/product2.png",
+      "name": "Camarote 3 niveles metalmadera",
+      "material": "Metal",
+      "material2": "Madera",
+      "price": 999,
+      "description": "Camarote de 3 niveles con estructura de metal y madera, resistente y funcional.",
+      "rating": 4.2,
+      "colors": [
+        "Gris",
+        "Madera"
+      ],
+      "sizes": [
+        "1.2 x 1.8 m",
+        "1.5 x 2 m"
+      ]
+    },
+    {
+      "id": "3",
+      "discount": 40,
+      "cover": "./images/allProducts/product3.png",
+      "name": "Camarote 3 niveles Francés",
+      "material": "Madera",
+      "price": 850000,
+      "description": "Camarote de 3 niveles con diseño francés, elegante y duradero.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "4",
+      "discount": 40,
+      "cover": "./images/allProducts/product4.png",
+      "name": "Camarote 3 Niveles Triada",
+      "price": 905000,
+      "description": "Camarote de 3 niveles, modelo Triada, con un diseño robusto y moderno.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ],
+      "material": "Madera"
+    },
+    {
+      "id": "5",
+      "discount": 50,
+      "cover": "./images/allProducts/product5.png",
+      "name": "Camarote 3 niveles lineas Redondeado",
+      "price": 75000,
+      "description": "Camarote de 3 niveles con líneas redondeadas para un estilo más suave.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ],
+      "material": "Metal"
+    },
+    {
+      "id": "6",
+      "discount": 50,
+      "cover": "./images/allProducts/product6.png",
+      "name": "Camarote 3 niveles francés metalmadera",
+      "price": 1600,
+      "description": "Camarote de 3 niveles con combinación de metal y madera, estilo francés.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ],
+      "material": "Madera"
+    },
+    {
+      "id": "7",
+      "cover": "./images/allProducts/product7.png",
+      "name": "Camarote de estudiooooooo",
+      "price": 950,
+      "discount": 0,
+      "description": "Camarote Estudio 4, ideal para habitaciones de estudiantes con estilo.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ],
+      "material": "Metal"
+    },
+    {
+      "id": "8",
+      "cover": "./images/allProducts/product8.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "9",
+      "cover": "./images/allProducts/product9.png",
+      "name": "Camarote 3 niveles Lineal",
+      "price": 700,
+      "discount": "50",
+      "description": "Camarote de 3 niveles con un diseño lineal y sencillo.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "10",
+      "cover": "./images/allProducts/product10.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "11",
+      "cover": "./images/allProducts/product11.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "12",
+      "cover": "./images/allProducts/product12.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "20",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "13",
+      "cover": "./images/allProducts/product13.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "14",
+      "cover": "./images/allProducts/product14.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "15",
+      "cover": "./images/allProducts/product15.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "0",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "16",
+      "cover": "./images/allProducts/product16.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "10",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "17",
+      "cover": "./images/allProducts/product17.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "0",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "18",
+      "cover": "./images/allProducts/product18.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "20",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "19",
+      "cover": "./images/allProducts/product19.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "0",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
+    },
+    {
+      "id": "20",
+      "cover": "./images/allProducts/product20.png",
+      "name": "Camarote Estudio 2",
+      "price": 850,
+      "discount": "0",
+      "description": "Camarote Estudio 2 con un diseño compacto y funcional para espacios pequeños.",
+      "rating": 4.8,
+      "colors": [
+        "Madera Oscura"
+      ],
+      "sizes": [
+        "1.5 x 2 m",
+        "2 x 2.5 m"
+      ]
     }
   ],
   "Orders": [
@@ -185,6 +542,48 @@
       "deliveryDate": null,
       "paymentMethod": "Nequi",
       "id": "db18"
+    },
+    {
+      "id": "f57a",
+      "items": [
+        {
+          "productId": "1",
+          "quantity": 1,
+          "price": "551",
+          "discount": 0
+        },
+        {
+          "productId": "4",
+          "quantity": 1,
+          "price": 905,
+          "discount": 0
+        }
+      ],
+      "total": 1476,
+      "customer": "",
+      "address": "Cll 43b #87-20",
+      "phone": "3045687655",
+      "additionalInfo": "",
+      "paymentMethod": "Daviplata",
+      "shippingType": ""
+    },
+    {
+      "id": "e4c5",
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 999,
+          "discount": 0
+        }
+      ],
+      "total": 1019,
+      "customer": "",
+      "address": "Cll 43b #87-20",
+      "phone": "3045687655",
+      "additionalInfo": "",
+      "paymentMethod": "Nequi",
+      "shippingType": ""
     }
   ],
   "Notifications": [
@@ -234,6 +633,12 @@
       "id": "6c36",
       "userId": "8238",
       "message": "Hola Cris, Queremos probar nuestra nueva funcion de notificaciones",
+      "status": "enviada"
+    },
+    {
+      "id": "24e8",
+      "userId": "7ab0",
+      "message": "Nuevo producto agregado, quieres echarle un vistaso",
       "status": "enviada"
     }
   ]

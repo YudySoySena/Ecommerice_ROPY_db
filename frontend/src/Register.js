@@ -11,12 +11,13 @@ const Register = () => {
     Password: '',
     confirmPassword: ''
   });
-  const [errors, setErrors] = useState({});  // Estado para los errores
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (event) => {
     setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
+    setErrors(prevErrors => ({ ...prevErrors, [event.target.name]: "" })); // Limpia el error específico al cambiar el valor
   };
 
   const handleSubmit = (event) => {
@@ -24,16 +25,15 @@ const Register = () => {
     const validationErrors = Validation(values);
     setErrors(validationErrors);
     
-    // Asegúrate de que no haya errores
-    if (!validationErrors.Nombre && !validationErrors.Email && !validationErrors.Password && !validationErrors.confirmPassword) {
-      setLoading(true); // Inicia la carga
+    if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
       axios.post('http://localhost:8081/register', values)
         .then(res => {
-          setLoading(false); // Detén la carga
+          setLoading(false);
           navigate('/login');
         })
         .catch(err => {
-          setLoading(false); // Detén la carga
+          setLoading(false);
           console.error(err);
         });
     }
@@ -54,12 +54,7 @@ const Register = () => {
                 value={values.Nombre}
                 onChange={handleInput}
               />
-              {errors.Nombre && <span className="text-danger">{errors.Nombre}</span>}
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-user" />
-                </div>
-              </div>
+              {errors.Nombre && <span className="error-text">{errors.Nombre}</span>}
             </div>
 
             <div className="input-group mb-3">
@@ -71,12 +66,7 @@ const Register = () => {
                 value={values.Email}
                 onChange={handleInput}
               />
-              {errors.Email && <span className="text-danger">{errors.Email}</span>}
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-envelope" />
-                </div>
-              </div>
+              {errors.Email && <span className="error-text">{errors.Email}</span>}
             </div>
 
             <div className="input-group mb-3">
@@ -88,13 +78,9 @@ const Register = () => {
                 value={values.Password}
                 onChange={handleInput}
               />
-              {errors.Password && <span className="text-danger">{errors.Password}</span>}
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-lock" />
-                </div>
-              </div>
+              {errors.Password && <span className="error-text">{errors.Password}</span>}
             </div>
+
             <div className="input-group mb-3">
               <input
                 type="password"
@@ -104,13 +90,9 @@ const Register = () => {
                 value={values.confirmPassword}
                 onChange={handleInput}
               />
-              {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-lock" />
-                </div>
-              </div>
+              {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
             </div>
+
             <div className="row">
               <div className="col-4 offset-8">
                 <button type="submit" className="btn btn-primary btn-block" disabled={loading}>

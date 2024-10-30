@@ -47,14 +47,13 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM Usuarios WHERE Email = ? and Password = ?";
-    db.query(sql, [req.body.Email, req.body.Password], (err, data) => {
-        if (err) {
-            return res.json("Error");
-        }
-        if(data.length > 0) {
-            return res.json(data[0]); // Devuelve el primer usuario encontrado
+    db.query(sql, [req.body.Email, req.body.Password], (err, result) => {
+        if (err) return res.json({Message: "Error dentro del servidor"});
+        if(result.length > 0) {
+            req.session.Rol  = result[0].Rol;
+            return res.json({Login: true}); // Devuelve el primer usuario encontrado
         } else { 
-            return res.json(null); // Devuelve null si no hay usuario
+            return res.json({Login: false}); // Devuelve null si no hay usuario
         }
     });
 });
