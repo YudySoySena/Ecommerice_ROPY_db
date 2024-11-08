@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./App.js";
 import { ContextProvider } from './UserContext'; // Importa el UserProvider
 
 ReactDOM.render(

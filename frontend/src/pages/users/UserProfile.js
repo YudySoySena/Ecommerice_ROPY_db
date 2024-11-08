@@ -11,18 +11,17 @@ const UserProfile = () => {
   const { id } = useParams();  // Obtener el id del usuario de la URL
   const navigate = useNavigate();
 
-  // Fetch user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/user/${id}`); // Solicitud al servidor
-        setUserData(response.data); // Almacena los datos en el estado
+        const response = await axios.get(`http://localhost:8081/user/${id}`);
+        setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
     fetchUserData();
-  }, [id]); // `id` es tomado de la URL  
+  }, [id]);
 
   // Manejar los cambios en los inputs
   const handleInputChange = (e) => {

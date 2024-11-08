@@ -18,55 +18,54 @@ const Login = ({ setIsAuthenticated }) => {
 
   const handleInput = (event) => {
     const { name, value } = event.target;
-    setValues(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Validación en tiempo real
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      ...Validation({ ...values, [name]: value })
-    }));
-  };  
+    setValues(prev => ({...prev, [name]: value }));
+    setErrors(prevErrors => ({...prevErrors,...Validation({...values, [name]: value }) }));
+  };
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     const validationErrors = Validation(values);
     setErrors(validationErrors);
-    
+  
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
       axios.post('http://localhost:8081/login', values)
-        .then(res => {
+      .then(res => {
           setLoading(false);
-          if (res.status === 200) {
-            const user = res.data;
-            handleLogin(user);
+          if (res.data && res.data.rol_id) {
+            handleLogin(res.data);
           } else {
             alert("No existe el usuario, ¿Quieres crear una cuenta?");
           }
         })
-        .catch(err => {
+      .catch(err => {
           setLoading(false);
           console.error(err);
-          alert("Error en el servidor. Intente nuevamente.");
+          if (err.code === 'ERR_NETWORK') {
+            alert("Error de red. Intente nuevamente.");
+          } else if (err.response) {
+            console.log('Error response:', err.response);
+            alert("Error en el servidor. Intente nuevamente.");
+          } else {
+            console.log('Error message:', err.message);
+            alert("Error desconocido. Intente nuevamente.");
+          }
         });
     }
   };
   
+  
   const handleLogin = (user) => {
-    if (user && user.Rol === "Administrador") {
-      setContextUser(user); 
-      setIsAuthenticated(true); 
-      navigate("/admin"); 
-    } else if (user && user.Rol === "Usuario") {
-      setContextUser(user); 
-      setIsAuthenticated(true); 
+    if (user.rol_id === "2") {
+      setContextUser(user);
+      setIsAuthenticated(true);
+      navigate("/admin");
+    } else if (user.rol_id === "1") {
+      setContextUser(user);
+      setIsAuthenticated(true);
       navigate(`/user/${user.id}`);
     } else {
-      console.error("Rol no reconocido:", user.Rol);
+      console.error("Rol no reconocido:", user.rol_id);
       alert("Rol no reconocido. Contacta al administrador.");
     }
   };
