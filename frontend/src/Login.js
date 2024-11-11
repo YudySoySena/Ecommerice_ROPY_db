@@ -11,64 +11,25 @@ const Login = ({ setIsAuthenticated }) => {
     Password: ''
   });
   
+  axios.defaults.withCredentials = true;
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const { setContextUser } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleInput = (event) => {
-    const { name, value } = event.target;
-    setValues(prev => ({...prev, [name]: value }));
-    setErrors(prevErrors => ({...prevErrors,...Validation({...values, [name]: value }) }));
-  };
+  const navigate = useNavigate('/');
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    const validationErrors = Validation(values);
-    setErrors(validationErrors);
-  
-    if (Object.keys(validationErrors).length === 0) {
-      setLoading(true);
       axios.post('http://localhost:8081/login', values)
       .then(res => {
-          setLoading(false);
-          if (res.data && res.data.rol_id) {
-            handleLogin(res.data);
-          } else {
-            alert("No existe el usuario, ¿Quieres crear una cuenta?");
-          }
-        })
-      .catch(err => {
-          setLoading(false);
-          console.error(err);
-          if (err.code === 'ERR_NETWORK') {
-            alert("Error de red. Intente nuevamente.");
-          } else if (err.response) {
-            console.log('Error response:', err.response);
-            alert("Error en el servidor. Intente nuevamente.");
-          } else {
-            console.log('Error message:', err.message);
-            alert("Error desconocido. Intente nuevamente.");
-          }
-        });
-    }
-  };
-  
-  
-  const handleLogin = (user) => {
-    if (user.rol_id === "2") {
-      setContextUser(user);
-      setIsAuthenticated(true);
-      navigate("/admin");
-    } else if (user.rol_id === "1") {
-      setContextUser(user);
-      setIsAuthenticated(true);
-      navigate(`/user/${user.id}`);
-    } else {
-      console.error("Rol no reconocido:", user.rol_id);
-      alert("Rol no reconocido. Contacta al administrador.");
-    }
-  };
+        if(res.data.Status === "Éxito") {
+          navigate('/')
+        } else {
+          alert(res.data.Message)
+        }
+      })
+      .catch(err => console.log(err))
+
+  }
 
   return (
     <div className="card-body">
@@ -80,11 +41,9 @@ const Login = ({ setIsAuthenticated }) => {
               <input
                 type="email"
                 name="Email"
-                autoComplete="email"
                 className="form-control"
-                placeholder="Correo"
-                value={values.Email}
-                onChange={handleInput}
+                placeholder="Correo"  
+                onChange={event => setValues({...values, Email: event.target.value})}
               />
               {errors.Email && (
                 <span className="error-text">{errors.Email}</span>
@@ -94,11 +53,10 @@ const Login = ({ setIsAuthenticated }) => {
               <input
                 type="password"
                 name="Password"
-                autoComplete="current-password"
                 className="form-control"
                 placeholder="Contraseña"
-                value={values.Password}
-                onChange={handleInput}
+                onChange={event => setValues({...values, Password: event.target.value})}
+                
               />
               {errors.Password && (
                 <span className="error-text">{errors.Password}</span>
