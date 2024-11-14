@@ -4,10 +4,10 @@ import React, { createContext} from 'react';
 export const UserContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-    const Rol = 'admin';
+    const rol_id = '2';
     const authenticated = true;
     return (
-      <UserContext.Provider value={{ Rol, authenticated }}>
+      <UserContext.Provider value={{ rol_id, authenticated }}>
         {children}
       </UserContext.Provider>
     );

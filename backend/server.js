@@ -2,13 +2,14 @@ import express from 'express';
 import dotenv from "dotenv";
 import morgan from 'morgan';
 import paymentRoutes from './routes/payment.routes.js';
-import mysql from "mysql"
+import mysql from "mysql";
 import cors from 'cors';
 import session from 'express-session';
 import mercadopago from 'mercadopago';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {PORT} from './routes/config.js'
+import cookieParser from 'cookie-parser';
+import { PORT } from './routes/config.js';
 
 dotenv.config();
 
@@ -20,7 +21,8 @@ app.use(cors({
   credentials: true 
 }));
 app.use(express.json()); 
-app.use(morgan('dev'))
+app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(paymentRoutes);
 
 // Conexión a la base de datos
@@ -39,21 +41,34 @@ db.connect((err) => {
 });
 
 app.post('/login', (req, res) => {
-  const sql = "SELECT * FROM usuarios WHERE Email = ? AND Password = ? ";
+  const sql = "SELECT * FROM usuarios WHERE Email = ? AND Password = ?";
   db.query(sql, [req.body.Email, req.body.Password], (err, data) => {
-    if(err) return res.json({Message: "Error del servidor"});
-    if (data.length > 0 ) {
-        const name = data[0].name;
-        const token = jwt.sign({name}, "our-jsonwebtoken-secret-key", {expiresIn:'1d'});
-        res.cookie('token', token);
-        return res.json({Status: "Éxito"})
+    if (err) return res.json({ Message: "Error del servidor" });
+    if (data.length > 0) {
+      const name = data[0].name;
+      const rol_id = data[0].rol_id;
+      const userId = data[0].id;
+      const token = jwt.sign({ name, rol_id, userId}, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
+      res.cookie('token', token);
+      return res.json({ Status: "Éxito", rol_id });
     } else {
-        return res.json({Message: "No existen registros del usuario"})
+      return res.json({ Message: "No existen registros del usuario" });
     }
-  })
-})
+  });
+});
 
-
+app.get('/getUser', (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({ Status: "Error", Message: "No token provided" });
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ Status: "Error", Message: "Failed to authenticate token" });
+    }
+    const sql = "SELECT * FROM usuarios WHERE id = ?";
+    db.query(sql, [decoded.userId], (err, data) => {
+      if (err) return res.status(500).json({ Status: "Error", Message: "Error al obtener los datos del usuario" }); if (data.length > 0) { return res.json({ Status: "Éxito", user: data[0] }); } else { return res.status(404).json({ Status: "Error", Message: "Usuario no encontrado" }); } }); }); });
 app.listen(PORT, () => {
   console.log("Servidor escuchando en el puerto", PORT);
 });

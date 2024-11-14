@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ContextProvider, UserContext } from './UserContext'; // Importa ContextProvider y UserContext
+import { ContextProvider, UserContext } from '../src/context/ContextProvider'; // Importa ContextProvider y UserContext
 import Header from "./common/header/Header";
 import Pages from "./pages/Pages";
 import Data from "./components/Data";
@@ -17,7 +17,9 @@ import Admin from './pages/users/Admin';
 import ProductoDetalle from './components/MainPage/ProductoDetalle';
 import NewUser from './components/new/New';
 import UserProfile from './pages/users/UserProfile';
+import UnauthorizedPage from './pages/UnauthorizedPage';
 import ForgotPassword from './forgotPassword';
+import ProtectedRoute from './context/ProtectedRoute'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -66,11 +68,21 @@ function App() {
           <Route path='/' element={<Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} />} />
           <Route path='/cart' element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />} />
           <Route path='/login' element= {<Login />} />
-          <Route path="/admin/*" element={<Admin/ >} />
+          {/* Protected Routes*/}
+          <Route path="/admin/*" element={
+            <ProtectedRoute rol_id={[2, 1]}>
+              <Admin/>
+            </ProtectedRoute>
+          } />
           <Route path="/newUser" element={<NewUser />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profileUser' element={<UserProfile />} />
-          <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/user/:id" element={
+            <ProtectedRoute rol_id={[1, 2]}>
+            <UserProfile />
+            </ProtectedRoute>
+            } />
+          <Route path='/unauthorized' element={<UnauthorizedPage />} />
           <Route path='/acercaRopy' element={<AcercaRopy />} />
           <Route path='/ubicacion' element={<Ubicacion />} />
           <Route path='/fqs' element={<FQs />} />

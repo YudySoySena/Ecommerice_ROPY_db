@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./context/ContextProvider";
 import Validation from './loginValidation';
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = () => {
   const [values, setValues] = useState({
     Email: '',
     Password: ''
@@ -14,23 +14,36 @@ const Login = ({ setIsAuthenticated }) => {
   axios.defaults.withCredentials = true;
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const { setContextUser } = useContext(UserContext);
-  const navigate = useNavigate('/');
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.post('http://localhost:8081/login', values)
+    setLoading(true);
+    axios.post('http://localhost:8081/login', values)
       .then(res => {
+        setLoading(false);
         if(res.data.Status === "Éxito") {
-          navigate('/')
+          setUser({
+            rol_id: res.data.rol_id,
+            authenticated: true
+          });
+          if (res.data.rol_id === 2) {
+            navigate('/admin/*');
+          } else if (res.data.rol_id === 1) {
+            navigate('/user');
+          } else {
+            navigate('/');
+          }
         } else {
-          alert(res.data.Message)
+          alert(res.data.Message);
         }
       })
-      .catch(err => console.log(err))
-
+      .catch(err => {
+        setLoading(false);
+        console.log(err);
+      });
   }
-
   return (
     <div className="card-body">
       <div className="hold-transition login-page">
@@ -56,7 +69,6 @@ const Login = ({ setIsAuthenticated }) => {
                 className="form-control"
                 placeholder="Contraseña"
                 onChange={event => setValues({...values, Password: event.target.value})}
-                
               />
               {errors.Password && (
                 <span className="error-text">{errors.Password}</span>

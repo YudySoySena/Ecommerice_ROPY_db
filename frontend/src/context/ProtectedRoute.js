@@ -1,16 +1,16 @@
-import { useContext } from "react";
-import { ContextProvider } from "./UserContext";
+import React, { useContext } from "react";
+import { UserContext } from "./ContextProvider"; // Asegúrate de que el nombre sea correcto
 import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ role }) => {
-  const { contextUser, isAuthenticated } = useContext(ContextProvider);
+const ProtectedRoute = ({ rol_id }) => {
+  const { rol_id: contextRolId, authenticated } = useContext(UserContext);
 
-  if (!isAuthenticated) {
+  if (!authenticated) {
     return <Navigate to="/login" />;
   }
 
-  if (role && contextUser?.Rol !== role) {
-    return <Navigate to="/" />;
+  if (!rol_id.includes(contextRolId)) {
+    return <Navigate to="/unauthorized" />;
   }
 
   return <Outlet />;
