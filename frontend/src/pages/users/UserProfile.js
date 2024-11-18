@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './userProfile.css';
-import { UserContext } from '../../context/ContextProvider';
 
 const UserProfile = () => {
-  const { userData } = useContext(UserContext);
+  const [userData, setUserData] = useState({});
   const [editedData, setEditedData] = useState({});
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [notifications, setNotifications] = useState([]);

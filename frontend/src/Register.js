@@ -48,11 +48,11 @@ const Register = () => {
             <div className="input-group mb-3">
               <input
                 type="text"
-                className="form-control"
+                className="inp-control"
                 placeholder="Nombre"
                 name="Nombre"
                 value={values.Nombre}
-                onChange={handleInput}
+                onChange={event => setValues({...values, Nombre: event.target.value})}
               />
               {errors.Nombre && <span className="error-text">{errors.Nombre}</span>}
             </div>
@@ -60,11 +60,11 @@ const Register = () => {
             <div className="input-group mb-3">
               <input
                 type="email"
-                className="form-control"
+                className="inp-control"
                 placeholder="Email"
                 name="Email"
                 value={values.Email}
-                onChange={handleInput}
+                onChange={event => setValues({...values, Email: event.target.value})}
               />
               {errors.Email && <span className="error-text">{errors.Email}</span>}
             </div>
@@ -72,11 +72,11 @@ const Register = () => {
             <div className="input-group mb-3">
               <input
                 type="password"
-                className="form-control"
+                className="inp-control"
                 placeholder="Password"
                 name="Password"
                 value={values.Password}
-                onChange={handleInput}
+                onChange={event => setValues({...values, Password: event.target.value})}
               />
               {errors.Password && <span className="error-text">{errors.Password}</span>}
             </div>
@@ -84,7 +84,7 @@ const Register = () => {
             <div className="input-group mb-3">
               <input
                 type="password"
-                className="form-control"
+                className="inp-control"
                 placeholder="Confirmar Contraseña"
                 name="confirmPassword"
                 value={values.confirmPassword}

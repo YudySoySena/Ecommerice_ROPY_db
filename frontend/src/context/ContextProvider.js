@@ -6,23 +6,25 @@ export const UserContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState({
-      rol_id: null,
-      authenticaded: false, 
-      userData: null
-    })
+        rol_id: null,
+        authenticated: false,
+        userData: null
+    });
 
     useEffect(() => {
         axios.get('http://localhost:8081/getUser')
             .then(res => {
                 if (res.data.Status === "Éxito") {
                     setUser({
-                        rol_id: res.data.rol_id,
-                        authenticated: true
+                        rol_id: res.data.user.rol_id,
+                        authenticated: true,
+                        userData: res.data.user
                     });
                 } else {
                     setUser({
                         rol_id: null,
-                        authenticated: false
+                        authenticated: false,
+                        userData: null
                     });
                 }
             })
@@ -30,7 +32,8 @@ export const ContextProvider = ({ children }) => {
                 console.log(err);
                 setUser({
                     rol_id: null,
-                    authenticated: false
+                    authenticated: false,
+                    userData: null
                 });
             });
     }, []);

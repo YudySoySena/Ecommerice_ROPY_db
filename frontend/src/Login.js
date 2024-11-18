@@ -28,10 +28,10 @@ const Login = () => {
             rol_id: res.data.rol_id,
             authenticated: true
           });
-          if (res.data.rol_id === 2) {
-            navigate('/admin/*');
-          } else if (res.data.rol_id === 1) {
+          if (res.data.rol_id === 1) {
             navigate('/user');
+          } else if (res.data.rol_id === 2) {
+            navigate('/admin');
           } else {
             navigate('/');
           }
@@ -44,6 +44,7 @@ const Login = () => {
         console.log(err);
       });
   }
+
   return (
     <div className="card-body">
       <div className="hold-transition login-page">
