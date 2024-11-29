@@ -1,20 +1,22 @@
-const express = require("express");
+import express from 'express';
+import userController from '../controllers/userController.js';
+
 const router = express.Router();
-const { registerUser, loginUser, getAllUsers, getUserById, updateProfilePhoto, toggleUserStatus, updateUserRole, changePassword, updateUserProfile, deleteUser } = require("../controllers/UsuariosController");
-const { authenticateToken } = require("../Middlewares/authMiddleware");
-const { checkRole } = require("../Middlewares/roleMiddleware");
 
-router.post("/usuarios/register", registerUser);
-router.post("/usuarios/login", loginUser);
+//ruta para crear un nuevo usuario
 
-// Protegemos rutas que requieren autenticación
-router.get("/usuarios", authenticateToken, checkRole([1, 2]), getAllUsers);
-router.get("/usuarios/:id", authenticateToken, checkRole([1, 2]), getUserById);
-router.put("/usuarios/:id/profile-photo", authenticateToken, checkRole([1, 2, 3]), updateProfilePhoto);
-router.put("/usuarios/:id/status", authenticateToken, checkRole([1, 2]), toggleUserStatus);
-router.put("/usuarios/:id/role", authenticateToken, checkRole([1]), updateUserRole);
-router.put("/usuarios/change-password", authenticateToken, checkRole([1, 2, 3]), changePassword);
-router.put("/usuarios/:id/update", authenticateToken, updateUserProfile);
-router.delete("/usuarios/:id", authenticateToken, checkRole([1]), deleteUser);
+router.post('/newUser', userController.createUser)
 
-module.exports = router;
+// Ruta para obtener todos los usuarios
+router.get('/allUsers', userController.getAllUsers);
+
+// Ruta para actualizar un usuario
+router.put('/users/:id', userController.updateUser);
+
+// Ruta para eliminar un usuario
+router.delete('/users/:id', userController.deleteUser);
+
+// Ruta para autenticar un usuario
+router.post('/login', userController.loginUser);
+
+export default router;

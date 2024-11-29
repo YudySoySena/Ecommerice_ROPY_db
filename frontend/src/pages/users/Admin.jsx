@@ -1,7 +1,6 @@
 import { Space } from "antd";
 import './admin.css';
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../context/ContextProvider';
 import { useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/AdminHeader';
 import SideMenu from '../../components/SideMenu';

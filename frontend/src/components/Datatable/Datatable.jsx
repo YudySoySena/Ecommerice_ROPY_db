@@ -23,12 +23,12 @@ const userColumns = [
 const Datatable = () => {
   const [data, setData] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null); // Cambié selectedOrder por selectedUser
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/Users");
+        const response = await axios.get("http://localhost:8081/api/users/allUsers");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -38,15 +38,20 @@ const Datatable = () => {
     fetchData();
   }, []);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8081/api/users/${id}`);
+      setData(data.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error("Error deleting user: ", error);
+    }
   };
 
   const processRowUpdate = async (newRow, oldRow) => {
     try {
       console.log("Attempting to update user:", newRow);
       const response = await axios.put(
-        `http://localhost:4000/Users/${newRow.id}`,
+        `http://localhost:8081/api/users/${newRow.id}`,
         newRow
       );
       setData((prev) =>
@@ -60,7 +65,7 @@ const Datatable = () => {
   };
 
   const handleOpenDialog = (user) => {
-    setSelectedUser(user); // Cambié selectedOrder por selectedUser
+    setSelectedUser(user);
     setOpenDialog(true);
   };
 

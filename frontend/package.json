@@ -2,7 +2,7 @@
   "name": "bonik-shop",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8081",
+  "proxy": "http://localhost:8081/",
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
     "@emotion/react": "^11.13.3",

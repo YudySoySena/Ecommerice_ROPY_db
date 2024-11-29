@@ -70,7 +70,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
     };
 
     try {
-      await axios.post("http://localhost:4000/Orders", orderData);
+      await axios.post("", orderData);
       alert("Compra registrada con éxito");
       setOpen(false);
     } catch (error) {

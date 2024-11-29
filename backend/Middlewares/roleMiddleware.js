@@ -1,10 +1,10 @@
-const checkRole = (roles) => {
+// Middleware de validación de roles
+export const checkRole = (role) => {
     return (req, res, next) => {
-        if (!roles.includes(req.userRole)) {
-            return res.status(403).send("Acceso denegado: No tienes permiso para acceder a esta ruta.");
-        }
-        next();
+      if (req.user.rol_id !== role) {
+        return res.status(403).json({ Message: 'Acceso denegado, no tienes permisos suficientes' });
+      }
+      next();
     };
-};
-
-module.exports = { checkRole };
+  };
+  

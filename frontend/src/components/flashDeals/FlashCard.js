@@ -46,21 +46,21 @@ const FlashCard = ({ productItems, addToCart }) => {
   return (
     <>
       <Slider {...settings}>
-        {productItems.map((productItems) => {
+        {productItems.map((productItem) => {
           return (
-            <div className='box'>
+            <div className='box' key={productItem.id}>
               <div className='product mtop'>
                 <div className='img'>
-                  <span className='discount'>{productItems.discount}% Off</span>
-                  <img src={productItems.cover} alt='' />
+                  <span className='discount'>{productItem.discount}% Off</span>
+                  <img src={productItem.cover} alt={productItem.name} />
                   <div className='product-like'>
                     <label>{count}</label> <br />
                     <i className='fa-regular fa-heart' onClick={increment}></i>
                   </div>
                 </div>
                 <div className='product-details'>
-                  <Link to={`/producto/${productItems.id}`} >
-                  <h3>{productItems.name}</h3>
+                  <Link to={`/producto/${productItem.id}`} >
+                    <h3>{productItem.name}</h3>
                   </Link>
                   <div className='rate'>
                     <i className='fa fa-star'></i>
@@ -70,11 +70,8 @@ const FlashCard = ({ productItems, addToCart }) => {
                     <i className='fa fa-star'></i>
                   </div>
                   <div className='price'>
-                    <h4>${productItems.price}.00 </h4>
-                    {/* step : 3  
-                     if hami le button ma click garryo bahne 
-                    */}
-                    <button onClick={() => addToCart(productItems)}>
+                    <h4>${productItem.price}.00 </h4>
+                    <button onClick={() => addToCart(productItem)}>
                       <i className='fa fa-plus'></i>
                     </button>
                   </div>

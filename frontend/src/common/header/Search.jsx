@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import logo from "../../components/assets/images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/ContextProvider";
 
 const Search = ({ CartItem }) => {
-  const { contextUser } = useContext(UserContext);  // Obtener el usuario actual
   const [notifications, setNotifications] = useState([]);  // Estado para las notificaciones
   const [showNotifications, setShowNotifications] = useState(false);  // Estado para mostrar/ocultar las notificaciones
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
@@ -14,7 +12,6 @@ const Search = ({ CartItem }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,26 +28,23 @@ const Search = ({ CartItem }) => {
   }, []);
 
   useEffect(() => {
-    if (contextUser) {
-      const fetchNotifications = async () => {
-        try {
-          const response = await axios.get(`http://localhost:4000/Notifications?userId=${contextUser.id}`);
-          setNotifications(response.data);
-        } catch (error) {
-          console.error('Error al obtener las notificaciones:', error);
-        }
-      };
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get(``);
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Error al obtener las notificaciones:', error);
+      }
+    };
 
-      fetchNotifications();
-    }
-  }, [contextUser]);
-
+    fetchNotifications();
+  }, []);
 
   useEffect(() => {
     const fetchProducto = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:4000/ProductItems`);
+        const response = await axios.get(`http://localhost:8081/api/products/allproduct`);
         if (response.data) {
           console.log('Productos obtenidos:', response.data); // Depurar los productos obtenidos
           setProducto(response.data);
@@ -113,7 +107,7 @@ const Search = ({ CartItem }) => {
           </div>
 
           <div className='icon f_flex width'>
-            {contextUser ? (
+            {true ? ( // Asegúrate de que la condición esté correctamente definida
               <>
                 {/* Icono de notificaciones */}
                 <div className="notification-icon" onClick={toggleNotifications}>
@@ -128,8 +122,8 @@ const Search = ({ CartItem }) => {
                     {notifications.length > 0 ? (
                       <ul>
                         {notifications.map((notification) => (
-  <li key={notification.id}>{notification.message}</li>
-))}
+                          <li key={notification.id}>{notification.message}</li>
+                        ))}
                       </ul>
                     ) : (
                       <p>No tienes notificaciones.</p>
@@ -159,23 +153,23 @@ const Search = ({ CartItem }) => {
         </div>
         {/* Mostrar el cajón de productos filtrados */}
         {searchTerm && filteredProducts.length > 0 && (
-  <div className="search-results">
-    <ul>
-      {filteredProducts.map((product) => (
-        <li
-          key={product.id}
-          onClick={() => handleProductClick(product.id)}
-        >
-          <img src={product.cover} alt={product.name} />
-          <div>
-            <h4>{product.name}</h4>
-            <p>{product.price} $</p>
+          <div className="search-results">
+            <ul>
+              {filteredProducts.map((product) => (
+                <li
+                  key={product.id}
+                  onClick={() => handleProductClick(product.id)}
+                >
+                  <img src={product.cover} alt={product.name} />
+                  <div>
+                    <h4>{product.name}</h4>
+                    <p>{product.price} $</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
+        )}
       </section>
     </>
   );

@@ -1,17 +1,13 @@
-const express = require("express");
+import express from 'express';
+import { createRol, getRoles, getRolById } from '../controllers/rolController.js';
+import { authenticateToken } from '../Middlewares/authMiddleware.js';
+import { checkRole } from '../Middlewares/roleMiddleware.js';
+
 const router = express.Router();
-const { createRol, getRoles, getRolById } = require("../controllers/RolController");
-const { authenticateToken } = require("../Middlewares/authMiddleware");
-const { checkRole } = require("../Middlewares/roleMiddleware");
 
 // Rutas protegidas por autenticación y rol de administrador
-// Ruta para crear nuevo rol (solo Admin)
-router.post("/roles", authenticateToken, checkRole([1]), createRol);
+router.post('/roles', authenticateToken, checkRole([1]), createRol);
+router.get('/roles', authenticateToken, checkRole([1]), getRoles);
+router.get('/roles/:id', authenticateToken, checkRole([1]), getRolById);
 
-// Ruta para obtener todos los roles (solo Admin)
-router.get("/roles", authenticateToken, checkRole([1]), getRoles);
-
-// Ruta para obtener rol por id (solo Admin)
-router.get("/roles/:id", authenticateToken, checkRole([1]), getRolById);
-
-module.exports = router;
+export default router;

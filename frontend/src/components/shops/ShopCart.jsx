@@ -9,14 +9,14 @@ const ShopCart = ({ shopItems, addToCart }) => {
   };
 
   return (
-    <>
+    <> 
       {shopItems.map((item) => (
         <div className='box' key={item.id}>
           <div className='product mtop'>
             <div className='img'>
               <span className='discount'>{item.discount}% Off</span>
               <Link to={`/producto/${item.id}`}> {/* Enlace a la vista de detalles */}
-                <img src={item.cover} alt={item.name} />
+              <img src={item.cover} alt={item.name} />
               </Link>
               <div className='product-like'>
                 <label>{count}</label> <br />
@@ -24,7 +24,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
               </div>
             </div>
             <div className='product-details'>
-              <Link to={`/producto/${item.id}`}> {/* Enlace a la vista de detalles */}
+            <Link to={`/producto/${item.id}`}>|
                 <h3>{item.name}</h3>
               </Link>
               <div className='rate'>

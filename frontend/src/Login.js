@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
-import { UserContext } from "./context/ContextProvider";
 import Validation from './loginValidation';
 
 const Login = () => {
@@ -14,36 +13,29 @@ const Login = () => {
   axios.defaults.withCredentials = true;
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const validationErrors = Validation(values);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) return;
+
     setLoading(true);
-    axios.post('http://localhost:8081/login', values)
-      .then(res => {
-        setLoading(false);
-        if(res.data.Status === "Éxito") {
-          setUser({
-            rol_id: res.data.rol_id,
-            authenticated: true
-          });
-          if (res.data.rol_id === 1) {
-            navigate('/user');
-          } else if (res.data.rol_id === 2) {
-            navigate('/admin');
-          } else {
-            navigate('/');
-          }
-        } else {
-          alert(res.data.Message);
-        }
-      })
-      .catch(err => {
-        setLoading(false);
-        console.log(err);
-      });
-  }
+    try {
+      const response = await axios.post('http://localhost:8081/api/auth/login', {
+        Email: values.Email,
+        Password: values.Password,
+      }, { withCredentials: true });
+      console.log(response.data);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error:', error);
+      setErrors({ general: 'Credenciales incorrectas' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="card-body">
@@ -75,6 +67,9 @@ const Login = () => {
                 <span className="error-text">{errors.Password}</span>
               )}
             </div>
+            {errors.general && (
+              <span className="error-text">{errors.general}</span>
+            )}
             <div className="row">
               <div className="col-4">
                 <button type="submit" className="btn btn-primary btn-block" disabled={loading}>

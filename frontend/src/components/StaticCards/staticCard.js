@@ -8,7 +8,7 @@ function StatisticsCards() {
 
   // Llamada a la API de usuarios
   useEffect(() => {
-    fetch('http://localhost:4000/Users')
+    fetch('http://localhost:8081/api/users/allUsers')
       .then(response => response.json())
       .then(data => {
         setUserCount(data.length); // Cuenta la cantidad de usuarios

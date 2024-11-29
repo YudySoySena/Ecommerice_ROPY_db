@@ -1,5 +1,18 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -8,19 +21,21 @@ const Datatable = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
+  // Maneja abrir el diálogo con detalles
   const handleOpenDialog = (order) => {
     setSelectedOrder(order);
     setOpenDialog(true);
   };
 
+  // Columnas para la tabla de DataGrid
   const orderColumns = [
-    { field: "orderId", headerName: "Order ID", width: 150, editable: false },
-    { field: "userId", headerName: "User ID", width: 150, editable: false },
-    { field: "total", headerName: "Total", width: 120, editable: false },
-    { field: "status", headerName: "Status", width: 150, editable: true },
-    { field: "orderDate", headerName: "Order Date", width: 180, editable: false },
-    { field: "deliveryDate", headerName: "Delivery Date", width: 180, editable: true },
-    { field: "shippingAddress", headerName: "Shipping Address", width: 200, editable: true },
+    { field: "orderId", headerName: "Order ID", width: 150 },
+    { field: "userId", headerName: "User ID", width: 150 },
+    { field: "total", headerName: "Total", width: 120 },
+    { field: "status", headerName: "Status", width: 150 },
+    { field: "orderDate", headerName: "Order Date", width: 180 },
+    { field: "deliveryDate", headerName: "Delivery Date", width: 180 },
+    { field: "shippingAddress", headerName: "Shipping Address", width: 200 },
     {
       field: "items",
       headerName: "Items",
@@ -41,29 +56,34 @@ const Datatable = () => {
             )}
           </div>
         );
-      }
-    }
+      },
+    },
   ];
 
+  // Llamada al backend para obtener los datos
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/Orders");
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
+        try {
+            const response = await axios.get("http://localhost:8081/api/orders/allorders");
+
+            // Convierte items a un arreglo para cada orden
+            const processedData = response.data.map(order => ({
+                ...order,
+                items: JSON.parse(order.items || '[]') // Asegúrate de que items no sea null
+            }));
+
+            setData(processedData);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
     fetchData();
-  }, []);
+}, []);
 
+  // Maneja cerrar el diálogo
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setSelectedOrder(null);
-  };
-
-  const handleOtherAction = (order) => {
-    console.log("Acción adicional para la orden:", order);
   };
 
   const actionColumn = [
@@ -71,18 +91,17 @@ const Datatable = () => {
       field: "action",
       headerName: "Action",
       width: 150,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction" style={{ display: "flex", gap: "8px" }}>
-            <Button variant="outlined" color="error" onClick={() => handleOpenDialog(params.row)}>
-              Error
-            </Button>
-            <Button variant="outlined" color="primary" onClick={() => handleOtherAction(params.row)}>
-              Acción
-            </Button>
-          </div>
-        );
-      },
+      renderCell: (params) => (
+        <div style={{ display: "flex", gap: "8px" }}>
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={() => handleOpenDialog(params.row)}
+          >
+            Detalles
+          </Button>
+        </div>
+      ),
     },
   ];
 
@@ -100,23 +119,36 @@ const Datatable = () => {
         experimentalFeatures={{ newEditingApi: true }}
       />
 
-      {/* Dialog para mostrar detalles de la orden */}
+      {/* Diálogo para mostrar detalles de la orden */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="md" fullWidth>
         <DialogTitle>Order Details</DialogTitle>
         <DialogContent>
           {selectedOrder && (
             <div>
-              <p><strong>Order ID:</strong> {selectedOrder.orderId}</p>
-              <p><strong>User ID:</strong> {selectedOrder.userId}</p>
-              <p><strong>Total:</strong> ${selectedOrder.total}</p>
-              <p><strong>Status:</strong> {selectedOrder.status}</p>
-              <p><strong>Order Date:</strong> {selectedOrder.orderDate}</p>
-              <p><strong>Delivery Date:</strong> {selectedOrder.deliveryDate || 'N/A'}</p>
-              <p><strong>Shipping Address:</strong> {selectedOrder.shippingAddress}</p>
-              
-              {/* Tabla para mostrar los productos en el pedido */}
+              <p>
+                <strong>Order ID:</strong> {selectedOrder.orderId}
+              </p>
+              <p>
+                <strong>User ID:</strong> {selectedOrder.userId}
+              </p>
+              <p>
+                <strong>Total:</strong> ${selectedOrder.total}
+              </p>
+              <p>
+                <strong>Status:</strong> {selectedOrder.status}
+              </p>
+              <p>
+                <strong>Order Date:</strong> {selectedOrder.orderDate}
+              </p>
+              <p>
+                <strong>Delivery Date:</strong> {selectedOrder.deliveryDate || "N/A"}
+              </p>
+              <p>
+                <strong>Shipping Address:</strong> {selectedOrder.shippingAddress}
+              </p>
+
               <TableContainer component={Paper}>
-                <Table aria-label="order items">
+                <Table>
                   <TableHead>
                     <TableRow>
                       <TableCell>Product ID</TableCell>
@@ -141,7 +173,9 @@ const Datatable = () => {
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">Close</Button>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -28,12 +28,12 @@ const ProductoDetalle = ({ addToCart }) => {
 
     const fetchProducto = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/ProductItems/${id}`, {
+        const response = await axios.get(`http://localhost:8081/api/products/productos/${id}`, {
           cancelToken: cancelTokenSource.token,
         });
         setProducto(response.data);
-        setSelectedColor(response.data.colors[0]);
-        setSelectedSize(response.data.sizes[0]);
+        setSelectedColor(response.data.colors.length > 0 ? response.data.colors[0] : '');
+        setSelectedSize(response.data.sizes.length > 0 ? response.data.sizes[0] : '');
         setLoading(false);
       } catch (error) {
         if (axios.isCancel(error)) {
@@ -75,7 +75,7 @@ const ProductoDetalle = ({ addToCart }) => {
   return (
     <div className="producto-detalle">
       <img
-        src={producto.cover ? `http://localhost:4000/images/${producto.cover}` : 'ruta/de/imagen/default.jpg'}
+        src={producto.cover}
         alt={producto.name}
         className="producto-imagen"
       />
@@ -101,7 +101,7 @@ const ProductoDetalle = ({ addToCart }) => {
           
           <StyledRating
             name="customized-color"
-            defaultValue={2}
+            defaultValue={producto.rating || 0}
             getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
             precision={0.5}
             icon={<FavoriteIcon fontSize="inherit" />}

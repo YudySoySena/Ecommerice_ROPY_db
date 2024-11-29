@@ -1,20 +1,28 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+import jwt from 'jsonwebtoken';
 
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1]; // Extraer solo el token
-    
-    // Validar presencia del token
-    if (!token) return res.status(403).send("Token requerido.");
+// Middleware de autenticación
+export const verifyToken = (req, res, next) => {
+  const token = req.cookies.token;
 
-    // Verificar el token JWT
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) return res.status(403).send("Token inválido.");
-        req.userId = decoded.id;
-        req.userRole = decoded.id_rol;
-        next();
-    });
+  if (!token) {
+    return res.status(403).json({ Message: "No se proporcionó un token" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ Message: "Token inválido" });
+    }
+    req.user = decoded; // Guardar los datos del usuario en la solicitud
+    next();
+  });
 };
 
-module.exports = { authenticateToken };
+// Middleware de autorización para roles
+export const authorizeRole = (role) => {
+  return (req, res, next) => {
+    if (req.user.rol_id !== role) {
+      return res.status(403).json({ Message: "No tienes permisos para acceder a este recurso" });
+    }
+    next();
+  };
+};
