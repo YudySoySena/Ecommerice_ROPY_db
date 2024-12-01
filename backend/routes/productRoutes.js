@@ -19,6 +19,8 @@ router.put('/productos/:id', upload.single('file'), productController.updateProd
 // Ruta para eliminar un producto 
 router.delete('/productos/:id', productController.deleteProduct);
 
+router.post('/newProduct', productController.createProduct)
+
 // Ruta para crear un nuevo producto
 //router.post('/create', upload.single('file'), productController.createProduct);
 

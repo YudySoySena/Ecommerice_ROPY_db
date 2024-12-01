@@ -17,7 +17,7 @@ function StatisticsCards() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/Orders')
+    fetch('http://localhost:8081/Orders')
       .then(response => response.json())
       .then(data => {
         setOrderCount(data.length); // Cuenta la cantidad de usuarios

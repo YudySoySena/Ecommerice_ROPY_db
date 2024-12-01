@@ -1,4 +1,4 @@
-import { AppstoreOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined, PercentageOutlined, BellOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +36,12 @@ function SideMenu() {
           {
             label: "Notificaciones",
             key: "/admin/notifications",
-            icon: <UserOutlined />,
+            icon: <BellOutlined />,
+          },
+          {
+            label: "Promociones",
+            key: "/admin/promotions",
+            icon: <PercentageOutlined />,
           },
         ]}
       />

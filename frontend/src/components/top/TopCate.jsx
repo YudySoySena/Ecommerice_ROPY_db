@@ -10,7 +10,7 @@ const TopCate = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/categories");
+        const response = await axios.get("http://localhost:8081/categories");
         setCategories(response.data.categories);  // Aquí pasas las categorías correctamente
       } catch (error) {
         console.error("Error fetching categories:", error);

@@ -38,7 +38,7 @@ const NewProduct = ({ title }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/ProductItems", formData);
+      const response = await axios.post("http://localhost:8081/ProductItems", formData);
       console.log("Producto creado:", response.data);
     } catch (error) {
       console.error("Error creando producto:", error.response ? error.response.data : error.message);

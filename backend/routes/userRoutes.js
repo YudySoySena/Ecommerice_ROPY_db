@@ -4,8 +4,7 @@ import userController from '../controllers/userController.js';
 const router = express.Router();
 
 //ruta para crear un nuevo usuario
-
-router.post('/newUser', userController.createUser)
+router.post('/newUser', userController.createUser);
 
 // Ruta para obtener todos los usuarios
 router.get('/allUsers', userController.getAllUsers);

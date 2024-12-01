@@ -14,10 +14,7 @@ const createProduct = (req, res) => {
         discount,
         material,
         material2,
-        rating,
-        promotion_type,
-        promotion_start_date,
-        promotion_end_date,
+        rating
     } = req.body;
 
     req.getConnection((err, conn) => {
@@ -142,114 +139,48 @@ const getDiscountedProducts = (req, res) => {
 
 const updateProduct = (req, res) => {
     const { id } = req.params;
-    const {
-        name,
-        price,
-        description,
-        stock,
-        discount,
-        material,
-        material2,
-        rating,
-        promotion_type,
-        promotion_start_date,
-        promotion_end_date,
-    } = req.body;
-
-    let updateData = {
-        name,
-        price,
-        description,
-        stock,
-        discount,
-        material,
-        material2,
-        rating,
-        promotion_type,
-        promotion_start_date,
-        promotion_end_date,
-    };
-
-    // Check if a new image file is uploaded
-    if (req.files && req.files.file) {
-        const productImage = req.files.file;
-        cloudinary.uploader.upload(productImage.tempFilePath, { folder: "Products" }, (err, result) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send("Error al subir la imagen a Cloudinary.");
-            }
-            updateData.cover = result.secure_url;
-            updateData.public_id = result.public_id;
-            updateData.imgProducto = result.secure_url;
-
-            req.getConnection((err, conn) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send("Error de conexión a la base de datos.");
-                }
-                conn.query("UPDATE productitems SET ? WHERE id = ?", [updateData, id], (err, result) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).send("Error al actualizar el producto.");
-                    }
-                    res.status(200).json(updateData); // Devolver el producto actualizado
-                });
-            });
-        });
-    } else {
-        req.getConnection((err, conn) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send("Error de conexión a la base de datos.");
-            }
-            conn.query("UPDATE productitems SET ? WHERE id = ?", [updateData, id], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send("Error al actualizar el producto.");
-                }
-                res.status(200).json(updateData); // Devolver el producto actualizado
-            });
-        });
-    }
-};
+    const { name, material, material2, price, description, stock, rating } = req.body;
+  
+    req.getConnection((err, conn) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error de conexión a la base de datos.");
+      }
+  
+      const query = `
+        UPDATE productos
+        SET name = ?, material = ?, material2 = ?, price = ?, description = ?, stock = ?, rating = ?
+        WHERE id = ?;
+      `;
+      conn.query(query, [name, material, material2, price, description, stock, rating, id], (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error al actualizar el producto.");
+        }
+        res.status(200).send("Producto actualizado exitosamente.");
+      });
+    });
+  };
+  
 const deleteProduct = (req, res) => {
     const { id } = req.params;
-
+  
     req.getConnection((err, conn) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error de conexión a la base de datos.");
+      }
+  
+      const query = `DELETE FROM productos WHERE id = ?`;
+      conn.query(query, [id], (err, result) => {
         if (err) {
-            console.error(err);
-            return res.status(500).send("Error de conexión a la base de datos.");
+          console.error(err);
+          return res.status(500).send("Error al eliminar el producto.");
         }
-
-        // Obtener el producto para eliminar la imagen de Cloudinary
-        conn.query("SELECT public_id FROM productitems WHERE id = ?", [id], (err, result) => {
-            if (err || result.length === 0) {
-                console.error(err);
-                return res.status(500).send("Error al obtener el producto.");
-            }
-
-            const public_id = result[0].public_id;
-
-            // Eliminar la imagen de Cloudinary
-            cloudinary.uploader.destroy(public_id, (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send("Error al eliminar la imagen de Cloudinary.");
-                }
-
-                // Eliminar el producto de la base de datos
-                conn.query("DELETE FROM productitems WHERE id = ?", [id], (err, result) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).send("Error al eliminar el producto.");
-                    }
-
-                    res.status(200).send("Producto eliminado.");
-                });
-            });
-        });
+        res.status(200).send("Producto eliminado exitosamente.");
+      });
     });
-};
+  };  
 
 
 export default { createProduct, getAllProducts, getProductById, getDiscountedProducts, updateProduct, deleteProduct };

@@ -11,7 +11,7 @@ const SlideCard = () => {
     // Hacer una solicitud GET para obtener los datos de los destacados desde la API
     const fetchSlides = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/Destacados");
+        const response = await axios.get("http://localhost:8081");
         setSlides(response.data); // Actualizar el estado con los datos obtenidos
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -26,7 +26,6 @@ const getAllUsers = (req, res) => {
     });
 };
 
-
 const createUser = (req, res) => {
     const { Nombre, Email, Password, Status, Rol } = req.body;
 
@@ -69,6 +68,7 @@ const createUser = (req, res) => {
                         console.error(err);
                         return res.status(500).send("Error al crear el usuario.");
                     }
+
                     res.status(201).send("Usuario registrado exitosamente.");
                 });
             });
@@ -78,7 +78,7 @@ const createUser = (req, res) => {
 
 const updateUser = (req, res) => {
     const { id } = req.params;
-    const { Nombre, Email, Status, Rol } = req.body;
+    const { Nombre, Email, Password, Status, Rol, Direccion, Telefono } = req.body;
 
     req.getConnection((err, conn) => {
         if (err) {
@@ -88,44 +88,42 @@ const updateUser = (req, res) => {
 
         const query = `
             UPDATE usuarios
-            SET Nombre = ?, Email = ?, Status = ?, Rol = ?
+            SET Nombre = ?, Email = ?, Password = ?, Status = ?, Rol = ?, Direccion = ?, Telefono = ?
             WHERE id = ?;
         `;
-
-        conn.query(query, [Nombre, Email, Status, Rol, id], (err) => {
+        conn.query(query, [Nombre, Email, Password, Status, Rol, Direccion, Telefono, id], (err, result) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send("Error al actualizar el usuario.");
             }
+
             res.status(200).send("Usuario actualizado exitosamente.");
         });
     });
 };
 
+
 const deleteUser = (req, res) => {
+    console.log("Solicitud de eliminación recibida para ID:", req.params.id);
     const { id } = req.params;
-
+  
     req.getConnection((err, conn) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error de conexión a la base de datos.");
+      }
+  
+      const query = `DELETE FROM usuarios WHERE id = ?`;
+      conn.query(query, [id], (err, result) => {
         if (err) {
-            console.error(err);
-            return res.status(500).send("Error de conexión a la base de datos.");
+          console.error(err);
+          return res.status(500).send("Error al eliminar el usuario.");
         }
-
-        const query = `
-            DELETE FROM usuarios
-            WHERE id = ?;
-        `;
-
-        conn.query(query, [id], (err) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send("Error al eliminar el usuario.");
-            }
-            res.status(200).send("Usuario eliminado exitosamente.");
-        });
+        console.log("Usuario eliminado exitosamente:", result);
+        res.status(200).send("Usuario eliminado exitosamente.");
+      });
     });
-};
-
+  };  
 const loginUser = (req, res) => {
     const { Email, Password } = req.body;
 

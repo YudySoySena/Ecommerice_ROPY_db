@@ -13,11 +13,13 @@ import "../new/New";
 import "./datatable.css";
 
 const userColumns = [
-  { field: "id", headerName: "ID", width: 90, editable: false },
-  { field: "Nombre", headerName: "Nombre", width: 150, editable: true },
-  { field: "Email", headerName: "Email", width: 200, editable: true },
-  { field: "Status", headerName: "Status", width: 120, editable: true },
-  { field: "Rol", headerName: "Rol", width: 150, editable: true },
+    { field: "id", headerName: "ID", width: 90, editable: false },
+    { field: "Nombre", headerName: "Nombre", width: 150, editable: true },
+    { field: "Email", headerName: "Email", width: 200, editable: true },
+    { field: "Status", headerName: "Status", width: 120, editable: true },
+    { field: "Rol", headerName: "Rol", width: 150, editable: true },
+    { field: "Direccion", headerName: "Direccion", width: 200, editable: true },
+    { field: "Telefono", headerName: "Telefono", width: 150, editable: true },  
 ];
 
 const Datatable = () => {
@@ -40,18 +42,19 @@ const Datatable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/api/users/${id}`);
+      await axios.delete(`http://localhost:8081/api/users/users/${id}`);
       setData(data.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error deleting user: ", error);
     }
-  };
+  };  
+  
 
   const processRowUpdate = async (newRow, oldRow) => {
     try {
-      console.log("Attempting to update user:", newRow);
+      console.log('Intentando actualizar usuario:', newRow);
       const response = await axios.put(
-        `http://localhost:8081/api/users/${newRow.id}`,
+        `http://localhost:8081/api/users/users/${newRow.id}`,
         newRow
       );
       setData((prev) =>
@@ -59,10 +62,10 @@ const Datatable = () => {
       );
       return newRow;
     } catch (error) {
-      console.error("Error updating user: ", error);
+      console.error("Error al actualizar el usuario: ", error);
       return oldRow; // Revertir en caso de error
     }
-  };
+  };  
 
   const handleOpenDialog = (user) => {
     setSelectedUser(user);

@@ -23,7 +23,7 @@ const NewUser = ({ title }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8081/newUser", formData, {
+      const response = await axios.post("http://localhost:8081/api/users/newUser", formData, {
         headers: {
           "Content-Type": "application/json"
         }

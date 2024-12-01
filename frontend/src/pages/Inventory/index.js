@@ -112,10 +112,29 @@ function Inventory() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/api/products/${id}`);
+      const response = await axios.delete(
+        `http://localhost:8081/api/products/productos${id}`
+      );
+      console.log("Respuesta de eliminación:", response.data);
       setRows(rows.filter((row) => row.id !== id));
     } catch (error) {
       console.error("Error deleting product:", error);
+    }
+  };
+
+  const processRowUpdate = async (newRow, oldRow) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8081/api/products/productos${newRow.id}`,
+        newRow
+      );
+      setRows((prev) =>
+        prev.map((row) => (row.id === newRow.id ? newRow : row))
+      );
+      return newRow;
+    } catch (error) {
+      console.error("Error updating product:", error);
+      return oldRow; // Revertir en caso de error
     }
   };
 
@@ -137,7 +156,7 @@ function Inventory() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/api/products/create",
+        "http://localhost:8081/api/products/newProduct",
         formData,
         {
           headers: {
@@ -164,6 +183,7 @@ function Inventory() {
         columns={columns(handleDelete)}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        processRowUpdate={processRowUpdate}
       />
 
       <Dialog open={open} onClose={() => setOpen(false)}>

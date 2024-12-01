@@ -70,7 +70,7 @@ function Notifications() {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/Notifications', {
+      const response = await axios.post('http://localhost:4000/', {
         userId: selectedUser,
         message,
         status: 'enviada', // Estado inicial
