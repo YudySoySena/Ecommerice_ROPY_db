@@ -7,16 +7,16 @@ const FlashDeals = ({ addToCart }) => {
   const [productItems, setProductItems] = useState([]);
 
   useEffect(() => {
-    const fetchProductItems = async () => {
+    const fetchPromotions = async () => {
       try {
-        const response = await axios.get("http://localhost:8081/api/products/discounted");
+        const response = await axios.get("http://localhost:8081/api/promotions/allpromotions");
         setProductItems(response.data || []);
       } catch (error) {
-        console.error("Error fetching product items:", error);
+        console.error("Error fetching promotions:", error);
       }
     };
 
-    fetchProductItems();
+    fetchPromotions();
   }, []);
 
   return (

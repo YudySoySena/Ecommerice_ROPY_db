@@ -1,61 +1,95 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-const createProduct = (req, res) => {
-    if (!req.files || !req.files.file) {
-        return res.status(400).send("La imagen del producto es requerida.");
-    }
-
-    const productImage = req.files.file;
-    const {
-        name,
-        price,
-        description,
-        stock,
-        discount,
-        material,
-        material2,
-        rating
-    } = req.body;
-
-    req.getConnection((err, conn) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("Error de conexión a la base de datos.");
+const createProduct = async (req, res) => {
+    try {
+        // Verificar si se proporciona la imagen
+        if (!req.files || !req.files.file) {
+            return res.status(400).send("La imagen del producto es requerida.");
         }
+        const productImage = req.files.file;
+        const {
+            name,
+            price,
+            description,
+            stock,
+            discount,
+            material,
+            material2,
+            rating,
+            colors,
+            promotion
+        } = req.body;
 
-        cloudinary.uploader.upload(productImage.tempFilePath, { folder: "Products" }, (err, result) => {
+        // Obtener conexión a la base de datos
+        req.getConnection(async (err, conn) => {
             if (err) {
-                console.error(err);
-                return res.status(500).send("Error al subir la imagen a Cloudinary.");
+                console.error("Error de conexión a la base de datos:", err);
+                return res.status(500).send("Error de conexión a la base de datos.");
             }
 
-            const newProduct = {
-                cover: result.secure_url,
-                public_id: result.public_id,
-                name,
-                price,
-                description,
-                stock,
-                discount,
-                material,
-                material2,
-                rating,
-                promotion_type,
-                promotion_start_date,
-                promotion_end_date,
-                imgProducto: result.secure_url,
-            };
+            try {
+                // Subir imagen a Cloudinary
+                const uploadResult = await cloudinary.uploader.upload(productImage.tempFilePath, {
+                    folder: "Products"
+                });
 
-            conn.query("INSERT INTO productitems SET ?", [newProduct], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send("Error al crear el producto.");
+                // Consultar IDs relacionados
+                const query = `
+                    SELECT 
+                        c.id AS colorId, 
+                        m.id AS materialId, 
+                        pr.id AS promotionId
+                    FROM colors c
+                    LEFT JOIN materials m ON m.name IN (?)
+                    LEFT JOIN promotions pr ON pr.name IN (?)
+                    WHERE c.name IN (?);
+                `;
+
+                const [relatedIds] = await conn.query(query, [
+                    [material],
+                    [promotion],
+                    [colors]
+                ]);
+
+                // Verificar resultados de la consulta
+                if (!relatedIds || relatedIds.length === 0) {
+                    return res.status(400).send("No se encontraron relaciones válidas para colores, materiales o promociones.");
                 }
 
-                res.status(201).json(newProduct); // Devolver el producto recién creado
-            });
+                // Preparar datos para insertar el producto
+                const newProduct = {
+                    cover: uploadResult.secure_url,
+                    public_id: uploadResult.public_id,
+                    name,
+                    price,
+                    description,
+                    stock,
+                    discount,
+                    material,
+                    material2,
+                    rating,
+                    imgProducto: uploadResult.secure_url,
+                };
+
+                // Insertar producto en la base de datos
+                conn.query("INSERT INTO productitems SET ?", [newProduct], (err, result) => {
+                    if (err) {
+                        console.error("Error al crear el producto:", err);
+                        return res.status(500).send("Error al crear el producto.");
+                    }
+
+                    // Respuesta con el producto creado
+                    res.status(201).json({ id: result.insertId, ...newProduct });
+                });
+            } catch (uploadError) {
+                console.error("Error al procesar la solicitud:", uploadError);
+                return res.status(500).send("Error al procesar la solicitud.");
+            }
         });
-    });
+    } catch (error) {
+        console.error("Error general en el controlador:", error);
+        return res.status(500).send("Error interno del servidor.");
+    }
 };
 
 const getAllProducts = (req, res) => {
@@ -67,7 +101,7 @@ const getAllProducts = (req, res) => {
 
         const query = 
             `SELECT 
-                id, discount, cover, name, material, material2, price, description, rating, promotion_type, promotion_start_date, promotion_end_date, imgProducto, stock
+                id, discount, cover, name, material, price, description, rating, imgProducto, stock
             FROM productitems;`
         ;
 
@@ -75,6 +109,72 @@ const getAllProducts = (req, res) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send("Error al obtener los productos.");
+            }
+            res.json(rows);
+        });
+    });
+};
+
+// Obtener datos de las llaves foraneas 
+// Colors:
+
+const getColors = (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error de conexión a la base de datos.");
+        }
+
+        const query = 
+            `SELECT id, name FROM colors;`
+        ;
+
+        conn.query(query, (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error al obtener los colores.");
+            }
+            res.json(rows);
+        });
+    });
+};
+
+const getMaterials = (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error de conexión a la base de datos.");
+        }
+
+        const query = 
+            `SELECT id, name FROM materials;`
+        ;
+
+        conn.query(query, (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error al obtener los colores.");
+            }
+            res.json(rows);
+        });
+    });
+};
+
+const getPromotionProduct = (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error de conexión a la base de datos.");
+        }
+
+        const query = 
+            `SELECT promotion_type FROM colors;`
+        ;
+
+        conn.query(query, (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error al obtener los colores.");
             }
             res.json(rows);
         });
@@ -148,7 +248,7 @@ const updateProduct = (req, res) => {
       }
   
       const query = `
-        UPDATE productos
+        UPDATE productitems
         SET name = ?, material = ?, material2 = ?, price = ?, description = ?, stock = ?, rating = ?
         WHERE id = ?;
       `;
@@ -171,12 +271,13 @@ const deleteProduct = (req, res) => {
         return res.status(500).send("Error de conexión a la base de datos.");
       }
   
-      const query = `DELETE FROM productos WHERE id = ?`;
+      const query = `DELETE FROM productitems WHERE id = ?`;
       conn.query(query, [id], (err, result) => {
         if (err) {
           console.error(err);
           return res.status(500).send("Error al eliminar el producto.");
         }
+        console.log("Producto eliminado exitosamente:", result);
         res.status(200).send("Producto eliminado exitosamente.");
       });
     });

@@ -13,7 +13,7 @@ function Notifications() {
     // Cargar la lista de usuarios al montar el componente
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/Users');
+        const response = await axios.get('http://localhost:8081/api/users/allusers');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -70,7 +70,7 @@ function Notifications() {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/', {
+      const response = await axios.post('http://localhost:8081/api/notifications/newNotification', {
         userId: selectedUser,
         message,
         status: 'enviada', // Estado inicial

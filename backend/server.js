@@ -8,6 +8,8 @@ import { v2 as cloudinary } from "cloudinary";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
+import promotionsRoutes from './routes/promotionsRoutes.js'
+import notificationsRoutes from './routes/notificationsRoutes.js'
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -46,6 +48,8 @@ app.use(myConnection(mysql, dbConfig, 'single'));
 app.use('/api/products', productRoutes); 
 app.use('/api/users', userRoutes); 
 app.use('/api/orders', ordersRoutes); 
+app.use('/api/promotions', promotionsRoutes);
+app.use('/api/notifications', notificationsRoutes)
 
 // Ruta de bienvenida
 app.get('/api', (req, res) => { 
