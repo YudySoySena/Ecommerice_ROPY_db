@@ -8,8 +8,10 @@ import { v2 as cloudinary } from "cloudinary";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
-import promotionsRoutes from './routes/promotionsRoutes.js'
-import notificationsRoutes from './routes/notificationsRoutes.js'
+import promotionsRoutes from './routes/promotionsRoutes.js';
+import notificationsRoutes from './routes/notificationsRoutes.js'; 
+import authRoutes from './routes/authRoutes.js';
+import { verifyToken, authorizeRole } from './Middlewares/authMiddleware.js';
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -21,6 +23,7 @@ dotenv.config();
 
 // Crear la aplicación Express
 const app = express();
+const router = express.Router();
 
 // Configurar middlewares
 app.use(
@@ -49,11 +52,41 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes); 
 app.use('/api/orders', ordersRoutes); 
 app.use('/api/promotions', promotionsRoutes);
-app.use('/api/notifications', notificationsRoutes)
+app.use('/api/notifications', notificationsRoutes);
+app.use('/api/auth', authRoutes);
 
 // Ruta de bienvenida
 app.get('/api', (req, res) => { 
   res.send('Bienvenido a la API'); 
+});
+
+app.get('/api/profileUser', verifyToken, (req, res) => {
+  const { user } = req;
+  res.json({ user });
+});
+
+// Ruta protegida para el administrador
+router.get('/admin', verifyToken, authorizeRole(1), (req, res) => {
+  // Aquí puedes agregar cualquier consulta que necesites
+  // Obtener los datos del administrador desde la base de datos
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.error('Error en la conexión a la base de datos:', err);
+      return res.status(500).json({ message: 'Error de servidor' });
+    }
+
+    // Realiza una consulta a la base de datos (por ejemplo, obtener todos los usuarios)
+    const sql = "SELECT * FROM usuarios WHERE rol = 1"; // Puedes ajustar la consulta según lo que necesites
+    conn.query(sql, (err, data) => {
+      if (err) {
+        console.error('Error al obtener los datos:', err);
+        return res.status(500).json({ message: 'Error al obtener los datos' });
+      }
+
+      // Responde con los datos obtenidos
+      res.json(data); 
+    });
+  });
 });
 
 // Configuración de Cloudinary
@@ -63,87 +96,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET 
 });
 
-// Endpoint para registrar un usuario
-app.post('/register', (req, res) => { 
-  const { Nombre, Email, Password } = req.body; 
-  const sql = "INSERT INTO usuarios (Nombre, Email, Password) VALUES (?,?,?)"; 
-  bcrypt.hash(Password.toString(), 10, (err, hash) => { 
-    if (err) return res.json({ Error: "Error al introducir la contraseña" }); 
-    const values = [Nombre, Email, hash]; 
-    req.getConnection((err, conn) => { 
-      if (err) { 
-        console.error('Error connecting to the database:', err); 
-        return res.json({ Error: "Error de conexión a la base de datos" }); 
-      } 
-      conn.query(sql, values, (err, result) => { 
-        if (err) { 
-          console.error('Error insertando datos en el servidor:', err); 
-          return res.json({ Error: "Error insertando datos en el servidor" }); 
-        } 
-        return res.json({ Status: "Success" }); 
-      }); 
-    }); 
-  }); 
-});
-
-// Endpoint para iniciar sesión
-app.post('/login', (req, res) => { 
-  const sql = "SELECT * FROM usuarios WHERE Email = ?"; 
-  req.getConnection((err, conn) => { 
-    if (err) { 
-      console.error('Error connecting to the database:', err); 
-      return res.json({ Message: "Error del servidor" }); 
-    } 
-    conn.query(sql, [req.body.Email], (err, data) => { 
-      if (err) return res.json({ Message: "Error del servidor" }); 
-      if (data.length > 0) { 
-        bcrypt.compare(req.body.Password, data[0].Password, (err, result) => { 
-          if (err) return res.json({ Message: "Error del servidor" }); 
-          if (result) { 
-            const name = data[0].Nombre; 
-            const rol_id = data[0].rol_id; 
-            const userId = data[0].id; 
-            const token = jwt.sign({ name, rol_id, userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION }); 
-            res.cookie('token', token); 
-            return res.json({ Status: "Éxito", rol_id }); 
-          } else { 
-            return res.json({ Message: "Contraseña incorrecta" }); 
-          } 
-        }); 
-      } else { 
-        return res.json({ Message: "No existen registros del usuario" }); 
-      } 
-    }); 
-  }); 
-});
-
-// Endpoint para obtener datos del usuario autenticado
-app.get('/getUser', (req, res) => { 
-  const token = req.cookies.token; 
-  if (!token) { 
-    return res.status(401).json({ Status: "Error", Message: "No token provided" }); 
-  } 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => { 
-    if (err) { 
-      return res.status(401).json({ Status: "Error", Message: "Failed to authenticate token" }); 
-    } 
-    const sql = "SELECT * FROM usuarios WHERE id = ?"; 
-    req.getConnection((err, conn) => { 
-      if (err) { 
-        console.error('Error connecting to the database:', err); 
-        return res.status(500).json({ Status: "Error", Message: "Error de conexión a la base de datos" }); 
-      } 
-      conn.query(sql, [decoded.userId], (err, data) => { 
-        if (err) return res.status(500).json({ Status: "Error", Message: "Error al obtener los datos del usuario" }); 
-        if (data.length > 0) { 
-          return res.json({ Status: "Éxito", user: data[0] }); 
-        } else { 
-          return res.status(404).json({ Status: "Error", Message: "Usuario no encontrado" }); 
-        } 
-      }); 
-    }); 
-  }); 
-});
 
 // Iniciar el servidor
 app.listen(PORT, () => { 

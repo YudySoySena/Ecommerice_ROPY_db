@@ -5,6 +5,7 @@ import Inventory from "../../pages/Inventory";
 import Orders from "../../pages/Orders";
 import Notifications from "../../pages/Notifications";
 import Promotions from "../../pages/Promotions/promotions";
+import Comments from "../../pages/Comments/comments";
 
 function AdminRoutes() {
   return (
@@ -15,6 +16,8 @@ function AdminRoutes() {
       <Route path="orders" element={<Orders />} />
       <Route path="notifications" element={<Notifications />} />
       <Route path="promotions" element={<Promotions/>} />
+      <Route path="comments" element={<Comments/>} />
+
     </Routes>
   );
 }

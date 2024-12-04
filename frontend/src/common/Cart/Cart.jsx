@@ -53,7 +53,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
     setFormData({ ...formData, shippingType });
 
     // Calcular el costo de envío en función del tipo
-    const cost = shippingType === "express" ? 2000  : 10000;
+    const cost = shippingType === "express" ? 20000 : 10000;
     setShippingCost(cost);
   };
 

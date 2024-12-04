@@ -14,6 +14,9 @@ router.get('/productos/:id', productController.getProductById);
 // Ruta para obtener productos con descuentos
 router.get('/discounted', productController.getDiscountedProducts);
 
+// Ruta para obtener los productos destacados semanales
+router.get('/featureProduct', productController.getFeaturedProducts)
+
 // Ruta para actualizar un producto existente 
 router.put('/productos/:id', upload.single('file'), productController.updateProduct); 
 // Ruta para eliminar un producto 

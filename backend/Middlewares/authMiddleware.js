@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-// Middleware de autenticación
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
 
@@ -17,7 +16,6 @@ export const verifyToken = (req, res, next) => {
   });
 };
 
-// Middleware de autorización para roles
 export const authorizeRole = (role) => {
   return (req, res, next) => {
     if (req.user.rol_id !== role) {

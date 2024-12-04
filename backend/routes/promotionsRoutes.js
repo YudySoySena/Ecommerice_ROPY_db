@@ -6,6 +6,9 @@ const router = express.Router();
 // Ruta para obtener todas las promociones
 router.get('/allPromotions', promotionController.getAllPromotions);
 
+// Ruta para obtener todas las promociones para el frontend
+router.get('/allPromotionsProduct', promotionController.getAllPromotionsFront);
+
 // Ruta para crear una nueva promoción
 router.post('/newPromotion', promotionController.createPromotion);
 

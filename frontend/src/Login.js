@@ -20,22 +20,21 @@ const Login = () => {
     const validationErrors = Validation(values);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) return;
-
+  
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8081/api/auth/login', {
-        Email: values.Email,
-        Password: values.Password,
-      }, { withCredentials: true });
-      console.log(response.data);
-      navigate('/dashboard');
+      const response = await axios.post('http://localhost:8081/api/auth/login', values, { withCredentials: true });
+      const { user, redirect } = response.data;
+  
+      console.log('Usuario autenticado:', user);
+      navigate(redirect); // Redirige según el rol
     } catch (error) {
       console.error('Error:', error);
       setErrors({ general: 'Credenciales incorrectas' });
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   return (
     <div className="card-body">

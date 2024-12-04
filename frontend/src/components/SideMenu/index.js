@@ -43,6 +43,11 @@ function SideMenu() {
             key: "/admin/promotions",
             icon: <PercentageOutlined />,
           },
+          {
+            label: "Comentarios",
+            key: "/admin/comments",
+            icon: <PercentageOutlined />,
+          },
         ]}
       />
     </div>
